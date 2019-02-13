@@ -11,33 +11,23 @@ Para conseguir esta descentralizacion usaremos el framework SOLID, cada uno de l
 === Requisitos
 
 [role="arc42help"]
-****
-.Contenido
+
 La aplicación contendrá una vista principal de los usuarios con los que la persona "protagonista" podrá comunicarse. Tras seleccionar uno de ellos, será capaz de poder enviar mensajes y recibirlos. En un principio implementaremos solo los mensajes, mas adelante nos gustaria dar la posibilidad de transmision de imagenes o incluso videos.
 
-.Motivacion
-Con este proyecto aspiramos a conseguir una comunicacion privada y de punto a punto real entre los usuarios, evitando así filtraciones de información o problemas de seguridad.
 
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
-
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
 ****
 
 === Quality Goals
 
 [role="arc42help"]
 ****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
 
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
+Con este proyecto aspiramos a conseguir una comunicacion privada y de punto a punto real entre los usuarios, evitando así filtraciones de información o problemas de seguridad. Nuestros objetivos ordenados por orden de prioridad serían:
 
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
+-Conversaciones textuales fluidas entre dos usuarios.
+-Enviar o recibir archivos de tipo audiovisual.
+-Permitir la opcion de conversaciones grupales de mas de 2 usuarios.
+-Interfaz cuidada y accesible.
 ****
 
 === Stakeholders
@@ -60,11 +50,12 @@ These stakeholders determine the extent and the level of detail of your work and
 
 .Form
 Table with role names, person names, and their expectations with respect to the architecture and its documentation.
+|===
+|Role/Name|Contact|Expectations
+| _<Clientes>_ | _<Los usuarios de "a pié" de la aplicación>_ | _<Poder comunicarse con contactos deseados>_
+| _<Profesores>_ | _<Profesores de la asignatura>_ | _<Aplicación de chat descentralizada y accesible usando SOLID>_
+| _<SOLID Staffs'>_ | _<Desarrolladores y componentes de SOLID>_ | _<Aplicacion usable, accesible y comercial que use SOLID de manera correcta>_
+|===
 ****
 
 [options="header",cols="1,2,2"]
-|===
-|Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
-|===
