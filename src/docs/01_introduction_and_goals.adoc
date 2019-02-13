@@ -11,7 +11,7 @@ Para conseguir esta descentralizacion usaremos el framework SOLID, cada uno de l
 === Requisitos
 
 [role="arc42help"]
-
+****
 La aplicación contendrá una vista principal de los usuarios con los que la persona "protagonista" podrá comunicarse. Tras seleccionar uno de ellos, será capaz de poder enviar mensajes y recibirlos. En un principio implementaremos solo los mensajes, mas adelante nos gustaria dar la posibilidad de transmision de imagenes o incluso videos.
 
 
