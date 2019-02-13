@@ -1,27 +1,22 @@
 [[section-introduction-and-goals]]
-== Introduction and Goals
+== Introducción y Objetivos
 
 [role="arc42help"]
 ****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
+El objetivo de este proyecto es la creación de un chat descentralizado, es decir, una aplicacion o programa mediante el cual dos o mas usuarios se comuniquen entre si de forma tal que la informacion transcurrida entre ellos no sea almacenada ni circule por ningun servidor externo, evitando asi, la perdidia de la confidencialidad de los datos y permitiendo conversaciones realmente privadas a diferencia de otros softwares.
 
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
+Para conseguir esta descentralizacion usaremos el framework SOLID, cada uno de los usuarios deberá poseer un POD de SOLID y una de ellos correrá el Server Solid
 ****
 
-=== Requirements Overview
+=== Requisitos
 
 [role="arc42help"]
 ****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
+.Contenido
+La aplicación contendrá una vista principal de los usuarios con los que la persona "protagonista" podrá comunicarse. Tras seleccionar uno de ellos, será capaz de poder enviar mensajes y recibirlos. En un principio implementaremos solo los mensajes, mas adelante nos gustaria dar la posibilidad de transmision de imagenes o incluso videos.
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
+.Motivacion
+Con este proyecto aspiramos a conseguir una comunicacion privada y de punto a punto real entre los usuarios, evitando así filtraciones de información o problemas de seguridad.
 
 .Form
 Short textual description, probably in tabular use-case format.
