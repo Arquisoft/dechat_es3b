@@ -4,23 +4,14 @@
 
 [role="arc42help"]
 ****
-.Contents
-Important, expensive, large scale or risky architecture decisions including rationals.
-With "decisions" we mean selecting one alternative based on given criteria.
+=== Language
+Among the following three languages:
+- Java
+- C#
+- AngujarJS (JavaScript)
+We have decided that the best language is JavaScript since the other two languages (Java and C #) do not have direct support of Solid and it would be us who would have to implement a controller that communicates with SOLID. However, the disadvantage of JavaScript is that we need a level that no member of the team currently has. Despite this, among all we have seen that the best option is to use JavaScript.
 
-Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).
+=== Database
+For the moment we will not use any database because we do not see it necessary. As the project progresses, if we see that the project requires a database, we will use a relational database such as MySQL, as we have used them in other subjects and we already have some experience with them.
 
-Avoid redundancy. Refer to section 4, where you already captured the most important decisions of your architecture.
-
-.Motivation
-Stakeholders of your system should be able to comprehend and retrace your decisions.
-
-.Form
-Various options:
-
-* List or table, ordered by importance and consequences or:
-* more detailed in form of separate sections per decision
-* ADR (architecture decision record) for every important decision
 ****
