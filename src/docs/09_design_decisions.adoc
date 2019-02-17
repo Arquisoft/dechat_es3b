@@ -3,9 +3,11 @@
 
 === Language
 Among the following three languages:
+
 * Java
 * C#
 * AngujarJS (JavaScript)
+
 We have decided that the best language is JavaScript since the other two languages (Java and C #) do not have direct support of Solid and it would be us who would have to implement a controller that communicates with SOLID. However, the disadvantage of JavaScript is that we need a level that no member of the team currently has. Despite this, among all we have seen that the best option is to use JavaScript.
 
 === Database
