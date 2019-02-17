@@ -5,13 +5,12 @@
 [role="arc42help"]
 ****
 .Contents
-A list of identified technical risks or technical debts, ordered by priority
+List of identified technical risks or technical debts, ordered by priority
 
-.Motivation
-“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.) 
+* *Inexperience with the technology that we must use:* One of the requirements is to use the SOLID platform in our application. Being a new technology, we have to learn to use it.
+* *Loss of time to specialize in a programming language:* We have decided to use a language (JavaScript) of which we have a slight notion. This can delay us when carrying out the project. However, if we had chosen another language we would have to learn how to couple that language to the SOLID platform. Therefore, comparing the advantages and disadvantages of each one, we decided that it was best to use the language previously mentioned.
+* *Loss of team members:* This could harm us in the future since we are 4 in the team and could cause us to delay with deliveries.
+* *Little applications on which to base ourselves:* Being a practically new technology, there are hardly any projects that we can use as an example.
 
-This should be your motto for systematic detection and evaluation of risks and technical debts in the architecture, which will be needed by management stakeholders (e.g. project managers, product owners) as part of the overall risk analysis and measurement planning.
-
-.Form
-List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
+To minimize each of the risks we decided that it was best to learn about SOLID and Javascript with a small application by following the steps that appear on this page: https://solid.inrupt.com/docs/writing-solid-apps-with-angular so that when faced with the application, the problems are not so big and we already have part of the work done. We also commit ourselves to help each other so that deliveries are on time.
 ****
