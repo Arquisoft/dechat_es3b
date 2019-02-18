@@ -1,31 +1,15 @@
 [[section-glossary]]
 == Glossary
 
-
-
-[role="arc42help"]
-****
-.Contents
-The most important domain and technical terms that your stakeholders use when discussing the system.
-
-You can also see the glossary as source for translations if you work in multi-language teams.
-
-.Motivation
-You should clearly define your terms, so that all stakeholders
-
-* have an identical understanding of these terms
-* do not use synonyms and homonyms
-
-.Form
-A table with columns <Term> and <Definition>.
-
-Potentially more columns in case you need translations.
-
-****
-
 [options="header"]
 |===
-| Solid         | es un proyecto de descentralización web dirigido por Tim Berners-Lee, el inventor de la World Wide Web.
-| <Term-1>     | <definition-1>
-| <Term-2>     | <definition-2>
+| Solid         | Es un proyecto de descentralización web dirigido por Tim Berners-Lee (inventor de la World Wide Web). Más información en https://en.wikipedia.org/wiki/Solid_(web_decentralization_project) [Solid - Wikipedia]
+| Servidor Web     | Es un equipo informático que forma parte de una red y que dota de servicios a otros equipos
+| Angular     | Es un framework para aplicaciones web desarrollado en TypeScript, de código abierto, que se utiliza para crear y mantener aplicaciones web de una sola página. 
+| JavaScript	| Es un lenguaje de programación interpretado, orientado a objetos, basado en prototipos, imperativo, débilmente tipado y dinámico. Se utiliza principalmente en su forma del lado del cliente.
+| MySQL	| Es un sistema de gestión de base de datos relacional basado en lenguaje de consulta estructurado (SQL).
+| ARC42	| Es una estructura para documentar sistemas de software  https://arc42.org/ [Arc42]
+| C# | Es un lenguaje de programación orientado a objetos desarrollado y estandarizado por Microsoft como parte de su plataforma .NET
+| Java | Es un lenguaje de programación de propósito general orientado a objetos que permite que los desarrolladores de aplicaciones escriban el programa una vez y lo ejecuten en cualquier dispositivo, es decir que el código que es ejecutado en una plataforma no tiene que ser recompilado para correr en otra. 
+
 |===
