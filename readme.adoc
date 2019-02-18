@@ -23,14 +23,14 @@ mvn generate-resources
 
 == Compile and run
 
-The skeleton project is a simple
- https://spring.io/projects/spring-boot[Spring-boot] application which can be run as:
+The skeleton project is an angular aplication combined with solid tecnology 
+ https://angular.io/[Angular] application which can be run using the following command:
 
 ----
- mvn spring-boot:run
+ng serve --open
 ----
 
-Once executed, the application should be available at: http://localhost:8080
+Once executed, the application should be available at: http://localhost:4200
 
 == Testing
 
