@@ -12,3 +12,17 @@ We have decided that the best language is JavaScript since the other two languag
 
 === Database
 For the moment we will not use any database because we do not see it necessary. As the project progresses, if we see that the project requires a database, we will use a relational database such as MySQL, as we have used them in other subjects and we already have some experience with them.
+
+== Decisiones de Diseño
+
+=== Lenguaje
+Entre los siguientes tres lenguajes:
+
+* Java
+* C#
+* AngujarJS (JavaScript)
+
+Hemos decidido que el mejor lenguaje es JavaScript ya que los otros dos lenguajes(Java y C#) no tienen soporte directo de Solid y seríamos nosotros los que tendríamos que implementar un controlador que comunique con SOLID. Sin embargo, la desventaja de JavaScript es que necesitamos un nivel que de momento ningún miembro del equipo tiene. A pesar de esto, entre todos hemos visto que la mejor opción es utilizar JavaScript.
+
+=== Base de Datos
+De momento no vamos a utilizar ninguna base de datos ya que no lo vemos necesario. A medida que avance el proyecto, si vemos que el proyecto requiere de una base de datos, usaríamos una base de datos relacional como por ejemplo MySQL, ya que las hemos utilizado en otras asignaturas y ya tenemos cierta experiencia con ellas.
