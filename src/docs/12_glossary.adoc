@@ -25,7 +25,7 @@ Potentially more columns in case you need translations.
 
 [options="header"]
 |===
-| Term         | Definition
+| Solid         | es un proyecto de descentralización web dirigido por Tim Berners-Lee, el inventor de la World Wide Web.
 | <Term-1>     | <definition-1>
 | <Term-2>     | <definition-2>
 |===
