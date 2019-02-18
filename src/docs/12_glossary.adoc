@@ -3,13 +3,31 @@
 
 [options="header"]
 |===
-| Solid         | Es un proyecto de descentralizaci髇 web dirigido por Tim Berners-Lee (inventor de la World Wide Web). M醩 informaci髇 en https://en.wikipedia.org/wiki/Solid_(web_decentralization_project) [Solid - Wikipedia]
-| Servidor Web     | Es un equipo inform醫ico que forma parte de una red y que dota de servicios a otros equipos
-| Angular     | Es un framework para aplicaciones web desarrollado en TypeScript, de c骴igo abierto, que se utiliza para crear y mantener aplicaciones web de una sola p醙ina. 
-| JavaScript	| Es un lenguaje de programaci髇 interpretado, orientado a objetos, basado en prototipos, imperativo, d閎ilmente tipado y din醡ico. Se utiliza principalmente en su forma del lado del cliente.
-| MySQL	| Es un sistema de gesti髇 de base de datos relacional basado en lenguaje de consulta estructurado (SQL).
-| ARC42	| Es una estructura para documentar sistemas de software  https://arc42.org/ [Arc42]
-| C# | Es un lenguaje de programaci髇 orientado a objetos desarrollado y estandarizado por Microsoft como parte de su plataforma .NET
-| Java | Es un lenguaje de programaci髇 de prop髎ito general orientado a objetos que permite que los desarrolladores de aplicaciones escriban el programa una vez y lo ejecuten en cualquier dispositivo, es decir que el c骴igo que es ejecutado en una plataforma no tiene que ser recompilado para correr en otra. 
+| Term | Definition
+| Solid         | Is a web decentralization project led by Tim Berners-Lee, the inventor of the World Wide Web. More information in 
+https://en.wikipedia.org/wiki/Solid_(web_decentralization_project)) 
+| Web Server     | It is a computer that is part of a network and that provides services to other equipment
+| Angular     | It is a framework for web applications developed in TypeScript, open source, which is used to create and maintain web applications of a single page.
+| JavaScript	| It is an interpreted programming language, oriented to objects, based on prototypes, imperative, weakly typed and dynamic. It is mainly used in its customer side form.
+| MySQL	| It is a relational database management system based on structured query language (SQL).
+| ARC42	| It is a structure for documenting software systems. More information in https://arc42.org/ 
+| C# | It is an object-oriented programming language developed and standardized by Microsoft as part of its .NET platform
+| Java | It is a general object-oriented programming language that allows application developers to write the program once and execute it on any device, meaning that the code that is executed on one platform does not have to be recompiled to run on another.
+
+|===
+
+== Glosario
+
+[options="header"]
+|===
+| T茅rmino | Definici贸n
+| Solid         | Es un proyecto de descentralizaci贸n web dirigido por Tim Berners-Lee (inventor de la World Wide Web). M谩s informaci贸n en https://en.wikipedia.org/wiki/Solid_(web_decentralization_project))
+| Servidor Web     | Es un equipo inform谩tico que forma parte de una red y que dota de servicios a otros equipos
+| Angular     | Es un framework para aplicaciones web desarrollado en TypeScript, de c贸digo abierto, que se utiliza para crear y mantener aplicaciones web de una sola p谩gina. 
+| JavaScript	| Es un lenguaje de programaci贸n interpretado, orientado a objetos, basado en prototipos, imperativo, d茅bilmente tipado y din谩mico. Se utiliza principalmente en su forma del lado del cliente.
+| MySQL	| Es un sistema de gesti贸n de base de datos relacional basado en lenguaje de consulta estructurado (SQL).
+| ARC42	| Es una estructura para documentar sistemas de software. M谩s informaci贸n en https://arc42.org/ 
+| C# | Es un lenguaje de programaci贸n orientado a objetos desarrollado y estandarizado por Microsoft como parte de su plataforma .NET
+| Java | Es un lenguaje de programaci贸n de prop贸sito general orientado a objetos que permite que los desarrolladores de aplicaciones escriban el programa una vez y lo ejecuten en cualquier dispositivo, es decir que el c贸digo que es ejecutado en una plataforma no tiene que ser recompilado para correr en otra. 
 
 |===
