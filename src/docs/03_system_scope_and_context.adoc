@@ -65,15 +65,13 @@ together with a mapping table showing the relationships between channels and inp
 
 **<Mapping Input/Output to Channels>**
 
-
--------------
 [[section-system-scope-and-context]]
 == Alcance y Contexto del Sistema
 
 
 [role="arc42help"]
 ****
-Nuestra aplicaciÛn consiste en un chat descentralizado en el que un usuario puede mantener conversaciones con otros usuarios. Con esta informaciÛn como base podemos
+Nuestra aplicaci√≥n consiste en un chat descentralizado en el que un usuario puede mantener conversaciones con otros usuarios. Con esta informaci√≥n como base podemos
 diferenciar dos contextos diferentes de nuestro sistema:
 ****
 
@@ -81,39 +79,39 @@ diferenciar dos contextos diferentes de nuestro sistema:
 
 [role="arc42help"]
 ****
-El siguiente diagrama muestra como se comunican todas las partes del sistema al chatear, es decir, cuando un usuario envÌa un mensaje a otro:
+El siguiente diagrama muestra como se comunican todas las partes del sistema al chatear, es decir, cuando un usuario env√≠a un mensaje a otro:
 **DIAGRAMA**
 
-Tal como se observa en el diagrama cada usuario tiene un Pod en SOLID propio, en Èl se almacenar·n todos los
-mensajes que envÌe. Sin embargo, los mensajes recibidos no se almacenar·n en el Pod del receptor manteniendo asÌ
+Tal como se observa en el diagrama cada usuario tiene un Pod en SOLID propio, en √©l se almacenar√°n todos los
+mensajes que env√≠e. Sin embargo, los mensajes recibidos no se almacenar√°n en el Pod del receptor manteniendo as√≠
 el principio de SOLID en el que cada usuario tiene el control total sobre sus datos.
-De esta manera para ver el historial de mensajes de la conversaciÛn ambos usuarios tendr·n que permitir al otro
-la visualizaciÛn de sus mensajes enviados.
+De esta manera para ver el historial de mensajes de la conversaci√≥n ambos usuarios tendr√°n que permitir al otro
+la visualizaci√≥n de sus mensajes enviados.
 
-.Resumen de acciones llevadas a cabo en la comunicaciÛn
+.Resumen de acciones llevadas a cabo en la comunicaci√≥n
 
 [options="header,footer"]
 |=======================
-|Parte        |AcciÛn
-|Usuario1     |EnvÌa un mensaje a Usuario2
+|Parte        |Acci√≥n
+|Usuario1     |Env√≠a un mensaje a Usuario2
 |Pod Usuario1 |Guarda el mensaje enviado
 |Usuario2     |Recibe el mensaje de Usuario1 y le contesta
 |Pod Usuario2 |Guarda el mensaje con el que ha contestado Usuario2
 |=======================
 ****
 
-=== Contexto TÈcnico
+=== Contexto T√©cnico
 
 [role="arc42help"]
 ****
 .Contenido
-Las interfases tÈcnicas (medios de transmisiÛn y canales) enlanzando al sistema con su ambiente. De manera adicional
-el mapeo de las entradas/salidas especÌficas del dominio a los canales, es decir, una explicaciÛn acerca de que entrada/salida
+Las interfases t√©cnicas (medios de transmisi√≥n y canales) enlanzando al sistema con su ambiente. De manera adicional
+el mapeo de las entradas/salidas espec√≠ficas del dominio a los canales, es decir, una explicaci√≥n acerca de que entrada/salida
 utiliza cual canal.
 
-.MotivaciÛn
-Muchas partes relacionadas realizan decisiones arquitectÛnicas basadas en las interfases tÈcnicas entre el sistema y 
-su contexto. Especialmente los diseÒadores de infraestructura o hardware deciden estas interfases tÈcnicas.
+.Motivaci√≥n
+Muchas partes relacionadas realizan decisiones arquitect√≥nicas basadas en las interfases t√©cnicas entre el sistema y 
+su contexto. Especialmente los dise√±adores de infraestructura o hardware deciden estas interfases t√©cnicas.
 
 .Forma
 Por ejemplo, diagramas UML de despligue describiendo los canales a sistemas vecinos, junto con una tabla de 
