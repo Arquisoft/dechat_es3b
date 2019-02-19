@@ -23,7 +23,7 @@ the visualization of your sent messages.
 .Summary of actions carried out in communication
 [cols="1,2" options="header"]
 |=======================
-|I    nvolved part     |Action
+|Involved part         |Action
 |User1                 |Sends a message to User2
 |User1 Pod             |Store the sent message
 |User2                 |Receives the message from User1 and answers it
@@ -31,10 +31,6 @@ the visualization of your sent messages.
 |=======================
 
 ****
-
-**<Diagram or Table>**
-
-**<optionally: Explanation of external domain interfaces>**
 
 === Technical Context
 
