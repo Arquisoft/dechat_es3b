@@ -4,20 +4,7 @@
 
 [role="arc42help"]
 ****
-.Contents
-System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
-(neighboring systems and users, i.e. the context of your system). It thereby specifies the external interfaces.
-
-If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
-
-.Motivation
-The domain interfaces and technical interfaces to communication partners are among your system's most critical aspects. Make sure that you completely understand them.
-
-.Form
-Various options:
-
-* Context diagrams
-* Lists of communication partners and their interfaces.
+Our application consists of a decentralized chat in which a user can have conversations with other users. Based on this information we can differentiate two different contexts of our system:
 ****
 
 
@@ -25,18 +12,24 @@ Various options:
 
 [role="arc42help"]
 ****
-.Contents
-Specification of *all* communication partners (users, IT-systems, ...) with explanations of domain specific inputs and outputs or interfaces.
-Optionally you can add domain specific formats or communication protocols.
+The following diagram shows how all parts of the system communicate when chatting, that is, when one user sends a message to another:
 
-.Motivation
-All stakeholders should understand which data are exchanged with the environment of the system.
+image::images/3-Business context1.PNG[Diagrama del contexto de negocio de dechat_es3b]
 
-.Form
-All kinds of diagrams that show the system as a black box and specify the domain interfaces to communication partners.
+As you can see in the diagram, each user has his own SOLID Pod, where all the messages he sends will be stored. However, sent messages will not be stored in the receiver's Pod, keeping the SOLID principle in which each user has full control over their data. 
+This way to see the message history of the conversation both users will have to allow the other one 
+the visualization of your sent messages.
 
-Alternatively (or additionally) you can use a table.
-The title of the table is the name of your system, the three columns contain the name of the communication partner, the inputs, and the outputs.
+.Summary of actions carried out in communication
+[cols="1,2" options="header"]
+|=======================
+|I    nvolved part     |Action
+|User1                 |Sends a message to User2
+|User1 Pod             |Store the sent message
+|User2                 |Receives the message from User1 and answers it
+|User2 Pod             |Store the response message
+|=======================
+
 ****
 
 **<Diagram or Table>**
@@ -84,7 +77,7 @@ El siguiente diagrama muestra como se comunican todas las partes del sistema al 
 image::images/3-Business context1.PNG[Diagrama del contexto de negocio de dechat_es3b]
 
 Tal como se observa en el diagrama cada usuario tiene un Pod en SOLID propio, en él se almacenarán todos los
-mensajes que envíe. Sin embargo, los mensajes recibidos no se almacenarán en el Pod del receptor manteniendo así
+mensajes que envíe. Sin embargo, los mensajes enviados no se almacenarán en el Pod del receptor manteniendo así
 el principio de SOLID en el que cada usuario tiene el control total sobre sus datos.
 De esta manera para ver el historial de mensajes de la conversación ambos usuarios tendrán que permitir al otro
 la visualización de sus mensajes enviados.
