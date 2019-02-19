@@ -80,7 +80,8 @@ diferenciar dos contextos diferentes de nuestro sistema:
 [role="arc42help"]
 ****
 El siguiente diagrama muestra como se comunican todas las partes del sistema al chatear, es decir, cuando un usuario envía un mensaje a otro:
-**DIAGRAMA**
+
+image::images/3-Business context.PNG[Diagrama del contexto de negocio de dechat_es3b]
 
 Tal como se observa en el diagrama cada usuario tiene un Pod en SOLID propio, en él se almacenarán todos los
 mensajes que envíe. Sin embargo, los mensajes recibidos no se almacenarán en el Pod del receptor manteniendo así
