@@ -90,13 +90,13 @@ la visualización de sus mensajes enviados.
 
 .Resumen de acciones llevadas a cabo en la comunicación
 
-[options="header,footer"]
+[cols="1,2" options="header"]
 |=======================
-|Parte        |Acción
-|Usuario1     |Envía un mensaje a Usuario2
-|Pod Usuario1 |Guarda el mensaje enviado
-|Usuario2     |Recibe el mensaje de Usuario1 y le contesta
-|Pod Usuario2 |Guarda el mensaje con el que ha contestado Usuario2
+|Parte involucrada        |Acción
+|Usuario1                 |Envía un mensaje a Usuario2
+|Pod Usuario1             |Guarda el mensaje enviado
+|Usuario2                 |Recibe el mensaje de Usuario1 y le contesta
+|Pod Usuario2             |Guarda el mensaje con el que ha contestado Usuario2
 |=======================
 ****
 
