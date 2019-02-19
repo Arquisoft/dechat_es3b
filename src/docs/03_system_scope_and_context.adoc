@@ -64,3 +64,58 @@ together with a mapping table showing the relationships between channels and inp
 **<optionally: Explanation of technical interfaces>**
 
 **<Mapping Input/Output to Channels>**
+
+
+-------------
+[[section-system-scope-and-context]]
+== Alcance y Contexto del Sistema
+
+
+[role="arc42help"]
+****
+Nuestra aplicación consiste en un chat descentralizado en el que un usuario puede mantener conversaciones con otros usuarios. Con esta información como base podemos
+diferenciar dos contextos diferentes de nuestro sistema:
+****
+
+=== Contexto de Negocio
+
+[role="arc42help"]
+****
+El siguiente diagrama muestra como se comunican todas las partes del sistema al chatear, es decir, cuando un usuario envía un mensaje a otro:
+**DIAGRAMA**
+
+Tal como se observa en el diagrama cada usuario tiene un Pod en SOLID propio, en él se almacenarán todos los
+mensajes que envíe. Sin embargo, los mensajes recibidos no se almacenarán en el Pod del receptor manteniendo así
+el principio de SOLID en el que cada usuario tiene el control total sobre sus datos.
+De esta manera para ver el historial de mensajes de la conversación ambos usuarios tendrán que permitir al otro
+la visualización de sus mensajes enviados.
+
+.Resumen de acciones llevadas a cabo en la comunicación
+
+[options="header,footer"]
+|=======================
+|Parte        |Acción
+|Usuario1     |Envía un mensaje a Usuario2
+|Pod Usuario1 |Guarda el mensaje enviado
+|Usuario2     |Recibe el mensaje de Usuario1 y le contesta
+|Pod Usuario2 |Guarda el mensaje con el que ha contestado Usuario2
+|=======================
+****
+
+=== Contexto Técnico
+
+[role="arc42help"]
+****
+.Contenido
+Las interfases técnicas (medios de transmisión y canales) enlanzando al sistema con su ambiente. De manera adicional
+el mapeo de las entradas/salidas específicas del dominio a los canales, es decir, una explicación acerca de que entrada/salida
+utiliza cual canal.
+
+.Motivación
+Muchas partes relacionadas realizan decisiones arquitectónicas basadas en las interfases técnicas entre el sistema y 
+su contexto. Especialmente los diseñadores de infraestructura o hardware deciden estas interfases técnicas.
+
+.Forma
+Por ejemplo, diagramas UML de despligue describiendo los canales a sistemas vecinos, junto con una tabla de 
+mapeo mostrando las relaciones entre los canales y las entradas/salidas.
+****
