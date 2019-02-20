@@ -16,7 +16,7 @@ The following diagram shows how all parts of the system communicate when chattin
 
 image::images/3-Business context1.PNG[Diagrama del contexto de negocio de dechat_es3b]
 
-As you can see in the diagram, each user has his own SOLID Pod, where all the messages he sends will be stored. However, sent messages will not be stored in the receiver's Pod, keeping the SOLID principle in which each user has full control over their data. 
+As you can see in the diagram, each user has his own SOLID Pod, where all the messages he sends will be stored. However, sent messages will not be stored in the receiver's Pod, keeping the SOLID philosophy in which each user has full control over their data. 
 This way to see the message history of the conversation both users will have to allow the other one 
 the visualization of your sent messages.
 
@@ -60,8 +60,7 @@ together with a mapping table showing the relationships between channels and inp
 
 [role="arc42help"]
 ****
-Nuestra aplicación consiste en un chat descentralizado en el que un usuario puede mantener conversaciones con otros usuarios. Con esta información como base podemos
-diferenciar dos contextos diferentes de nuestro sistema:
+Nuestra aplicación consiste en un chat descentralizado en el que un usuario puede mantener conversaciones con otros usuarios. Con esta información como base podemos diferenciar dos contextos diferentes de nuestro sistema:
 ****
 
 === Contexto de Negocio
@@ -74,7 +73,7 @@ image::images/3-Business context1.PNG[Diagrama del contexto de negocio de dechat
 
 Tal como se observa en el diagrama cada usuario tiene un Pod en SOLID propio, en él se almacenarán todos los
 mensajes que envíe. Sin embargo, los mensajes enviados no se almacenarán en el Pod del receptor manteniendo así
-el principio de SOLID en el que cada usuario tiene el control total sobre sus datos.
+la filosofía de SOLID en el que cada usuario tiene el control total sobre sus datos.
 De esta manera para ver el historial de mensajes de la conversación ambos usuarios tendrán que permitir al otro
 la visualización de sus mensajes enviados.
 
@@ -94,16 +93,10 @@ la visualización de sus mensajes enviados.
 
 [role="arc42help"]
 ****
-.Contenido
-Las interfases técnicas (medios de transmisión y canales) enlanzando al sistema con su ambiente. De manera adicional
-el mapeo de las entradas/salidas específicas del dominio a los canales, es decir, una explicación acerca de que entrada/salida
-utiliza cual canal.
+Por ahora el contexto técnico de nuestra aplicación muestra de una manera muy general las tecnologías a usar, según se vaya implementando la aplicación se irán agregando al proyecto nuevas tecnologías y actualizando este apartado.
 
-.Motivación
-Muchas partes relacionadas realizan decisiones arquitectónicas basadas en las interfases técnicas entre el sistema y 
-su contexto. Especialmente los diseñadores de infraestructura o hardware deciden estas interfases técnicas.
+**DIAGRAMA**
 
-.Forma
-Por ejemplo, diagramas UML de despligue describiendo los canales a sistemas vecinos, junto con una tabla de 
-mapeo mostrando las relaciones entre los canales y las entradas/salidas.
+La aplicación consta de un artefacto encargado de iniciar o cerrar sesión y otro que manejará el char en sí, es decir, el envío y recibo de mensajes. Toda la aplicación en sí utilizará un servidor de Pods con el que se identificará al usuario y se guardarán los mensajes enviados por el mismo.
+
 ****
