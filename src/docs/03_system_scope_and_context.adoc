@@ -4,20 +4,7 @@
 
 [role="arc42help"]
 ****
-.Contents
-System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
-(neighboring systems and users, i.e. the context of your system). It thereby specifies the external interfaces.
-
-If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
-
-.Motivation
-The domain interfaces and technical interfaces to communication partners are among your system's most critical aspects. Make sure that you completely understand them.
-
-.Form
-Various options:
-
-* Context diagrams
-* Lists of communication partners and their interfaces.
+Our application consists of a decentralized chat in which a user can have conversations with other users. Based on this information we can differentiate two different contexts of our system:
 ****
 
 
@@ -25,42 +12,81 @@ Various options:
 
 [role="arc42help"]
 ****
-.Contents
-Specification of *all* communication partners (users, IT-systems, ...) with explanations of domain specific inputs and outputs or interfaces.
-Optionally you can add domain specific formats or communication protocols.
+The following diagram shows how all parts of the system communicate when chatting, that is, when one user sends a message to another:
 
-.Motivation
-All stakeholders should understand which data are exchanged with the environment of the system.
+image::images/3-Business context1.PNG[Business context diagram of dechat_es3b]
 
-.Form
-All kinds of diagrams that show the system as a black box and specify the domain interfaces to communication partners.
+As you can see in the diagram, each user has his own SOLID Pod, where all the messages he sends will be stored. However, sent messages will not be stored in the receiver's Pod, keeping the SOLID philosophy in which each user has full control over their data. 
+This way to see the message history of the conversation both users will have to allow the other one 
+the visualization of your sent messages.
 
-Alternatively (or additionally) you can use a table.
-The title of the table is the name of your system, the three columns contain the name of the communication partner, the inputs, and the outputs.
+.Summary of actions carried out in communication
+[cols="1,2" options="header"]
+|=======================
+|Involved part         |Action
+|User1                 |Sends a message to User2
+|User1 Pod             |Store the sent message
+|User2                 |Receives the message from User1 and answers it
+|User2 Pod             |Store the response message
+|=======================
+
 ****
-
-**<Diagram or Table>**
-
-**<optionally: Explanation of external domain interfaces>**
 
 === Technical Context
 
 [role="arc42help"]
 ****
-.Contents
-Technical interfaces (channels and transmission media) linking your system to its environment. In addition a mapping of domain specific input/output to the channels, i.e. an explanation with I/O uses which channel.
+For now the technical context of our application shows in a very general way the technologies to use, as the application is implemented will be added to the project new technologies and updating this section.
 
-.Motivation
-Many stakeholders make architectural decision based on the technical interfaces between the system and its context. Especially infrastructure or hardware designers decide these technical interfaces.
+image::images/TechnicalContext.png[Technical context diagram of dechat_es3b]
 
-.Form
-E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels and input/output.
+The application consists of a device responsible for logging in or out and another that will handle the char itself, ie sending and receiving messages. The whole application itself will use a Pod server that will identify the user and save the messages sent by him.
 
 ****
 
-**<Diagram or Table>**
+[[section-system-scope-and-context]]
+== Alcance y Contexto del Sistema
 
-**<optionally: Explanation of technical interfaces>**
 
-**<Mapping Input/Output to Channels>**
+[role="arc42help"]
+****
+Nuestra aplicación consiste en un chat descentralizado en el que un usuario puede mantener conversaciones con otros usuarios. Con esta información como base podemos diferenciar dos contextos diferentes de nuestro sistema:
+****
+
+=== Contexto de Negocio
+
+[role="arc42help"]
+****
+El siguiente diagrama muestra como se comunican todas las partes del sistema al chatear, es decir, cuando un usuario envía un mensaje a otro:
+
+image::images/3-Business context1.PNG[Diagrama del contexto de negocio de dechat_es3b]
+
+Tal como se observa en el diagrama cada usuario tiene un Pod en SOLID propio, en él se almacenarán todos los
+mensajes que envíe. Sin embargo, los mensajes enviados no se almacenarán en el Pod del receptor manteniendo así
+la filosofía de SOLID en el que cada usuario tiene el control total sobre sus datos.
+De esta manera para ver el historial de mensajes de la conversación ambos usuarios tendrán que permitir al otro
+la visualización de sus mensajes enviados.
+
+.Resumen de acciones llevadas a cabo en la comunicación
+
+[cols="1,2" options="header"]
+|=======================
+|Parte involucrada        |Acción
+|Usuario1                 |Envía un mensaje a Usuario2
+|Pod Usuario1             |Guarda el mensaje enviado
+|Usuario2                 |Recibe el mensaje de Usuario1 y le contesta
+|Pod Usuario2             |Guarda el mensaje con el que ha contestado Usuario2
+|=======================
+****
+
+=== Contexto Técnico
+
+[role="arc42help"]
+****
+Por ahora el contexto técnico de nuestra aplicación muestra de una manera muy general las tecnologías a usar, según se vaya implementando la aplicación se irán agregando al proyecto nuevas tecnologías y actualizando este apartado.
+
+image::images/TechnicalContext.png[Diagrama del contexto técnico de dechat_es3b]
+
+La aplicación consta de un artefacto encargado de iniciar o cerrar sesión y otro que manejará el char en sí, es decir, el envío y recibo de mensajes. Toda la aplicación en sí utilizará un servidor de Pods con el que se identificará al usuario y se guardarán los mensajes enviados por el mismo.
+
+****
