@@ -28,7 +28,7 @@ image::images/MindMap10.PNG[Quality tree diagram of dechat_es3b]
 | Testability | The application must pass unit tests and integration tests correctly | High, medium
 | Maintainability | 
 Ensuring continuous improvement against errors, unexpected component failures and new requirements | Medium, high
-| Securability | Require each user to identify themselves in order to use the application and allow them to control who has access to their data | Medium, Medium
+| Securability | Require each user to identify themselves in order to use the application and allow them to control who has access to their data | Medium, medium
 | Scalability | Although the number of users increases, the application will continue to operate with the same efficiency| Medium, medium
 |===
 ****
@@ -55,6 +55,17 @@ image::images/MindMap10.PNG[Árbol de atributos de calidad de dechat_es3b]
 
 [role="arc42help"]
 ****
-TABLA
+[options="header",cols="1,2,3"]
+|===
+| *AC* | *Escenario* | *Prioridad*
+| Funcionalidad | La aplicación debe cumplir correctamente las necesidades mínimas para que se lleve a cabo una conversación entre dos usuarios| Alta, alta
+| Usabilidad | La aplicación debe ser fácil de comprender y usar para así satisfacer al usuario| Alta, media
+| Eficiencia | El envío de mensajes deben llegar correctamente al receptor en tiempos razonables | Alta, media
+| Testeabilidad | La aplicación debe pasar correctamente pruebas unitarias y pruebas de integración | Alta, media
+| Mantenibilidad | 
+Garantizar la mejora continua contra errores, fallos inesperados de los componentes y nuevos requisitos | Media, alta
+| Seguridad | Exigir la identificación a cada usuario para usar la aplicación y permitirle controlar quién tendrá acceso a sus datos | Media, media
+| Escalabilidad | Aunque el número de usuarios aumenta, la aplicación seguirá funcionando con la misma eficiencia | Media, media
+|===
 ****
 
