@@ -48,13 +48,12 @@ Ensuring continuous improvement against errors, unexpected component failures an
 
 [role="arc42help"]
 ****
-.Contents
-Los usuarios a los que va dirigida la aplicación "deChat" serán los expuestos a continuación en la tabla inferior. Todos los usuarios deben ser capaces de acceder a la aplicacion y tener la capacidad de comunicarse.
+The users whom the aplication is directed are exposed just below. All the users must be capable of login the application and communicate
 |===
-|Rol|Contacto con la aplicación|Expectaciones
-| _Clientes_ | _Los usuarios de "a pié" de la aplicación_ | _Poder comunicarse con contactos deseados_
-| _Profesores_ | _Profesores de la asignatura_ | _Aplicación de chat descentralizada y accesible usando SOLID_
-| _Trabajadores de SOLID_ | _Desarrolladores y componentes de SOLID_ | _Aplicacion usable, accesible y comercial que use SOLID de manera correcta_
+|Rol|Contact|Expectations
+| _Client_ | _Regular users of the application_ | _Communicate with another contact_
+| _Teachers_ | _Teachers of the subject_ | _Decentralized and accesible application using SOLID_
+| _SOLID STAFF'S_ | _SOLID Developers and employees | _Usable, accesible and "comercial" aplication with a correct use of SOLID_
 |===
 ****
 
