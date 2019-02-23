@@ -17,6 +17,7 @@ https://en.wikipedia.org/wiki/Solid_(web_decentralization_project))
 | SOLID Pod | Web-accessible personal online datastore
 | Decentralized | In computer engineering; Communication that does not pass through external servers.
 | Agile methodology | Iterative development methodology that values human communication and feedback, adapting to changes, and producing working results.
+| Software | Conjunto de programas, instrucciones y reglas informáticas que permiten ejecutar distintas tareas en una computadora.
 
 |===
 
@@ -37,4 +38,5 @@ https://en.wikipedia.org/wiki/Solid_(web_decentralization_project))
 | SOLID Pod | Banco de datos online y personal
 | Decentralizacion | En informatica: comunicacion que no circula por servidores externos.
 | Metodos agiles | Desarrollo iterativo que pone en valor la comunicación humana y las correcciones, adaptandose a cambios y que aspira a conseguir software que funciona
+| Software | Set of instructions, data or programs used to operate computers and execute specific tasks. 
 |===
