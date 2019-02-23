@@ -50,7 +50,7 @@ Los usuarios a los que va dirigida la aplicación "deChat" serán los expuestos 
 |Rol|Contacto con la aplicación|Expectaciones
 | _Clientes_ | _Los usuarios de "a pié" de la aplicación_ | _Poder comunicarse con contactos deseados_
 | _Profesores_ | _Profesores de la asignatura_ | _Aplicación de chat descentralizada y accesible usando SOLID_
-| _SOLID Staffs'_ | _Desarrolladores y componentes de SOLID_ | _Aplicacion usable, accesible y comercial que use SOLID de manera correcta_
+| _Trabajadores de SOLID_ | _Desarrolladores y componentes de SOLID_ | _Aplicacion usable, accesible y comercial que use SOLID de manera correcta_
 |===
 ****
 
