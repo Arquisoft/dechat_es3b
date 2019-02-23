@@ -13,6 +13,10 @@ https://en.wikipedia.org/wiki/Solid_(web_decentralization_project))
 | ARC42	| It is a structure for documenting software systems. More information in https://arc42.org/ 
 | C# | It is an object-oriented programming language developed and standardized by Microsoft as part of its .NET platform
 | Java | It is a general object-oriented programming language that allows application developers to write the program once and execute it on any device, meaning that the code that is executed on one platform does not have to be recompiled to run on another.
+| Framework | Abstraction in which software providing generic functionality can be selectively changed by additional user-written code, thus providing application-specific software.
+| SOLID Pod | Web-accessible personal online datastore
+| Decentralized | In computer engineering; Communication that does not pass through external servers.
+| Agile methodology | Iterative development methodology that values human communication and feedback, adapting to changes, and producing working results.
 
 |===
 
@@ -29,5 +33,8 @@ https://en.wikipedia.org/wiki/Solid_(web_decentralization_project))
 | ARC42	| Es una estructura para documentar sistemas de software. Más información en https://arc42.org/ 
 | C# | Es un lenguaje de programación orientado a objetos desarrollado y estandarizado por Microsoft como parte de su plataforma .NET
 | Java | Es un lenguaje de programación de propósito general orientado a objetos que permite que los desarrolladores de aplicaciones escriban el programa una vez y lo ejecuten en cualquier dispositivo, es decir que el código que es ejecutado en una plataforma no tiene que ser recompilado para correr en otra. 
-
+| Framework | Estructura básica subyacente en la ingeniería de software, que sirve al programador como estructura de desarrollo para su programación de aplicaciones. Los frameworks se utilizan principalmente en el desarrollo de software orientado a objetos y en enfoques de desarrollo basados en componentes.
+| SOLID Pod | Banco de datos online y personal
+| Decentralizacion | En informatica: comunicacion que no circula por servidores externos.
+| Metodos agiles | Desarrollo iterativo que pone en valor la comunicación humana y las correcciones, adaptandose a cambios y que aspira a conseguir software que funciona
 |===
