@@ -12,12 +12,14 @@ List of identified technical risks or technical debts, ordered by priority
 
 To minimize each of the risks we decided that it was best to learn about SOLID and Javascript with a small application by following the steps that appear on this page: https://solid.inrupt.com/docs/writing-solid-apps-with-angular so that when faced with the application, the problems are not so big and we already have part of the work done. We also commit ourselves to help each other so that deliveries are on time.
 
-Una lista de los riesgos tÈcnicos o deuda tÈcnica identificada, ordenada por prioridad.
+== Riesgos y deuda t√©cnica
 
-* *Inexperiencia con la tecnologÌa que debemos utilizar:* Uno de los requisitos es usar la plataforma SOLID en nuestra aplicaciÛn. Al ser una tecnologÌa nueva, tenemos que aprender a utilizarla.
-* *PÈrdida de tiempo para especializarnos en un lenguaje de programaciÛn:* Hemos decidido utilizar un lenguaje (JavaScript) del que tenemos una ligera nociÛn. Esto puede retrasarnos a la hora de realizar el proyecto. Sin embargo, si hubiesemos escogido otro lenguaje habrÌa que aprender como acoplar ese lenguaje a la plataforma de SOLID. Por lo tanto, comparando las ventajas y desventajas de cada uno, decidimos que lo mejor era utilizar el lenguaje anteriormente dicho. 
-* *PÈrdida de miembros del equipo:* Esto podrÌa perjudicarnos en un futuro ya que somos 4 en el equipo y podrÌa hacer que nos retrasemos con las entregas. 
-* *Pocas aplicaciones en las que poder basarnos:* Al ser una tecnologÌa practicamente nueva, apenas hay proyectos que podamos utilizar de ejemplo.
+Una lista de los riesgos t√©cnicos o deuda t√©cnica identificada, ordenada por prioridad.
 
-Para minimizar cada uno de los riesgos decidimos que lo mejor era aprender sobre SOLID y Javascript con una pequeÒa aplicaciÛn siguiendo los pasos que aparecen en esta p·gina: https://solid.inrupt.com/docs/writing-solid-apps-with-angular para que a la hora de enfrentarnos a la aplicaciÛn, los problemas no sean tan grandes y ya tengamos parte del trabajo hecho. Adem·s tambiÈn nos comprometimos a ayudarnos entre nosotros para que las entregas estÈn a tiempo.
+* *Inexperiencia con la tecnolog√≠a que debemos utilizar:* Uno de los requisitos es usar la plataforma SOLID en nuestra aplicaci√≥n. Al ser una tecnolog√≠a nueva, tenemos que aprender a utilizarla.
+* *P√©rdida de tiempo para especializarnos en un lenguaje de programaci√≥n:* Hemos decidido utilizar un lenguaje (JavaScript) del que tenemos una ligera noci√≥n. Esto puede retrasarnos a la hora de realizar el proyecto. Sin embargo, si hubiesemos escogido otro lenguaje habr√≠a que aprender como acoplar ese lenguaje a la plataforma de SOLID. Por lo tanto, comparando las ventajas y desventajas de cada uno, decidimos que lo mejor era utilizar el lenguaje anteriormente dicho. 
+* *P√©rdida de miembros del equipo:* Esto podr√≠a perjudicarnos en un futuro ya que somos 4 en el equipo y podr√≠a hacer que nos retrasemos con las entregas. 
+* *Pocas aplicaciones en las que poder basarnos:* Al ser una tecnolog√≠a practicamente nueva, apenas hay proyectos que podamos utilizar de ejemplo.
+
+Para minimizar cada uno de los riesgos decidimos que lo mejor era aprender sobre SOLID y Javascript con una peque√±a aplicaci√≥n siguiendo los pasos que aparecen en esta p√°gina: https://solid.inrupt.com/docs/writing-solid-apps-with-angular para que a la hora de enfrentarnos a la aplicaci√≥n, los problemas no sean tan grandes y ya tengamos parte del trabajo hecho. Adem√°s tambi√©n nos comprometimos a ayudarnos entre nosotros para que las entregas est√©n a tiempo.
 
