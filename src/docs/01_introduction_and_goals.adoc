@@ -6,7 +6,7 @@
 
 [role="arc42help"]
 ****
-The objective of this proyect is to create a decentralized chat, better said, an application or program through two or more people can communicate in a way that all the information does not pass through any external server, avoiding lose confidenciality of the data, allowing real private conversations, not like other softwares.
+The objective of this project is to create a decentralized chat, better said, an application or program through two or more people can communicate in a way that all the information does not pass through any external server, avoiding lose confidenciality of the data, allowing real private conversations, not like other softwares.
 
 We are going to use SOLID framework to get that decentralization. Every user must have a SOLID POD to login and use our application
 ****
