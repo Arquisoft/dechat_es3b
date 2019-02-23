@@ -22,12 +22,22 @@ La aplicación contendrá una vista principal de los usuarios con los que la per
 [role="arc42help"]
 ****
 
-Con este proyecto aspiramos a conseguir una comunicacion privada y de punto a punto real entre los usuarios, evitando así filtraciones de información o problemas de seguridad. Nuestros objetivos ordenados por orden de prioridad serían:
+Con este proyecto aspiramos a conseguir una comunicacion privada y de punto a punto real entre los usuarios, evitando así filtraciones de información o problemas de seguridad. Un resumen de los escenarios de calidad seria el siguiente:
+****
+[options="header",cols="1,2,3"]
+|===
+| *AC* | *Escenario* | *Prioridad*
+| Funcionalidad | La aplicación debe cumplir correctamente las necesidades mínimas para que se lleve a cabo una conversación entre dos usuarios| Alta, alta
+| Usabilidad | La aplicación debe ser fácil de comprender y usar para así satisfacer al usuario| Alta, media
+| Eficiencia | El envío de mensajes deben llegar correctamente al receptor en tiempos razonables | Alta, media
+| Testeabilidad | La aplicación debe pasar correctamente pruebas unitarias y pruebas de integración | Alta, media
+| Mantenibilidad | 
+Garantizar la mejora continua contra errores, fallos inesperados de los componentes y nuevos requisitos | Media, alta
+| Seguridad | Exigir la identificación a cada usuario para usar la aplicación y permitirle controlar quién tendrá acceso a sus datos | Media, media
+| Escalabilidad | Aunque el número de usuarios aumenta, la aplicación seguirá funcionando con la misma eficiencia | Media, media
+|===
+****
 
--Conversaciones textuales fluidas entre dos usuarios.
--Enviar o recibir archivos de tipo audiovisual.
--Permitir la opcion de conversaciones grupales de mas de 2 usuarios.
--Interfaz cuidada y accesible.
 ****
 
 === Stakeholders
