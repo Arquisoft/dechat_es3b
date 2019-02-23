@@ -1,4 +1,68 @@
 [[section-introduction-and-goals]]
+
+== English
+
+== Introduction and goals
+
+[role="arc42help"]
+****
+The objective of this proyect is to create a decentralized chat, better said, an application or program through two or more people can communicate in a way that all the information does not pass through any external server, avoiding lose confidenciality of the data, allowing real private conversations, not like other softwares.
+
+We are going to use SOLID framework to get that decentralization. Every user must have a SOLID POD to login and use our application
+****
+
+=== Requirements
+
+[role="arc42help"]
+****
+La aplicación contendrá una vista principal de los usuarios con los que la persona "protagonista" podrá comunicarse. Tras seleccionar uno de ellos, será capaz de poder enviar mensajes y recibirlos. En un principio implementaremos solo los mensajes, mas adelante nos gustaria dar la posibilidad de transmision de imagenes o incluso videos.
+
+
+****
+
+=== Objetivos de Calidad
+
+[role="arc42help"]
+****
+
+Con este proyecto aspiramos a conseguir una comunicacion privada y de punto a punto real entre los usuarios, evitando así filtraciones de información o problemas de seguridad. Un resumen de los escenarios de calidad seria el siguiente:
+****
+[options="header",cols="1,2,3"]
+|===
+| *AC* | *Escenario* | *Prioridad*
+| Funcionalidad | La aplicación debe cumplir correctamente las necesidades mínimas para que se lleve a cabo una conversación entre dos usuarios| Alta, alta
+| Usabilidad | La aplicación debe ser fácil de comprender y usar para así satisfacer al usuario| Alta, media
+| Eficiencia | El envío de mensajes deben llegar correctamente al receptor en tiempos razonables | Alta, media
+| Testeabilidad | La aplicación debe pasar correctamente pruebas unitarias y pruebas de integración | Alta, media
+| Mantenibilidad | 
+Garantizar la mejora continua contra errores, fallos inesperados de los componentes y nuevos requisitos | Media, alta
+| Seguridad | Exigir la identificación a cada usuario para usar la aplicación y permitirle controlar quién tendrá acceso a sus datos | Media, media
+| Escalabilidad | Aunque el número de usuarios aumenta, la aplicación seguirá funcionando con la misma eficiencia | Media, media
+|===
+****
+
+****
+
+=== Stakeholders
+
+[role="arc42help"]
+****
+.Contents
+Los usuarios a los que va dirigida la aplicación "deChat" serán los expuestos a continuación en la tabla inferior. Todos los usuarios deben ser capaces de acceder a la aplicacion y tener la capacidad de comunicarse.
+|===
+|Rol|Contacto con la aplicación|Expectaciones
+| _Clientes_ | _Los usuarios de "a pié" de la aplicación_ | _Poder comunicarse con contactos deseados_
+| _Profesores_ | _Profesores de la asignatura_ | _Aplicación de chat descentralizada y accesible usando SOLID_
+| _Trabajadores de SOLID_ | _Desarrolladores y componentes de SOLID_ | _Aplicacion usable, accesible y comercial que use SOLID de manera correcta_
+|===
+****
+
+[options="header",cols="1,2,2"]
+
+
+
+
+[[section-introduction-and-goals]]
 == Introducción y Objetivos
 
 [role="arc42help"]
