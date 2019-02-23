@@ -1,4 +1,4 @@
-[[section-glossary]]
+﻿[[section-glossary]]
 == Glossary
 
 [options="header"]
@@ -18,9 +18,11 @@ https://en.wikipedia.org/wiki/Solid_(web_decentralization_project))
 | Decentralized | In computer engineering; Communication that does not pass through external servers.
 | Agile methodology | Iterative development methodology that values human communication and feedback, adapting to changes, and producing working results.
 | Software | Set of instructions, data or programs used to operate computers and execute specific tasks. 
-
+| P2P | It is a distributed application architecture that partitions tasks or workloads between peers.
+| Unit testing | Is a level of software testing where individual units/ components of a software are tested. The purpose is to validate that each unit of the software performs as designed. 
+| Integration testing | Is a level of software testing where individual units are combined and tested as a group. The purpose of this level of testing is to expose faults in the interaction between integrated units.
+| Software unit | A unit is the smallest testable part of any software. It usually has one or a few inputs and usually a single output. In procedural programming, a unit may be an individual program, function, procedure, etc. In object-oriented programming, the smallest unit is a method.
 |===
-
 == Glosario
 
 [options="header"]
@@ -36,7 +38,11 @@ https://en.wikipedia.org/wiki/Solid_(web_decentralization_project))
 | Java | Es un lenguaje de programación de propósito general orientado a objetos que permite que los desarrolladores de aplicaciones escriban el programa una vez y lo ejecuten en cualquier dispositivo, es decir que el código que es ejecutado en una plataforma no tiene que ser recompilado para correr en otra. 
 | Framework | Estructura básica subyacente en la ingeniería de software, que sirve al programador como estructura de desarrollo para su programación de aplicaciones. Los frameworks se utilizan principalmente en el desarrollo de software orientado a objetos y en enfoques de desarrollo basados en componentes.
 | SOLID Pod | Banco de datos online y personal
-| Decentralizacion | En informatica: comunicacion que no circula por servidores externos.
-| Metodos agiles | Desarrollo iterativo que pone en valor la comunicación humana y las correcciones, adaptandose a cambios y que aspira a conseguir software que funciona
+| Decentralización | En informática: comunicación que no circula por servidores externos.
+| Métodos agiles | Desarrollo iterativo que pone en valor la comunicación humana y las correcciones, adaptándose a cambios y que aspira a conseguir software que funciona
 | Software | Conjunto de programas, instrucciones y reglas informáticas que permiten ejecutar distintas tareas en una computadora. 
+| P2P | Es una arquitectura de aplicación distribuida que divide las tareas o cargas de trabajo entre compañeros.
+| Prueba unitaria | Es un nivel de prueba de software en el que se prueban las unidades/componentes individuales de un software. El propósito es validar que cada unidad del software funciona como se diseñó. 
+| Pruebas de integración | Es un nivel de pruebas de software en el que las unidades individuales se combinan y se prueban como grupo. El propósito de este nivel de pruebas es exponer los errores en la interacción entre las unidades integradas.
+| Unidad software | Una unidad es la parte más pequeña que se puede probar de cualquier software. Por lo general, tiene una o varias entradas y, por lo general, una sola salida. En la programación de procedimientos, una unidad puede ser un programa individual, una función, un procedimiento, etc. En la programación orientada a objetos, la unidad más pequeña es un método.
 |===
