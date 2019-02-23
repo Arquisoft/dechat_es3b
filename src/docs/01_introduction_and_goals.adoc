@@ -63,13 +63,16 @@ The users whom the aplication is directed are exposed just below. All the users 
 
 
 [[section-introduction-and-goals]]
+
+== English
+
 == Introducción y Objetivos
 
 [role="arc42help"]
 ****
 El objetivo de este proyecto es la creación de un chat descentralizado, es decir, una aplicacion o programa mediante el cual dos o mas usuarios se comuniquen entre si de forma tal que la informacion transcurrida entre ellos no sea almacenada ni circule por ningun servidor externo, evitando asi, la perdidia de la confidencialidad de los datos y permitiendo conversaciones realmente privadas a diferencia de otros softwares.
 
-Para conseguir esta descentralizacion usaremos el framework SOLID, cada uno de los usuarios deberá poseer un POD de SOLID y una de ellos correrá el Server Solid
+Para conseguir esta descentralizacion usaremos el framework SOLID, cada uno de los usuarios deberá poseer un POD de SOLID para poder comunicarse
 ****
 
 === Requisitos
