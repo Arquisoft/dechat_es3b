@@ -15,12 +15,12 @@ We are going to use SOLID framework to get that decentralization. Every user mus
 
 [role="arc42help"]
 ****
-La aplicación contendrá una vista principal de los usuarios con los que la persona "protagonista" podrá comunicarse. Tras seleccionar uno de ellos, será capaz de poder enviar mensajes y recibirlos. En un principio implementaremos solo los mensajes, mas adelante nos gustaria dar la posibilidad de transmision de imagenes o incluso videos.
 
+The application will have a "home" with a list of the users who the "protagonist" could communicate. After selecting one of them, he will be able to send and receive messages. First we are going to implement just sending messages, then, we would like to add the posibility of pictures transmission, or even video recordings.
 
 ****
 
-=== Objetivos de Calidad
+=== Quality goals
 
 [role="arc42help"]
 ****
