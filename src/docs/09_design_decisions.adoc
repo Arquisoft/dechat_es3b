@@ -1,6 +1,9 @@
 [[section-design-decisions]]
 == Design Decisions
 
+== Architecture
+Peer-to-Peer (P2P). This architecture is used in a Solid application
+
 === Language
 Among the following three languages:
 
@@ -14,6 +17,9 @@ We have decided that the best language is JavaScript since the other two languag
 For the moment we will not use any database because we do not see it necessary. As the project progresses, if we see that the project requires a database, we will use a relational database such as MySQL, as we have used them in other subjects and we already have some experience with them.
 
 == Decisiones de Diseño
+
+== Arquitectura
+Red entre pares (P2P). Esta arquitectura es usada en una aplicación de Solid.
 
 === Lenguaje
 Entre los siguientes tres lenguajes:
