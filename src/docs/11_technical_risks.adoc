@@ -11,3 +11,15 @@ List of identified technical risks or technical debts, ordered by priority
 * *Little applications on which to base ourselves:* Being a practically new technology, there are hardly any projects that we can use as an example.
 
 To minimize each of the risks we decided that it was best to learn about SOLID and Javascript with a small application by following the steps that appear on this page: https://solid.inrupt.com/docs/writing-solid-apps-with-angular so that when faced with the application, the problems are not so big and we already have part of the work done. We also commit ourselves to help each other so that deliveries are on time.
+
+== Riesgos y deuda técnica
+
+Una lista de los riesgos técnicos o deuda técnica identificada, ordenada por prioridad.
+
+* *Inexperiencia con la tecnología que debemos utilizar:* Uno de los requisitos es usar la plataforma SOLID en nuestra aplicación. Al ser una tecnología nueva, tenemos que aprender a utilizarla.
+* *Pérdida de tiempo para especializarnos en un lenguaje de programación:* Hemos decidido utilizar un lenguaje (JavaScript) del que tenemos una ligera noción. Esto puede retrasarnos a la hora de realizar el proyecto. Sin embargo, si hubiesemos escogido otro lenguaje habría que aprender como acoplar ese lenguaje a la plataforma de SOLID. Por lo tanto, comparando las ventajas y desventajas de cada uno, decidimos que lo mejor era utilizar el lenguaje anteriormente dicho. 
+* *Pérdida de miembros del equipo:* Esto podría perjudicarnos en un futuro ya que somos 4 en el equipo y podría hacer que nos retrasemos con las entregas. 
+* *Pocas aplicaciones en las que poder basarnos:* Al ser una tecnología practicamente nueva, apenas hay proyectos que podamos utilizar de ejemplo.
+
+Para minimizar cada uno de los riesgos decidimos que lo mejor era aprender sobre SOLID y Javascript con una pequeña aplicación siguiendo los pasos que aparecen en esta página: https://solid.inrupt.com/docs/writing-solid-apps-with-angular para que a la hora de enfrentarnos a la aplicación, los problemas no sean tan grandes y ya tengamos parte del trabajo hecho. Además también nos comprometimos a ayudarnos entre nosotros para que las entregas estén a tiempo.
+
