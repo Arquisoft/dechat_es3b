@@ -25,19 +25,20 @@ The application will have a "home" with a list of the users who the "protagonist
 [role="arc42help"]
 ****
 
-Con este proyecto aspiramos a conseguir una comunicacion privada y de punto a punto real entre los usuarios, evitando así filtraciones de información o problemas de seguridad. Un resumen de los escenarios de calidad seria el siguiente:
+With this project we must seek to get a real private peer to peer communication between users, avoiding information leaks or security probles. Our Quality scenarios are: 
+[role="arc42help"]
 ****
 [options="header",cols="1,2,3"]
 |===
-| *AC* | *Escenario* | *Prioridad*
-| Funcionalidad | La aplicación debe cumplir correctamente las necesidades mínimas para que se lleve a cabo una conversación entre dos usuarios| Alta, alta
-| Usabilidad | La aplicación debe ser fácil de comprender y usar para así satisfacer al usuario| Alta, media
-| Eficiencia | El envío de mensajes deben llegar correctamente al receptor en tiempos razonables | Alta, media
-| Testeabilidad | La aplicación debe pasar correctamente pruebas unitarias y pruebas de integración | Alta, media
-| Mantenibilidad | 
-Garantizar la mejora continua contra errores, fallos inesperados de los componentes y nuevos requisitos | Media, alta
-| Seguridad | Exigir la identificación a cada usuario para usar la aplicación y permitirle controlar quién tendrá acceso a sus datos | Media, media
-| Escalabilidad | Aunque el número de usuarios aumenta, la aplicación seguirá funcionando con la misma eficiencia | Media, media
+| *AQ* | *Scenario* | *Priority*
+| Functional suitability | The application must correctly meet the minimum requirements for a conversation to take place between two users| High, high
+| Usability | The application must be easy to understand and use to satisfy the user| High, medium
+| Efficiency | The sending of messages must be correctly reaching the receiver in reasonable times | High, medium
+| Testability | The application must pass unit tests and integration tests correctly | High, medium
+| Maintainability | 
+Ensuring continuous improvement against errors, unexpected component failures and new requirements | Medium, high
+| Securability | Require each user to identify themselves in order to use the application and allow them to control who has access to their data | Medium, medium
+| Scalability | Although the number of users increases, the application will continue to operate with the same efficiency| Medium, medium
 |===
 ****
 
