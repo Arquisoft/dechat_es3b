@@ -64,7 +64,7 @@ The users whom the aplication is directed are exposed just below. All the users 
 
 [[section-introduction-and-goals]]
 
-== English
+== Español
 
 == Introducción y Objetivos
 
