@@ -15,6 +15,7 @@
 | Time     | The project must be finished before 05/09/2019.
 | Money     | The project will be created with 0 cost.
 | People     | 4 programmers will work on the project.
+| Github     | The version control tecnology will be github.
 |==============================================
 ****
 
