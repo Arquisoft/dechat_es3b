@@ -1,7 +1,8 @@
 [[section-architecture-constraints]]
+
+== English
+
 == Architecture Constraints
-
-
 [role="arc42help"]
 ****
 .Table of constraints
@@ -14,5 +15,24 @@
 | Time     | The project must be finished before 05/09/2019.
 | Money     | The project will be created with 0 cost.
 | People     | 4 programmers will work on the project.
+|==============================================
+****
+
+== Español
+
+== Restricciones de Arquitectura
+[role="arc42help"]
+****
+.Table of constraints
+[width="60%",options="header"]
+|==============================================
+| Restricciones          | Explicacion
+| Solid | El chat debe ser descentralizado utilizando la tecnologia solid.
+| Asciidoc     | La documentación a de crearse usando asciidoc.
+| Arc42     | La plantilla de la documentacion usada es Arc42.
+| Time     | El proyecto debe finalizarse antes del 09/05/2019.
+| Money     | El proyecto se creara a coste 0.
+| People     | 4 programadores trabajaran en el proyecto.
+| Github     | Para el control de versiones se usará github.
 |==============================================
 ****
