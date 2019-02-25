@@ -12,6 +12,7 @@ image:http://inch-ci.org/github/Arquisoft/dechat_es3b.svg?branch=master["Inch CI
 * Mar Rodríguez Medina
 * Alba Serena Suárez
 * Yago García Rodríguez
+* David Rico Díaz
 ****
 == Build documentation
 
