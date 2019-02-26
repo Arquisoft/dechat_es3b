@@ -1,0 +1,23 @@
+<div class="profile-container">
+  <!-- EXAMPLE TOP NAV -->
+  <div class="topnav">
+    <div class="logo">Solid</div>
+    <div class="menu-item">
+      <div>
+        <i class="far fa-comment"></i>
+      </div>
+      Menu Item 1
+    </div>
+    <div class="profile-menu" (click)="logout()">
+      <img [src]="profileImage" />
+    </div>
+  </div>
+  <h1>Chat</h1>
+  <!-- Message -->
+  <div>
+   Messagge <input type="text"  name="yourMessage" placeholder="Write your messagge here" />
+  </div>
+  <div>
+    <button type="submit" onclick="">Send</button>
+  </div>
+</div>
