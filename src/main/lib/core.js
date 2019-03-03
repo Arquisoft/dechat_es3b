@@ -38,69 +38,18 @@ class SolidChessCore {
   }
 
   /**
-   * This method returns all the games that a player can continue, based on his WebId.
-   * @param webid: the WebId of the player.
-   * @returns {Promise}: a promise that resolves to an array with objects.
-   * Each object contains the url of the game (gameUrl) and the url where the data of the game is store (storeUrl).
-   */
-  async getGamesToContinue(webid) {
-    const deferred = Q.defer();
-    const rdfjsSource = await rdfjsSourceFromUrl(webid, this.fetch);
-
-    if (rdfjsSource) {
-      const engine = newEngine();
-      const gameUrls = [];
-      const promises = [];
-
-      engine.query(`SELECT ?game ?url {
-     ?game <${namespaces.schema}contributor> <${webid}>;
-        <${namespaces.storage}storeIn> ?url.
-  }`,
-        {sources: [{type: 'rdfjsSource', value: rdfjsSource}]})
-        .then(result => {
-          result.bindingsStream.on('data', async (data) => {
-            const deferred = Q.defer();
-            promises.push(deferred.promise);
-            data = data.toObject();
-
-            const realTime = await this.getObjectFromPredicateForResource(data['?game'].value, namespaces.chess + 'isRealTime');
-
-            if (!realTime || realTime.value !== 'true') {
-              gameUrls.push({
-                gameUrl: data['?game'].value,
-                storeUrl: data['?url'].value,
-              });
-            }
-
-            deferred.resolve();
-          });
-
-          result.bindingsStream.on('end', function () {
-            Q.all(promises).then(() => {
-              deferred.resolve(gameUrls);
-            });
-          });
-        });
-    } else {
-      deferred.resolve(null);
-    }
-
-    return deferred.promise;
-  }
-
-  /**
-   * This method returns the url of the file where to store the data of the game.
+   * This method returns the url of the file where to store the data of the chat.
    * @param fileurl: the url of the file in which to look for the storage details.
-   * @param gameUrl: the url of the game for which we want to the storage details.
+   * @param chatUrl: the url of the chat for which we want to the storage details.
    * @returns {Promise<string|null>}: a promise that resolves with the url of the file or null if none is found.
    */
-  async getStorageForGame(fileurl, gameUrl) {
+  async getStorageForChat(fileurl, chatUrl) {
     const deferred = Q.defer();
     const rdfjsSource = await rdfjsSourceFromUrl(fileurl, this.fetch);
     const engine = newEngine();
 
     engine.query(`SELECT ?url {
-     <${gameUrl}> <${namespaces.schema}contributor> <${fileurl}>;
+     <${chatUrl}> <${namespaces.schema}contributor> <${fileurl}>;
         <${namespaces.storage}storeIn> ?url.
   }`,
       {sources: [{type: 'rdfjsSource', value: rdfjsSource}]})
@@ -863,74 +812,6 @@ class SolidChessCore {
     }
   }
 
-  async checkForGiveUpOfRealTimeGame(semanticGame, rdfjsSource, callback) {
-    let actionUrl = await this.getGiveUpActionFromRDFJSSource(rdfjsSource);
-
-    if (actionUrl) {
-      let objectUrl = await this.getObjectFromPredicateForResource(actionUrl, namespaces.schema + 'object');
-
-      if (objectUrl && semanticGame.getUrl() === objectUrl.value) {
-        let agentUrl = await this.getObjectFromPredicateForResource(actionUrl, namespaces.schema + 'agent');
-
-        if (agentUrl) {
-          callback(agentUrl.value, objectUrl.value);
-        }
-      }
-    }
-  }
-
-  async checkForNewMoveForRealTimeGame(semanticGame, dataSync, gameStorageUrl, rdfsjsSource, callback) {
-    const lastMoveUrl = semanticGame.getLastMove();
-    let nextMoveUrl;
-    let endsGame = false;
-
-    if (lastMoveUrl) {
-      const r = await this.getNextHalfMoveFromRDFJSSource(rdfsjsSource, lastMoveUrl.url, semanticGame.getUrl());
-      nextMoveUrl = r.move;
-      endsGame = r.endsGame;
-    } else {
-      nextMoveUrl = await this.getFirstHalfMoveFromRDFJSSource(rdfsjsSource, semanticGame.getUrl());
-    }
-
-    if (nextMoveUrl) {
-      this.logger.debug(nextMoveUrl);
-
-      if (lastMoveUrl) {
-        let update = `INSERT DATA {
-              <${lastMoveUrl.url}> <${namespaces.chess}nextHalfMove> <${nextMoveUrl}>.
-            `;
-
-        if (endsGame) {
-          update += `<${semanticGame.getUrl()}> <${namespaces.chess}hasLastHalfMove> <${nextMoveUrl}>.`;
-        }
-
-        update += '}';
-
-        dataSync.executeSPARQLUpdateForUser(gameStorageUrl, update);
-      } else {
-        dataSync.executeSPARQLUpdateForUser(gameStorageUrl, `INSERT DATA {
-              <${semanticGame.getUrl()}> <${namespaces.chess}hasFirstHalfMove> <${nextMoveUrl}>.
-            }`);
-      }
-
-      let san = await this.getObjectFromPredicateForResource(nextMoveUrl, namespaces.chess + 'hasSANRecord');
-
-      if (!san) {
-        san = await this.getSANRecord(nextMoveUrl);
-
-        if (san) {
-          console.error('san: found by using Comunica directly, but not when using LDflex. Caching issue (reported).');
-        }
-      }
-
-      if (san) {
-        callback(san.value, nextMoveUrl);
-      } else {
-        console.error(`The move with url "${nextMoveUrl}" does not have a SAN record defined.`);
-      }
-    }
-  }
-
   /**
    * This method sets up a new game.
    * @param userDataUrl: the url of the file where the data is stored
@@ -942,44 +823,42 @@ class SolidChessCore {
    * @param realTime: is true when the game is played in real time
    * @returns {SemanticChess}: the newly created chess game
    */
-  async setUpNewGame(userDataUrl, userWebId, opponentWebId, startPosition, name, dataSync, realTime = false) {
-    const gameUrl = await this.generateUniqueUrlForResource(userDataUrl);
+  async setUpNewGame(userDataUrl, userWebId, opponentWebId, name, dataSync) {
+    const chatUrl = await this.generateUniqueUrlForResource(userDataUrl);
     const semanticGame = new SemanticChess({
-      url: gameUrl,
+      url: chatUrl,
       moveBaseUrl: userDataUrl,
       userWebId,
       opponentWebId,
-      name,
-      startPosition,
-      realTime
+      name
     });
     const invitation = await this.generateInvitation(userDataUrl, semanticGame.getUrl(), userWebId, opponentWebId);
 
     try {
-      await dataSync.executeSPARQLUpdateForUser(userDataUrl, `INSERT DATA {${semanticGame.getMinimumRDF()} \n <${gameUrl}> <${namespaces.storage}storeIn> <${userDataUrl}>}`);
+      await dataSync.executeSPARQLUpdateForUser(userDataUrl, `INSERT DATA {${semanticGame.getMinimumRDF()} \n <${chatUrl}> <${namespaces.storage}storeIn> <${userDataUrl}>}`);
     } catch (e) {
-      this.logger.error(`Could not save new game data.`);
+      this.logger.error(`Could not save new chat data.`);
       this.logger.error(e);
     }
 
     try {
-      await dataSync.executeSPARQLUpdateForUser(userWebId, `INSERT DATA { <${gameUrl}> <${namespaces.schema}contributor> <${userWebId}>; <${namespaces.storage}storeIn> <${userDataUrl}>.}`);
+      await dataSync.executeSPARQLUpdateForUser(userWebId, `INSERT DATA { <${chatUrl}> <${namespaces.schema}contributor> <${userWebId}>; <${namespaces.storage}storeIn> <${userDataUrl}>.}`);
     } catch (e) {
-      this.logger.error(`Could not add chess game to WebId.`);
+      this.logger.error(`Could not add chat to WebId.`);
       this.logger.error(e);
     }
 
     try {
       await dataSync.executeSPARQLUpdateForUser(userDataUrl, `INSERT DATA {${invitation.sparqlUpdate}}`);
     } catch (e) {
-      this.logger.error(`Could not save invitation for game.`);
+      this.logger.error(`Could not save invitation for chat.`);
       this.logger.error(e);
     }
 
     try {
       await dataSync.sendToOpponentsInbox(await this.getInboxUrl(opponentWebId), invitation.notification);
     } catch (e) {
-      this.logger.error(`Could not send invitation to opponent.`);
+      this.logger.error(`Could not send invitation to friend.`);
       this.logger.error(e);
     }
 

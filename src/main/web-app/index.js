@@ -45,7 +45,7 @@ function setUpForEveryGameOption() {
 async function setUpNewChessGame() {
   setUpForEveryGameOption();
 
-  semanticGame = await core.setUpNewGame(userDataUrl, userWebId, oppWebId, startPosition, chatName, dataSync, realTime);
+  semanticGame = await core.setUpNewGame(userDataUrl, userWebId, oppWebId, chatName, dataSync);
 
 
 
@@ -390,7 +390,7 @@ async function checkForNotifications() {
       $('#invitation-response .modal-body').append(text);
       $('#invitation-response').modal('show');
 
-      dataSync.executeSPARQLUpdateForUser(await core.getStorageForGame(userWebId, gameUrl), `INSERT DATA {
+      dataSync.executeSPARQLUpdateForUser(await core.getStorageForChat(userWebId, gameUrl), `INSERT DATA {
     <${response.invitationUrl}> <${namespaces.schema}result> <${response.responseUrl}>}
   `);
     }
