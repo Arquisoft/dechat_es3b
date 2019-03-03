@@ -35,7 +35,7 @@ $('#logout-btn').click(() => {
  * This method does the necessary updates of the UI when the different game options are shown.
  */
 function setUpForEveryGameOption() {
-  $('#game-loading').removeClass('hidden');
+  $('#chat-loading').removeClass('hidden');
 }
 
 /**
@@ -59,8 +59,8 @@ async function setUpNewChessGame() {
  */
 async function setUpBoard() {
     
-    $('#game').removeClass('hidden');
-  $('#game-loading').addClass('hidden');
+    $('#chat').removeClass('hidden');
+  $('#chat-loading').addClass('hidden');
 
   updateStatus();
         
@@ -100,10 +100,10 @@ auth.trackSession(async session => {
   } else {
     $('#nav-login-btn').removeClass('hidden');
     $('#user-menu').addClass('hidden');
-    $('#game').addClass('hidden');
-    $('#new-game-options').addClass('hidden');
-    $('#join-game-options').addClass('hidden');
-    $('#game-options').removeClass('hidden');
+    $('#chat').addClass('hidden');
+    $('#new-chat-options').addClass('hidden');
+    $('#join-chat-options').addClass('hidden');
+    $('#chat-options').removeClass('hidden');
 
     userWebId = null;
     semanticGame = null;
@@ -116,13 +116,13 @@ auth.trackSession(async session => {
  * This method updates the UI after a game option has been selected by the player.
  */
 function afterGameOption() {
-  $('#game-options').addClass('hidden');
+  $('#chat-options').addClass('hidden');
 }
 
 $('#new-btn').click(async () => {
   if (userWebId) {
     afterGameOption();
-    $('#new-game-options').removeClass('hidden');
+    $('#new-chat-options').removeClass('hidden');
     $('#data-url').prop('value', core.getDefaultDataUrl(userWebId));
 
     const $select = $('#possible-opps');
@@ -137,14 +137,14 @@ $('#new-btn').click(async () => {
   }
 });
 
-$('#start-new-game-btn').click(async () => {
+$('#start-new-chat-btn').click(async () => {
   const dataUrl = $('#data-url').val();
 
   if (await core.writePermission(dataUrl, dataSync)) {
-    $('#new-game-options').addClass('hidden');
+    $('#new-chat-options').addClass('hidden');
     oppWebId = $('#possible-opps').val();
     userDataUrl = dataUrl;
-    gameName = $('#game-name').val();
+    gameName = $('#chat-name').val();
     setUpNewChessGame();
   } else {
     $('#write-permission-url').text(dataUrl);
@@ -403,8 +403,8 @@ async function checkForNotifications() {
 */
 
 function stopPlaying() {
-  $('#game').addClass('hidden');
-  $('#game-options').removeClass('hidden');
+  $('#chat').addClass('hidden');
+  $('#chat-options').removeClass('hidden');
   semanticGame = null;
 }
 
@@ -416,9 +416,9 @@ $('.btn-cancel').click(() => {
   semanticGame = null;
   oppWebId = null;
 
-  $('#game').addClass('hidden');
-  $('#new-game-options').addClass('hidden');
-  $('#join-game-options').addClass('hidden');
-  $('#game-options').removeClass('hidden');
+  $('#chat').addClass('hidden');
+  $('#new-chat-options').addClass('hidden');
+  $('#join-chat-options').addClass('hidden');
+  $('#chat-options').removeClass('hidden');
 
 });
