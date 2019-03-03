@@ -1,5 +1,5 @@
 body {
-  background-image: url("../img/bg-repeat.png");
+  background-image: url("../img/fondo.jpg");
   background-repeat: repeat;
   background-color: ghostwhite;
   color: white;
@@ -15,7 +15,7 @@ a {
   padding-bottom: 20px;
 }
 
-#login-required, #theme-selector, #write-permission, #invitation-response, #real-time-setup, #real-time-quit, #real-time-opponent-quit {
+#login-required, #write-permission, #invitation-response {
   color: black;
 }
 
@@ -40,15 +40,7 @@ a {
   padding-left: 5px;
 }
 
-#how-it-works {
-  margin-top: 50px;
-}
-
-#custom-position-chk-group, #real-time-chk-group {
-  margin-bottom: 15px;
-}
-
-#game-details {
+#chat-details {
   margin-top: 20px;
 }
 
@@ -56,37 +48,17 @@ a {
   display: none!important;
 }
 
-#board {
+#chat-area {
   width: 95vw;
   max-width: 500px;
-}
-
-#continue-game-table {
-  table-layout: fixed!important;
-  word-wrap: break-word;
-}
-
-#continue-game-table tr {
-  font-size: 14px;
-}
-
-#table-title {
-  width: 50%;
 }
 
 tr.clickable-row {
   cursor: pointer;
 }
 
-.btn-cancel, #start-new-game-btn, #join-game-btn, #stop-playing {
+.btn-cancel, #start-new-chat-btn, #join-chat-btn, #stop-playing {
   margin-bottom: 25px;
-}
-
-table.table > thead > tr > th{
-    border: none;
-}
-table.table > tbody > tr > td{
-    border-top: 1px solid white;
 }
 
 code {
