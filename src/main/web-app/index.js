@@ -6,7 +6,7 @@ const { default: data } = require('@solid/query-ldflex');
 const Core = require('../lib/core');
 
 let userWebId;
-let semanticGame;
+let semanticChat;
 let dataSync = new DataSync(auth.fetch);
 
 let userDataUrl;
@@ -45,16 +45,15 @@ function setUpForEveryGameOption() {
 async function setUpNewChessGame() {
   setUpForEveryGameOption();
 
-  semanticGame = await core.setUpNewGame(userDataUrl, userWebId, oppWebId, chatName, dataSync);
+  semanticChat = await core.setUpNewGame(userDataUrl, userWebId, oppWebId, chatName, dataSync);
 
 
 
-  setUpBoard(semanticGame);
+  setUpBoard(semanticChat);
 }
 
 /**
  * This method sets up the chessboard.
- * @param semanticGame: the Semantic Game which drives the board.
  * @returns {Promise<void>}
  */
 async function setUpBoard() {
@@ -106,7 +105,7 @@ auth.trackSession(async session => {
     $('#chat-options').removeClass('hidden');
 
     userWebId = null;
-    semanticGame = null;
+    semanticChat = null;
     clearInterval(refreshIntervalId);
     refreshIntervalId = null;
   }
@@ -207,9 +206,9 @@ $('#join-game-btn').click(async () => {
       afterGameSpecificOptions();
       setUpForEveryGameOption();
       oppWebId = game.opponentWebId;
-      semanticGame = await core.joinExistingChessGame(gameUrl, game.invitationUrl, oppWebId, userWebId, userDataUrl, dataSync, game.fileUrl);
+      semanticChat = await core.joinExistingChessGame(gameUrl, game.invitationUrl, oppWebId, userWebId, userDataUrl, dataSync, game.fileUrl);
 
-      if (semanticGame.isRealTime()) {
+      if (semanticChat.isRealTime()) {
         webrtc = new WebRTC({
           userWebId,
           userInboxUrl: await core.getInboxUrl(userWebId),
@@ -220,16 +219,16 @@ $('#join-game-btn').click(async () => {
           onNewData: rdfjsSource => {
             let newMoveFound = false;
 
-            core.checkForNewMoveForRealTimeGame(semanticGame, dataSync, userDataUrl, rdfjsSource, (san, url) => {
-              semanticGame.loadMove(san, {url});
-              board.position(semanticGame.getChess().fen());
+            core.checkForNewMoveForRealTimeGame(semanticChat, dataSync, userDataUrl, rdfjsSource, (san, url) => {
+              semanticChat.loadMove(san, {url});
+              board.position(semanticChat.getChess().fen());
               updateStatus();
               newMoveFound = true;
             });
 
             if (!newMoveFound) {
-              core.checkForGiveUpOfRealTimeGame(semanticGame, rdfjsSource, (agentUrl, objectUrl) => {
-                semanticGame.loadGiveUpBy(agentUrl);
+              core.checkForGiveUpOfRealTimeGame(semanticChat, rdfjsSource, (agentUrl, objectUrl) => {
+                semanticChat.loadGiveUpBy(agentUrl);
                 $('#real-time-opponent-quit').modal('show');
               });
             }
@@ -250,7 +249,7 @@ $('#join-game-btn').click(async () => {
         $('#real-time-setup').modal('show');
       }
 
-      setUpBoard(semanticGame);
+      setUpBoard(semanticChat);
       setUpAfterEveryGameOptionIsSetUp();
     } else {
       $('#write-permission-url').text(userDataUrl);
@@ -269,7 +268,7 @@ $('#join-game-btn').click(async () => {
 function updateStatus() {
   const statusEl = $('#status');
   let status = '';
-  const game = semanticGame.getChess();
+  const game = semanticChat.getChess();
 
   let moveColor = 'White';
 
@@ -314,9 +313,8 @@ async function checkForNotifications() {
   updates.forEach(async (fileurl) => {
     let newMoveFound = false;
     // check for new moves
-    await core.checkForNewMove(semanticGame, userWebId, fileurl, userDataUrl, dataSync, (san, url) => {
-      semanticGame.loadMove(san, {url});
-      board.position(semanticGame.getChess().fen());
+    await core.checkForNewMove(semanticChat, userWebId, fileurl, userDataUrl, dataSync, (san, url) => {
+      semanticChat.loadMove(san, {url});
       updateStatus();
       newMoveFound = true;
     });
@@ -353,7 +351,7 @@ async function checkForNotifications() {
   if (gameUrl) {
     gameUrl = gameUrl.value;
 
-    if (semanticGame && semanticGame.getUrl() === gameUrl && semanticGame.isRealTime()) {
+    if (semanticChat && semanticChat.getUrl() === gameUrl && semanticChat.isRealTime()) {
       if (rsvpResponse.value === namespaces.schema + 'RsvpResponseYes') {
         $('#real-time-setup .modal-body ul').append('<li>Invitation accepted</li><li>Setting up direct connection</li>');
         webrtc.start();
@@ -397,7 +395,7 @@ async function checkForNotifications() {
 
     dataSync.deleteFileForUser(fileurl);
   } else {
-    console.log(`No game url was found for response ${response.value}.`);
+    console.log(`No chat url was found for response ${response.value}.`);
   }
 }
 */
@@ -405,7 +403,7 @@ async function checkForNotifications() {
 function stopPlaying() {
   $('#chat').addClass('hidden');
   $('#chat-options').removeClass('hidden');
-  semanticGame = null;
+  semanticChat = null;
 }
 
 $('#stop-playing').click(() => {
@@ -413,7 +411,7 @@ $('#stop-playing').click(() => {
 });
 
 $('.btn-cancel').click(() => {
-  semanticGame = null;
+  semanticChat = null;
   oppWebId = null;
 
   $('#chat').addClass('hidden');
