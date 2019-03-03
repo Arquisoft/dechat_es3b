@@ -11,9 +11,9 @@ let dataSync = new DataSync(auth.fetch);
 
 let userDataUrl;
 let oppWebId;
-let gamesToJoin = [];
+let chatsToJoin = [];
 
-let gameName;
+let chatName;
 
 let refreshIntervalId;
 let core = new Core(auth.fetch);
@@ -45,7 +45,7 @@ function setUpForEveryGameOption() {
 async function setUpNewChessGame() {
   setUpForEveryGameOption();
 
-  semanticGame = await core.setUpNewGame(userDataUrl, userWebId, oppWebId, startPosition, gameName, dataSync, realTime);
+  semanticGame = await core.setUpNewGame(userDataUrl, userWebId, oppWebId, startPosition, chatName, dataSync, realTime);
 
 
 
@@ -144,7 +144,7 @@ $('#start-new-chat-btn').click(async () => {
     $('#new-chat-options').addClass('hidden');
     oppWebId = $('#possible-opps').val();
     userDataUrl = dataUrl;
-    gameName = $('#chat-name').val();
+    chatName = $('#chat-name').val();
     setUpNewChessGame();
   } else {
     $('#write-permission-url').text(dataUrl);
@@ -162,13 +162,13 @@ $('#join-btn').click(async () => {
     $('#join-data-url').prop('value', core.getDefaultDataUrl(userWebId));
     $('#join-looking').addClass('hidden');
 
-    if (gamesToJoin.length > 0) {
+    if (chatsToJoin.length > 0) {
       $('#join-loading').addClass('hidden');
       $('#join-form').removeClass('hidden');
       const $select = $('#game-urls');
       $select.empty();
 
-      gamesToJoin.forEach(game => {
+      chatsToJoin.forEach(game => {
         let name = game.name;
 
         if (!name) {
@@ -195,14 +195,14 @@ $('#join-game-btn').click(async () => {
 
       let i = 0;
 
-      while (i < gamesToJoin.length && gamesToJoin[i].gameUrl !== gameUrl) {
+      while (i < chatsToJoin.length && chatsToJoin[i].gameUrl !== gameUrl) {
         i++;
       }
 
-      const game = gamesToJoin[i];
+      const game = chatsToJoin[i];
 
       // remove it from the array so it's no longer shown in the UI
-      gamesToJoin.splice(i, 1);
+      chatsToJoin.splice(i, 1);
 
       afterGameSpecificOptions();
       setUpForEveryGameOption();
@@ -329,10 +329,10 @@ async function checkForNotifications() {
         processResponseInNotification(response, fileurl);
       } else {
         // check for games to join
-        const gameToJoin = await core.getJoinRequest(fileurl, userWebId);
+        const chatToJoin = await core.getJoinRequest(fileurl, userWebId);
 
-        if (gameToJoin) {
-          gamesToJoin.push(await core.processGameToJoin(gameToJoin, fileurl));
+        if (chatToJoin) {
+          chatsToJoin.push(await core.processGameToJoin(chatToJoin, fileurl));
         }
       }
     }
@@ -359,24 +359,24 @@ async function checkForNotifications() {
         webrtc.start();
       }
     } else {
-      let gameName = await core.getObjectFromPredicateForResource(gameUrl, namespaces.schema + 'name');
+      let chatName = await core.getObjectFromPredicateForResource(gameUrl, namespaces.schema + 'name');
       const loader = new Loader(auth.fetch);
       const gameOppWebId = await loader.findWebIdOfOpponent(gameUrl, userWebId);
       const opponentsName = await core.getFormattedName(gameOppWebId);
 
       //show response in UI
-      if (!gameName) {
-        gameName = gameUrl;
+      if (!chatName) {
+        chatName = gameUrl;
       } else {
-        gameName = gameName.value;
+        chatName = chatName.value;
       }
 
       let text;
 
       if (rsvpResponse.value === namespaces.schema + 'RsvpResponseYes') {
-        text = `${opponentsName} accepted your invitation to join "${gameName}"!`;
+        text = `${opponentsName} accepted your invitation to join "${chatName}"!`;
       } else if (rsvpResponse.value === namespaces.schema + 'RsvpResponseNo') {
-        text = `${opponentsName} refused your invitation to join ${gameName}...`;
+        text = `${opponentsName} refused your invitation to join ${chatName}...`;
       }
 
       if (!$('#invitation-response').is(':visible')) {
