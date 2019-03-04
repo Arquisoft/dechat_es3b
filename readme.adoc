@@ -36,6 +36,8 @@ The skeleton project is an angular aplication combined with solid tecnology
 
 ----
 ng serve --open
+
+IMPORTANT --> To do this, it is necessary this dependency: npm i @solid/query-ldflex
 ----
 
 Once executed, the application should be available at: http://localhost:4200
