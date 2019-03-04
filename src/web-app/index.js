@@ -59,7 +59,10 @@ async function setUpNewChat() {
 async function setUpChat() {
     
     $('#chat').removeClass('hidden');
-  $('#chat-loading').addClass('hidden');
+    $('#chat-loading').addClass('hidden');
+        
+    const friendName = await core.getFormattedName(friendWebId);
+    $('#friend-name').text(friendName);
 
         
   
@@ -74,10 +77,7 @@ async function setUpChat() {
     }
 
   };
-    
-    const oppName = await core.getFormattedName(friendWebId);
-    console.log(oppName);
-    $('#opponent-name').text(oppName);
+
     
 };
 
@@ -154,6 +154,13 @@ $('#start-new-chat-btn').click(async () => {
     $('#write-permission-url').text(dataUrl);
     $('#write-permission').modal('show');
   }
+});
+
+$('#write-chat').click(async() => {
+	const message =">>" + $("#message").val();
+	//TODO: Save the message on SOLID Pod
+	$("#messages").val($("#messages").val() + "\n" + message);
+	$("#message").attr('value', '');
 });
 
 //-----------TODO JOIN-----------
