@@ -89,8 +89,8 @@ class SolidChessCore {
     let moveFound = false;
 
     engine.query(`SELECT ?nextMove ?lastMove {
-    <${move}> <${namespaces.chess}nextHalfMove> ?nextMove.
-    OPTIONAL { <${gameUrl}> <${namespaces.chess}hasLastHalfMove> ?lastMove}
+    <${move}> <${namespaces.chat}nextHalfMove> ?nextMove.
+    OPTIONAL { <${gameUrl}> <${namespaces.chat}hasLastHalfMove> ?lastMove}
   }`,
       {sources: [{type: 'rdfjsSource', value: rdfjsSource}]})
       .then(function (result) {
@@ -152,8 +152,8 @@ class SolidChessCore {
       const engine = newEngine();
 
       engine.query(`SELECT ?move {
-    OPTIONAL {?move <${namespaces.chess}nextHalfMove> ?nextMove.}
-    OPTIONAL {?game <${namespaces.chess}hasFirstHalfMove> ?move.}
+    OPTIONAL {?move <${namespaces.chat}nextHalfMove> ?nextMove.}
+    OPTIONAL {?game <${namespaces.chat}hasFirstHalfMove> ?move.}
   }`,
         {sources: [{type: 'rdfjsSource', value: rdfjsSource}]})
         .then(function (result) {
@@ -191,7 +191,7 @@ class SolidChessCore {
     let moveFound = false;
 
     engine.query(`SELECT ?nextMove {
-    <${gameUrl}> <${namespaces.chess}hasFirstHalfMove> ?nextMove.
+    <${gameUrl}> <${namespaces.chat}hasFirstHalfMove> ?nextMove.
   }`,
       {sources: [{type: 'rdfjsSource', value: rdfjsSource}]})
       .then(function (result) {
@@ -223,7 +223,7 @@ class SolidChessCore {
     let moveFound = false;
 
     engine.query(`SELECT ?nextMove {
-    <${gameUrl}> <${namespaces.chess}hasFirstHalfMove> ?nextMove.
+    <${gameUrl}> <${namespaces.chat}hasFirstHalfMove> ?nextMove.
   }`,
       {sources: [{type: 'rdfjsSource', value: rdfjsSource}]})
       .then(function (result) {
@@ -290,7 +290,7 @@ class SolidChessCore {
 
               let i = 0;
 
-              while (i < types.length && types[i].value !== namespaces.chess + 'ChessGame') {
+              while (i < types.length && types[i].value !== namespaces.chat + 'ChessGame') {
                 i++
               }
 
@@ -340,8 +340,8 @@ class SolidChessCore {
 
     engine.query(`SELECT * {
     OPTIONAL { ?s a <${namespaces.schema}InviteAction>.}
-    OPTIONAL { ?s <${namespaces.chess}nextHalfMove> ?o.}
-    OPTIONAL { ?s <${namespaces.chess}hasFirstHalfMove> ?o.}
+    OPTIONAL { ?s <${namespaces.chat}nextHalfMove> ?o.}
+    OPTIONAL { ?s <${namespaces.chat}hasFirstHalfMove> ?o.}
   }`,
       {sources: [{type: 'rdfjsSource', value: rdfjsSource}]})
       .then(function (result) {
@@ -568,7 +568,7 @@ class SolidChessCore {
     const engine = newEngine();
 
     engine.query(`SELECT ?san {
-    <${moveUrl}> <${namespaces.chess}hasSANRecord> ?san.
+    <${moveUrl}> <${namespaces.chat}hasSANRecord> ?san.
   }`,
       {sources: [{type: 'rdfjsSource', value: rdfjsSource}]})
       .then(function (result) {
@@ -772,11 +772,11 @@ class SolidChessCore {
 
             if (lastMoveUrl) {
               let update = `INSERT DATA {
-              <${lastMoveUrl.url}> <${namespaces.chess}nextHalfMove> <${nextMoveUrl}>.
+              <${lastMoveUrl.url}> <${namespaces.chat}nextHalfMove> <${nextMoveUrl}>.
             `;
 
               if (endsGame) {
-                update += `<${game.getUrl()}> <${namespaces.chess}hasLastHalfMove> <${nextMoveUrl}>.`;
+                update += `<${game.getUrl()}> <${namespaces.chat}hasLastHalfMove> <${nextMoveUrl}>.`;
               }
 
               update += '}';
@@ -784,12 +784,12 @@ class SolidChessCore {
               dataSync.executeSPARQLUpdateForUser(gameStorageUrl, update);
             } else {
               dataSync.executeSPARQLUpdateForUser(gameStorageUrl, `INSERT DATA {
-              <${game.getUrl()}> <${namespaces.chess}hasFirstHalfMove> <${nextMoveUrl}>.
+              <${game.getUrl()}> <${namespaces.chat}hasFirstHalfMove> <${nextMoveUrl}>.
             }`);
             }
 
             if (semanticChat && game.getUrl() === semanticChat.getUrl()) {
-              let san = await this.getObjectFromPredicateForResource(nextMoveUrl, namespaces.chess + 'hasSANRecord');
+              let san = await this.getObjectFromPredicateForResource(nextMoveUrl, namespaces.chat + 'hasSANRecord');
 
               if (!san) {
                 san = await this.getSANRecord(nextMoveUrl);
@@ -876,7 +876,7 @@ class SolidChessCore {
  /* async processGameToJoin(game, fileurl) {
     game.fileUrl = fileurl;
     game.name = await this.getObjectFromPredicateForResource(game.gameUrl, namespaces.schema + 'name');
-    game.realTime = await this.getObjectFromPredicateForResource(game.gameUrl, namespaces.chess + 'isRealTime');
+    game.realTime = await this.getObjectFromPredicateForResource(game.gameUrl, namespaces.chat + 'isRealTime');
 
     if (game.name) {
       game.name = game.name.value;
@@ -909,7 +909,7 @@ class SolidChessCore {
     const response = await this.generateResponseToInvitation(userDataUrl, invitationUrl, userWebId, friendWebId, "yes");
 
     dataSync.executeSPARQLUpdateForUser(userDataUrl, `INSERT DATA {
-  <${gameUrl}> a <${namespaces.chess}ChessGame>;
+  <${gameUrl}> a <${namespaces.chat}ChessGame>;
     <${namespaces.storage}storeIn> <${userDataUrl}>.
     
     ${response.sparqlUpdate}
