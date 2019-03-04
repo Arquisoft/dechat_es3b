@@ -534,12 +534,6 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#technical-context">Technical Context</a></li>
 </ul>
 </li>
-<li><a href="#section-system-scope-and-context">Alcance y Contexto del Sistema</a>
-<ul class="sectlevel2">
-<li><a href="#contexto-de-negocio">Contexto de Negocio</a></li>
-<li><a href="#contexto-técnico">Contexto Técnico</a></li>
-</ul>
-</li>
 </ul>
 </div>
 </div>
@@ -547,7 +541,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect1">
 <h2 id="section-system-scope-and-context"><a class="anchor" href="#section-system-scope-and-context"></a>System Scope and Context</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
+<div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
 <p>Our application consists of a decentralized chat in which a user can have conversations with other users. Based on this information we can differentiate two different contexts of our system:</p>
@@ -556,7 +550,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 <div class="sect2">
 <h3 id="business-context"><a class="anchor" href="#business-context"></a>Business Context</h3>
-<div class="sidebarblock arc42help">
+<div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
 <p>The following diagram shows how all parts of the system communicate when chatting, that is, when one user sends a message to another:</p>
@@ -607,7 +601,7 @@ the visualization of your sent messages.</p>
 </div>
 <div class="sect2">
 <h3 id="technical-context"><a class="anchor" href="#technical-context"></a>Technical Context</h3>
-<div class="sidebarblock arc42help">
+<div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
 <p>For now the technical context of our application shows in a very general way the technologies to use, as the application is implemented will be added to the project new technologies and updating this section.</p>
@@ -625,93 +619,10 @@ the visualization of your sent messages.</p>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="section-system-scope-and-context"><a class="anchor" href="#section-system-scope-and-context"></a>Alcance y Contexto del Sistema</h2>
-<div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Nuestra aplicación consiste en un chat descentralizado en el que un usuario puede mantener conversaciones con otros usuarios. Con esta información como base podemos diferenciar dos contextos diferentes de nuestro sistema:</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="contexto-de-negocio"><a class="anchor" href="#contexto-de-negocio"></a>Contexto de Negocio</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>El siguiente diagrama muestra como se comunican todas las partes del sistema al chatear, es decir, cuando un usuario envía un mensaje a otro:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/images/3-Business%20context1.PNG" alt="Diagrama del contexto de negocio de dechat_es3b">
-</div>
-</div>
-<div class="paragraph">
-<p>Tal como se observa en el diagrama cada usuario tiene un Pod en SOLID propio, en él se almacenarán todos los
-mensajes que envíe. Sin embargo, los mensajes enviados no se almacenarán en el Pod del receptor manteniendo así
-la filosofía de SOLID en el que cada usuario tiene el control total sobre sus datos.
-De esta manera para ver el historial de mensajes de la conversación ambos usuarios tendrán que permitir al otro
-la visualización de sus mensajes enviados.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. Resumen de acciones llevadas a cabo en la comunicación</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parte involucrada</th>
-<th class="tableblock halign-left valign-top">Acción</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Usuario1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Envía un mensaje a Usuario2</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pod Usuario1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Guarda el mensaje enviado</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Usuario2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Recibe el mensaje de Usuario1 y le contesta</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pod Usuario2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Guarda el mensaje con el que ha contestado Usuario2</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="contexto-técnico"><a class="anchor" href="#contexto-técnico"></a>Contexto Técnico</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="paragraph">
-<p>Por ahora el contexto técnico de nuestra aplicación muestra de una manera muy general las tecnologías a usar, según se vaya implementando la aplicación se irán agregando al proyecto nuevas tecnologías y actualizando este apartado.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/images/TechnicalContext.png" alt="Diagrama del contexto técnico de dechat_es3b">
-</div>
-</div>
-<div class="paragraph">
-<p>La aplicación consta de un artefacto encargado de iniciar o cerrar sesión y otro que manejará el char en sí, es decir, el envío y recibo de mensajes. Toda la aplicación en sí utilizará un servidor de Pods con el que se identificará al usuario y se guardarán los mensajes enviados por el mismo.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-02-25 10:16:48 CET
+Last updated 2019-03-04 10:38:15 CET
 </div>
 </div>
 </body>

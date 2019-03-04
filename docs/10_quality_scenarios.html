@@ -534,12 +534,6 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#quality-scenarios">Quality Scenarios</a></li>
 </ul>
 </li>
-<li><a href="#section-quality-scenarios">Requerimientos de Calidad</a>
-<ul class="sectlevel2">
-<li><a href="#Árbol-de-calidad">Árbol de Calidad</a></li>
-<li><a href="#escenarios-de-calidad">Escenarios de calidad</a></li>
-</ul>
-</li>
 </ul>
 </div>
 </div>
@@ -547,7 +541,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect1">
 <h2 id="section-quality-scenarios"><a class="anchor" href="#section-quality-scenarios"></a>Quality Requirements</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
+<div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
 <p>This section deals with the quality requirements of the application using the quality tree and quality scenarios.
@@ -557,7 +551,7 @@ The quality goals are further explained in section 1.2.</p>
 </div>
 <div class="sect2">
 <h3 id="quality-tree"><a class="anchor" href="#quality-tree"></a>Quality Tree</h3>
-<div class="sidebarblock arc42help">
+<div class="sidebarblock">
 <div class="content">
 <div class="imageblock">
 <div class="content">
@@ -569,7 +563,7 @@ The quality goals are further explained in section 1.2.</p>
 </div>
 <div class="sect2">
 <h3 id="quality-scenarios"><a class="anchor" href="#quality-scenarios"></a>Quality Scenarios</h3>
-<div class="sidebarblock arc42help">
+<div class="sidebarblock">
 <div class="content">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -579,7 +573,7 @@ The quality goals are further explained in section 1.2.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top"><strong>AQ</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Quality attributes</strong></th>
 <th class="tableblock halign-left valign-top"><strong>Scenario</strong></th>
 <th class="tableblock halign-left valign-top"><strong>Priority</strong></th>
 </tr>
@@ -622,89 +616,10 @@ The quality goals are further explained in section 1.2.</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="section-quality-scenarios"><a class="anchor" href="#section-quality-scenarios"></a>Requerimientos de Calidad</h2>
-<div class="sectionbody">
-<div class="sidebarblock arc42help">
-<div class="content">
 <div class="paragraph">
-<p>En esta sección se tratarán los requisitos de calidad de la aplicación mediante el árbol de calidad y escenarios de calidad.
-Los objetivos de calidad principales se explican con más profundidad en la sección 1.2.</p>
+<p>Priority defines the importance of the quality attribute for our application, it is measured in three levels (high, medium, low) which in turn also have three levels.
+For example, high high is the highest priority while high medium would be somewhat lower but not as high as medium high.</p>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="Árbol-de-calidad"><a class="anchor" href="#Árbol-de-calidad"></a>Árbol de Calidad</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="imageblock">
-<div class="content">
-<img src="./images/images/MindMap10.PNG" alt="Árbol de atributos de calidad de dechat_es3b">
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="escenarios-de-calidad"><a class="anchor" href="#escenarios-de-calidad"></a>Escenarios de calidad</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>AC</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Escenario</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Prioridad</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Funcionalidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación debe cumplir correctamente las necesidades mínimas para que se lleve a cabo una conversación entre dos usuarios</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alta, alta</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Usabilidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación debe ser fácil de comprender y usar para así satisfacer al usuario</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alta, media</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Eficiencia</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">El envío de mensajes deben llegar correctamente al receptor en tiempos razonables</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alta, media</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Testeabilidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La aplicación debe pasar correctamente pruebas unitarias y pruebas de integración</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Alta, media</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mantenibilidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Garantizar la mejora continua contra errores, fallos inesperados de los componentes y nuevos requisitos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Media, alta</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exigir la identificación a cada usuario para usar la aplicación y permitirle controlar quién tendrá acceso a sus datos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Media, media</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Escalabilidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Aunque el número de usuarios aumenta, la aplicación seguirá funcionando con la misma eficiencia</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Media, media</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 </div>
@@ -713,7 +628,7 @@ Los objetivos de calidad principales se explican con más profundidad en la secc
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-02-25 10:16:48 CET
+Last updated 2019-03-04 10:38:15 CET
 </div>
 </div>
 </body>
