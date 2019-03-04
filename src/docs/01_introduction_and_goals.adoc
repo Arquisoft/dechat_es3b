@@ -3,16 +3,16 @@
 == Introduction and goals
 
 ****
-The main goal of this project is to create a decentralized chat, better said, an application or program through two or more people can communicate in a way that all the information does not pass through any external server, avoiding lose confidenciality of the data, allowing real private conversations, not like other softwares.
+The main goal of this project is to create a decentralized chat, better said, an application or program through two or more people can communicate in a way that all the information does not pass through any external server, avoiding lose confidentiality of the data, allowing real private conversations, not like other software.
 
-We are going to use SOLID framework to get that decentralization. Every user must have a SOLID POD to login and use our application
+We are going to use SOLID framework to get that decentralization. Every user must have a SOLID POD to log in and use our application
 ****
 
 === Requirements
 
 ****
 
-The application will have a "home" with a list of the users who the "protagonist" could communicate. After selecting one of them, he will be able to send and receive messages. First we are going to implement just sending messages, then, we would like to add the posibility of pictures transmission, or even video recordings.
+The application will have a "home" with a list of the users who the "protagonist" could communicate. After selecting one of them, he will be able to send and receive messages. First, we are going to implement just sending messages, then, we would like to add the possibility of pictures transmission, or even video recordings.
 
 ****
 
@@ -35,7 +35,7 @@ With this project we must seek to get a real private peer to peer communication 
 === Stakeholders
 
 ****
-The users whom the aplication is directed are exposed just below. All the users must be capable of login the application and communicate
+The users whom the application is directed are exposed just below. All the users must be capable of log in the application and communicate
 |===
 |Rol|Contact|Expectations
 | _Client_ | _Regular users of the application_ | _Communicate with another contact_
