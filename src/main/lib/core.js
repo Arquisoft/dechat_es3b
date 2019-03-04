@@ -737,7 +737,7 @@ class SolidChessCore {
         let gameStorageUrl;
 
         if (!game || game.getUrl() !== gameUrl) {
-          gameStorageUrl = await this.getStorageForGame(userWebId, gameUrl);
+          gameStorageUrl = await this.getStorageForChat(userWebId, gameUrl);
 
           if (gameStorageUrl) {
             const loader = new Loader(this.fetch);
