@@ -46,7 +46,7 @@ The users whom the aplication is directed are exposed just below. All the users 
 |Rol|Contact|Expectations
 | _Client_ | _Regular users of the application_ | _Communicate with another contact_
 | _Teachers_ | _Teachers of the subject_ | _Decentralized and accesible application using SOLID_
-| _SOLID STAFF'S_ | _SOLID Developers and employees | _Usable, accesible and "comercial" aplication with a correct use of SOLID_
+| _SOLID STAFF'S_ | _SOLID Developers and employees_ | _Usable, accesible and "comercial" aplication with a correct use of https://solid.inrupt.com/[SOLID]_
 |===
 [options="header",cols="1,2,2"]
 ****
