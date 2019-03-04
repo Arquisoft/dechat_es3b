@@ -26,7 +26,7 @@ With this project we must seek to get a real private peer to peer communication 
 . Functional suitability -> The application must correctly meet the minimum requirements for a conversation to take place between two users. At the first place we want a basic text conversation
 . Usability -> The application must be easy to use. All users must be able to use the application, even users with little knowledge.
 . Efficiency -> The time between sending and receiving messages must be reasonable.
-. Testability -> The application must pass our unit test without any problem
+. Testability -> The application must pass our unit test without any problem.
 
 ****
 
