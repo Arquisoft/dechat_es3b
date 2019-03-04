@@ -32,18 +32,18 @@ $('#logout-btn').click(() => {
 /******
 
 /**
- * This method does the necessary updates of the UI when the different game options are shown.
+ * This method does the necessary updates of the UI when the different chat options are shown.
  */
-function setUpForEveryGameOption() {
+function setUpForEveryChatOption() {
   $('#chat-loading').removeClass('hidden');
 }
 
 /**
- * This method sets up a new chess game.
+ * This method sets up a new chat.
  * @returns {Promise<void>}
  */
-async function setUpNewChessGame() {
-  setUpForEveryGameOption();
+async function setUpNewChat() {
+  setUpForEveryChatOption();
 
   semanticChat = await core.setUpNewGame(userDataUrl, userWebId, friendWebId, chatName, dataSync);
 
@@ -144,7 +144,7 @@ $('#start-new-chat-btn').click(async () => {
     friendWebId = $('#possible-opps').val();
     userDataUrl = dataUrl;
     chatName = $('#chat-name').val();
-    setUpNewChessGame();
+    setUpNewChat();
   } else {
     $('#write-permission-url').text(dataUrl);
     $('#write-permission').modal('show');
@@ -204,7 +204,7 @@ $('#join-game-btn').click(async () => {
       chatsToJoin.splice(i, 1);
 
       afterGameSpecificOptions();
-      setUpForEveryGameOption();
+      setUpForEveryChatOption();
       friendWebId = game.opponentWebId;
       semanticChat = await core.joinExistingChessGame(gameUrl, game.invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, game.fileUrl);
 

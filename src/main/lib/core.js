@@ -247,8 +247,8 @@ class SolidChessCore {
    * This method checks a file and looks for the a join request.
    * @param fileurl: the url of the file in which to look.
    * @param userWebId: the WebId of the user looking for requests.
-   * @returns {Promise}: a promise that resolves with {opponentWebId: string, gameUrl: string, invitationUrl: string},
-   * where opponentWebId is the WebId of the player that initiated the request, gameUrl is the url of the game, and
+   * @returns {Promise}: a promise that resolves with {friendWebId: string, gameUrl: string, invitationUrl: string},
+   * where friendWebId is the WebId of the player that initiated the request, gameUrl is the url of the game, and
    * invitationUrl is the url of the invitation.
    * If no request was found, null is returned.
    */
@@ -304,10 +304,10 @@ class SolidChessCore {
               }
 
               const loader = new Loader(self.fetch);
-              const opponentWebId = await loader.findWebIdOfOpponent(gameUrl, userWebId);
+              const friendWebId = await loader.findWebIdOfOpponent(gameUrl, userWebId);
 
               deferred.resolve({
-                opponentWebId,
+                friendWebId,
                 gameUrl,
                 invitationUrl
               });
@@ -426,7 +426,7 @@ class SolidChessCore {
    * @param dataSync: the DataSync object that is used to access some of the data.
    * @returns {Promise}: a promise that resolves with an array containing all games that the player can join.
    * Each object in the array has the following attributes: fileUrl (url of the file that contained the request),
-   * name (name of the chess game), opponentsName (name of the opponent), opponentWebId (WebId of the opponent), and
+   * name (name of the chess game), opponentsName (name of the opponent), friendWebId (WebId of the opponent), and
    * gameUrl (url of the game).
    */
  /* async findGamesToJoin(userWebId, dataSync) {
@@ -451,7 +451,7 @@ class SolidChessCore {
             result.name = result.name.value;
           }
 
-          result.opponentsName = await this.getFormattedName(result.opponentWebId);
+          result.opponentsName = await this.getFormattedName(result.friendWebId);
           results.push(result);
         }
 
@@ -498,18 +498,18 @@ class SolidChessCore {
    * @param baseUrl: the base url used to generate new urls.
    * @param gameUrl: the url of the game.
    * @param userWebId: the WebId of the player sending the invitation.
-   * @param opponentWebId: the WebId of the opponent to whom the invitation is sent.
+   * @param friendWebId: the WebId of the opponent to whom the invitation is sent.
    * @returns {Promise<string>}
    */
 
-  async generateInvitation(baseUrl, gameUrl, userWebId, opponentWebId) {
+  async generateInvitation(baseUrl, gameUrl, userWebId, friendWebId) {
     const invitationUrl = await this.generateUniqueUrlForResource(baseUrl);
     const notification = `<${invitationUrl}> a <${namespaces.schema}InviteAction>.`;
     const sparqlUpdate = `
     <${invitationUrl}> a <${namespaces.schema}InviteAction>;
       <${namespaces.schema}event> <${gameUrl}>;
       <${namespaces.schema}agent> <${userWebId}>;
-      <${namespaces.schema}recipient> <${opponentWebId}>.
+      <${namespaces.schema}recipient> <${friendWebId}>.
   `;
 
     return {
@@ -523,11 +523,11 @@ class SolidChessCore {
    * @param baseUrl: the base url used to generate new urls.
    * @param invitationUrl: the url of the invitation.
    * @param userWebId: the WebId of the user send the response.
-   * @param opponentWebId: the WebId of the opponent to whome the response is sent.
+   * @param friendWebId: the WebId of the opponent to whome the response is sent.
    * @param response: the response which is either "yes" or "no".
    * @returns {Promise<string>}
    */
-  /*async generateResponseToInvitation(baseUrl, invitationUrl, userWebId, opponentWebId, response) {
+  /*async generateResponseToInvitation(baseUrl, invitationUrl, userWebId, friendWebId, response) {
     const rsvpUrl = await this.generateUniqueUrlForResource(baseUrl);
     let responseUrl;
 
@@ -544,7 +544,7 @@ class SolidChessCore {
     <${rsvpUrl}> a <${namespaces.schema}RsvpAction>;
       <${namespaces.schema}rsvpResponse> <${responseUrl}>;
       <${namespaces.schema}agent> <${userWebId}>;
-      <${namespaces.schema}recipient> <${opponentWebId}>.
+      <${namespaces.schema}recipient> <${friendWebId}>.
       
     <${invitationUrl}> <${namespaces.schema}result> <${rsvpUrl}>.
   `;
@@ -817,21 +817,21 @@ class SolidChessCore {
    * This method sets up a new game.
    * @param userDataUrl: the url of the file where the data is stored
    * @param userWebId: the WebId of the current user
-   * @param opponentWebId: the WebId of the opponent
+   * @param friendWebId: the WebId of the opponent
    * @param name: the name of the game
    * @param dataSync: the DataSync instance used to write data
    * @returns {SemanticChess}: the newly created chess game
    */
-  async setUpNewGame(userDataUrl, userWebId, opponentWebId, name, dataSync) {
+  async setUpNewGame(userDataUrl, userWebId, friendWebId, name, dataSync) {
     const chatUrl = await this.generateUniqueUrlForResource(userDataUrl);
     const semanticGame = new SemanticChess({
       url: chatUrl,
       moveBaseUrl: userDataUrl,
       userWebId,
-      opponentWebId,
+      friendWebId,
       name
     });
-    const invitation = await this.generateInvitation(userDataUrl, semanticGame.getUrl(), userWebId, opponentWebId);
+    const invitation = await this.generateInvitation(userDataUrl, semanticGame.getUrl(), userWebId, friendWebId);
 
     try {
       await dataSync.executeSPARQLUpdateForUser(userDataUrl, `INSERT DATA {${semanticGame.getMinimumRDF()} \n <${chatUrl}> <${namespaces.storage}storeIn> <${userDataUrl}>}`);
@@ -855,7 +855,7 @@ class SolidChessCore {
     }
 
     try {
-      await dataSync.sendToOpponentsInbox(await this.getInboxUrl(opponentWebId), invitation.notification);
+      await dataSync.sendToOpponentsInbox(await this.getInboxUrl(friendWebId), invitation.notification);
     } catch (e) {
       this.logger.error(`Could not send invitation to friend.`);
       this.logger.error(e);
@@ -886,7 +886,7 @@ class SolidChessCore {
       game.realTime = false;
     }
 
-    game.opponentsName = await this.getFormattedName(game.opponentWebId);
+    game.opponentsName = await this.getFormattedName(game.friendWebId);
     return game;
   }*/
 
@@ -894,17 +894,17 @@ class SolidChessCore {
    * This method joins the player with a game.
    * @param gameUrl: the url of the game to join.
    * @param invitationUrl: the url of the invitation that we accept.
-   * @param opponentWebId: the WebId of the opponent of the game, sender of the invitation.
+   * @param friendWebId: the WebId of the opponent of the game, sender of the invitation.
    * @param userWebId: the WebId of the current user
    * @param userDataUrl: the url of the file where the data is stored
    * @param dataSync: the DataSync instance used to write data to the POD
    * @param fileUrl: the url of the file that contains the notification about the game
    * @returns {Promise<void>}
    */
- /* async joinExistingChessGame(gameUrl, invitationUrl, opponentWebId, userWebId, userDataUrl, dataSync, fileUrl) {
+ /* async joinExistingChessGame(gameUrl, invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, fileUrl) {
     const loader = new Loader(this.fetch);
     const semanticGame = await loader.loadFromUrl(gameUrl, userWebId, userDataUrl);
-    const response = await this.generateResponseToInvitation(userDataUrl, invitationUrl, userWebId, opponentWebId, "yes");
+    const response = await this.generateResponseToInvitation(userDataUrl, invitationUrl, userWebId, friendWebId, "yes");
 
     dataSync.executeSPARQLUpdateForUser(userDataUrl, `INSERT DATA {
   <${gameUrl}> a <${namespaces.chess}ChessGame>;
@@ -913,7 +913,7 @@ class SolidChessCore {
     ${response.sparqlUpdate}
   }`);
     dataSync.executeSPARQLUpdateForUser(userWebId, `INSERT DATA { <${gameUrl}> <${namespaces.schema}contributor> <${userWebId}>; <${namespaces.storage}storeIn> <${userDataUrl}>.}`);
-    dataSync.sendToOpponentsInbox(await this.getInboxUrl(opponentWebId), response.notification);
+    dataSync.sendToOpponentsInbox(await this.getInboxUrl(friendWebId), response.notification);
     dataSync.deleteFileForUser(fileUrl);
 
     return semanticGame;
