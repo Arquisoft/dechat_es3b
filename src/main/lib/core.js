@@ -717,7 +717,7 @@ class SolidChessCore {
    * @param callback: the function with as parameters the san and url of the next move that is called at the end of this method
    * @returns {Promise<void>}
    */
-  async checkForNewMove(semanticGame = null, userWebId, fileurl, userDataUrl, dataSync, callback) {
+  async checkForNewMessage(semanticGame = null, userWebId, fileurl, userDataUrl, dataSync, callback) {
     const originalMove = await this.getOriginalHalfMove(fileurl);
 
     if (originalMove) {

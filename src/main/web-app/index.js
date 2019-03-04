@@ -61,7 +61,6 @@ async function setUpChat() {
     $('#chat').removeClass('hidden');
   $('#chat-loading').addClass('hidden');
 
-  updateStatus();
         
   };
 
@@ -73,7 +72,6 @@ async function setUpChat() {
        dataSync.sendToFriendsInbox(await core.getInboxUrl(friendWebId), move.notification);
     }
 
-    updateStatus();
   };
 
 auth.trackSession(async session => {
@@ -222,43 +220,6 @@ $('#join-game-btn').click(async () => {
 */
 //-------------------------------------------
 
-/**
- * This method updates the status of the game in the UI.
- */
-function updateStatus() {
-  const statusEl = $('#status');
-  let status = '';
-  const game = semanticChat.getChess();
-
-  let moveColor = 'White';
-
-  if (game.turn() === 'b') {
-    moveColor = 'Black';
-  }
-
-  // checkmate?
-  if (game.in_checkmate() === true) {
-    status = 'Game over, ' + moveColor + ' is in checkmate.';
-  }
-
-  // draw?
-  else if (game.in_draw() === true) {
-    status = 'Game over, drawn position';
-  }
-
-  // game still on
-  else {
-    status = moveColor + ' to move';
-
-    // check?
-    if (game.in_check() === true) {
-      status += ', ' + moveColor + ' is in check';
-    }
-  }
-
-  statusEl.html(status);
-}
-
 
 /**
  * This method checks if a new move has been made by the opponent.
@@ -271,15 +232,14 @@ async function checkForNotifications() {
   const updates = await core.checkUserInboxForUpdates(await core.getInboxUrl(userWebId));
 
   updates.forEach(async (fileurl) => {
-    let newMoveFound = false;
+    let newMessageFound = false;
     // check for new moves
-    await core.checkForNewMove(semanticChat, userWebId, fileurl, userDataUrl, dataSync, (san, url) => {
+    await core.checkForNewMessage(semanticChat, userWebId, fileurl, userDataUrl, dataSync, (san, url) => {
       semanticChat.loadMove(san, {url});
-      updateStatus();
-      newMoveFound = true;
+      newMessageFound = true;
     });
 
-    if (!newMoveFound) {
+    if (!newMessageFound) {
       // check for acceptances of invitations
       const response = await core.getResponseToInvitation(fileurl);
 
