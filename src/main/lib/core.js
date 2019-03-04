@@ -592,7 +592,7 @@ class SolidChessCore {
    * where the invitationUrl is the url of the invitation and responseUrl the url of the response.
    * If no response is found, the promise is resolved with null.
    */
-  /*async getResponseToInvitation(fileurl) {
+  async getResponseToInvitation(fileurl) {
     const deferred = Q.defer();
     const rdfjsSource = await rdfjsSourceFromUrl(fileurl, this.fetch);
 
@@ -622,7 +622,7 @@ class SolidChessCore {
     }
 
     return deferred.promise;
-  }*/
+  }
 
   /**
    * This method returns the game to which a move belongs.
