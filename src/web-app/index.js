@@ -62,7 +62,7 @@ async function setUpChat() {
   $('#chat-loading').addClass('hidden');
 
         
-  };
+  
 
 //Ejemplo d como hay q guardar y enviar el mensaje
   const onDrop = async function(source, target) {
@@ -74,6 +74,12 @@ async function setUpChat() {
     }
 
   };
+    
+    const oppName = await core.getFormattedName(friendWebId);
+    console.log(oppName);
+    $('#opponent-name').text(oppName);
+    
+};
 
 auth.trackSession(async session => {
   const loggedIn = !!session;
