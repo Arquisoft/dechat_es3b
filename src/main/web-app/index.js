@@ -64,9 +64,10 @@ async function setUpChat() {
         
   };
 
+//Ejemplo d como hay q guardar y enviar el mensaje
   const onDrop = async function(source, target) {
     
-    await dataSync.executeSPARQLUpdateForUser(userDataUrl, move.sparqlUpdate); //Guarda en pod el movimiento????
+    await dataSync.executeSPARQLUpdateForUser(userDataUrl, move.sparqlUpdate); 
 
     if (move.notification) {
        dataSync.sendToFriendsInbox(await core.getInboxUrl(friendWebId), move.notification);
@@ -246,7 +247,7 @@ async function checkForNotifications() {
       if (response) {
         processResponseInNotification(response, fileurl);
       } else {
-        // check for games to join
+        // check for chats to join
         const chatToJoin = await core.getJoinRequest(fileurl, userWebId);
 
         if (chatToJoin) {

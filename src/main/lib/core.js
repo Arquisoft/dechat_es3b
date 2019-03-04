@@ -814,13 +814,13 @@ class SolidChessCore {
   }
 
   /**
-   * This method sets up a new game.
+   * This method sets up a new chat.
    * @param userDataUrl: the url of the file where the data is stored
    * @param userWebId: the WebId of the current user
-   * @param friendWebId: the WebId of the opponent
-   * @param name: the name of the game
+   * @param friendWebId: the WebId of the friend
+   * @param name: the name of the chat
    * @param dataSync: the DataSync instance used to write data
-   * @returns {SemanticChess}: the newly created chess game
+   * @returns {SemanticChess}: the newly created chat
    */
   async setUpNewChat(userDataUrl, userWebId, friendWebId, name, dataSync) {
     const chatUrl = await this.generateUniqueUrlForResource(userDataUrl);
@@ -991,7 +991,7 @@ class SolidChessCore {
     const parsedWebId = URI.parse(webId);
     const today = format(new Date(), 'yyyyMMdd');
 
-    return  `${parsedWebId.scheme}://${parsedWebId.host}/public/chess_${today}.ttl`;
+    return  `${parsedWebId.scheme}://${parsedWebId.host}/public/chat_${today}.ttl`;
   }
 }
 
