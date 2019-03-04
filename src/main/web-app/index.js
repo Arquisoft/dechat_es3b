@@ -45,18 +45,18 @@ function setUpForEveryChatOption() {
 async function setUpNewChat() {
   setUpForEveryChatOption();
 
-  semanticChat = await core.setUpNewGame(userDataUrl, userWebId, friendWebId, chatName, dataSync);
+  semanticChat = await core.setUpNewChat(userDataUrl, userWebId, friendWebId, chatName, dataSync);
 
 
 
-  setUpBoard(semanticChat);
+  setUpChat();
 }
 
 /**
- * This method sets up the chessboard.
+ * This method sets up the chat.
  * @returns {Promise<void>}
  */
-async function setUpBoard() {
+async function setUpChat() {
     
     $('#chat').removeClass('hidden');
   $('#chat-loading').addClass('hidden');
@@ -70,7 +70,7 @@ async function setUpBoard() {
     await dataSync.executeSPARQLUpdateForUser(userDataUrl, move.sparqlUpdate); //Guarda en pod el movimiento????
 
     if (move.notification) {
-       dataSync.sendToOpponentsInbox(await core.getInboxUrl(friendWebId), move.notification);
+       dataSync.sendToFriendsInbox(await core.getInboxUrl(friendWebId), move.notification);
     }
 
     updateStatus();
@@ -112,19 +112,19 @@ auth.trackSession(async session => {
 });
 
 /**
- * This method updates the UI after a game option has been selected by the player.
+ * This method updates the UI after a chat option has been selected by the user.
  */
-function afterGameOption() {
+function afterChatOption() {
   $('#chat-options').addClass('hidden');
 }
 
 $('#new-btn').click(async () => {
   if (userWebId) {
-    afterGameOption();
+    afterChatOption();
     $('#new-chat-options').removeClass('hidden');
     $('#data-url').prop('value', core.getDefaultDataUrl(userWebId));
 
-    const $select = $('#possible-opps');
+    const $select = $('#possible-friends');
 
     for await (const friend of data[userWebId].friends) {
         let name = await core.getFormattedName(friend.value);
@@ -141,7 +141,7 @@ $('#start-new-chat-btn').click(async () => {
 
   if (await core.writePermission(dataUrl, dataSync)) {
     $('#new-chat-options').addClass('hidden');
-    friendWebId = $('#possible-opps').val();
+    friendWebId = $('#possible-friends').val();
     userDataUrl = dataUrl;
     chatName = $('#chat-name').val();
     setUpNewChat();
@@ -156,7 +156,7 @@ $('#start-new-chat-btn').click(async () => {
 
 $('#join-btn').click(async () => {
   if (userWebId) {
-    afterGameOption();
+    afterChatOption();
     $('#join-game-options').removeClass('hidden');
     $('#join-data-url').prop('value', core.getDefaultDataUrl(userWebId));
     $('#join-looking').addClass('hidden');

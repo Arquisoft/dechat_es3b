@@ -822,7 +822,7 @@ class SolidChessCore {
    * @param dataSync: the DataSync instance used to write data
    * @returns {SemanticChess}: the newly created chess game
    */
-  async setUpNewGame(userDataUrl, userWebId, friendWebId, name, dataSync) {
+  async setUpNewChat(userDataUrl, userWebId, friendWebId, name, dataSync) {
     const chatUrl = await this.generateUniqueUrlForResource(userDataUrl);
     const semanticGame = new SemanticChess({
       url: chatUrl,
@@ -855,7 +855,7 @@ class SolidChessCore {
     }
 
     try {
-      await dataSync.sendToOpponentsInbox(await this.getInboxUrl(friendWebId), invitation.notification);
+      await dataSync.sendToFriendsInbox(await this.getInboxUrl(friendWebId), invitation.notification);
     } catch (e) {
       this.logger.error(`Could not send invitation to friend.`);
       this.logger.error(e);
@@ -913,7 +913,7 @@ class SolidChessCore {
     ${response.sparqlUpdate}
   }`);
     dataSync.executeSPARQLUpdateForUser(userWebId, `INSERT DATA { <${gameUrl}> <${namespaces.schema}contributor> <${userWebId}>; <${namespaces.storage}storeIn> <${userDataUrl}>.}`);
-    dataSync.sendToOpponentsInbox(await this.getInboxUrl(friendWebId), response.notification);
+    dataSync.sendToFriendsInbox(await this.getInboxUrl(friendWebId), response.notification);
     dataSync.deleteFileForUser(fileUrl);
 
     return semanticGame;
