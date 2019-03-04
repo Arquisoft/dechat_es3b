@@ -10,7 +10,7 @@ let semanticChat;
 let dataSync = new DataSync(auth.fetch);
 
 let userDataUrl;
-let oppWebId;
+let friendWebId;
 let chatsToJoin = [];
 
 let chatName;
@@ -45,7 +45,7 @@ function setUpForEveryGameOption() {
 async function setUpNewChessGame() {
   setUpForEveryGameOption();
 
-  semanticChat = await core.setUpNewGame(userDataUrl, userWebId, oppWebId, chatName, dataSync);
+  semanticChat = await core.setUpNewGame(userDataUrl, userWebId, friendWebId, chatName, dataSync);
 
 
 
@@ -70,7 +70,7 @@ async function setUpBoard() {
     await dataSync.executeSPARQLUpdateForUser(userDataUrl, move.sparqlUpdate); //Guarda en pod el movimiento????
 
     if (move.notification) {
-       dataSync.sendToOpponentsInbox(await core.getInboxUrl(oppWebId), move.notification);
+       dataSync.sendToOpponentsInbox(await core.getInboxUrl(friendWebId), move.notification);
     }
 
     updateStatus();
@@ -141,7 +141,7 @@ $('#start-new-chat-btn').click(async () => {
 
   if (await core.writePermission(dataUrl, dataSync)) {
     $('#new-chat-options').addClass('hidden');
-    oppWebId = $('#possible-opps').val();
+    friendWebId = $('#possible-opps').val();
     userDataUrl = dataUrl;
     chatName = $('#chat-name').val();
     setUpNewChessGame();
@@ -205,49 +205,9 @@ $('#join-game-btn').click(async () => {
 
       afterGameSpecificOptions();
       setUpForEveryGameOption();
-      oppWebId = game.opponentWebId;
-      semanticChat = await core.joinExistingChessGame(gameUrl, game.invitationUrl, oppWebId, userWebId, userDataUrl, dataSync, game.fileUrl);
+      friendWebId = game.opponentWebId;
+      semanticChat = await core.joinExistingChessGame(gameUrl, game.invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, game.fileUrl);
 
-      if (semanticChat.isRealTime()) {
-        webrtc = new WebRTC({
-          userWebId,
-          userInboxUrl: await core.getInboxUrl(userWebId),
-          opponentWebId: oppWebId,
-          opponentInboxUrl: await core.getInboxUrl(oppWebId),
-          fetch: auth.fetch,
-          initiator: false,
-          onNewData: rdfjsSource => {
-            let newMoveFound = false;
-
-            core.checkForNewMoveForRealTimeGame(semanticChat, dataSync, userDataUrl, rdfjsSource, (san, url) => {
-              semanticChat.loadMove(san, {url});
-              board.position(semanticChat.getChess().fen());
-              updateStatus();
-              newMoveFound = true;
-            });
-
-            if (!newMoveFound) {
-              core.checkForGiveUpOfRealTimeGame(semanticChat, rdfjsSource, (agentUrl, objectUrl) => {
-                semanticChat.loadGiveUpBy(agentUrl);
-                $('#real-time-opponent-quit').modal('show');
-              });
-            }
-          },
-          onCompletion: () => {
-            $('#real-time-setup').modal('hide');
-          },
-          onClosed: (closedByUser) => {
-            if (!closedByUser && !$('#real-time-opponent-quit').is(':visible')) {
-              $('#real-time-opponent-quit').modal('show');
-            }
-          }
-        });
-
-        webrtc.start();
-
-        $('#real-time-setup .modal-body ul').append('<li>Response sent</li><li>Setting up direct connection</li>');
-        $('#real-time-setup').modal('show');
-      }
 
       setUpBoard(semanticChat);
       setUpAfterEveryGameOptionIsSetUp();
@@ -412,7 +372,7 @@ $('#stop-playing').click(() => {
 
 $('.btn-cancel').click(() => {
   semanticChat = null;
-  oppWebId = null;
+  friendWebId = null;
 
   $('#chat').addClass('hidden');
   $('#new-chat-options').addClass('hidden');

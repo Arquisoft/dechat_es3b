@@ -252,7 +252,7 @@ class SolidChessCore {
    * invitationUrl is the url of the invitation.
    * If no request was found, null is returned.
    */
-  async getJoinRequest(fileurl, userWebId) {
+  /*async getJoinRequest(fileurl, userWebId) {
     const deferred = Q.defer();
     const rdfjsSource = await rdfjsSourceFromUrl(fileurl, this.fetch);
 
@@ -325,7 +325,7 @@ class SolidChessCore {
     }
 
     return deferred.promise;
-  }
+  }/*
 
   /**
    * This method checks if a file contains information about a chess game.
@@ -429,7 +429,7 @@ class SolidChessCore {
    * name (name of the chess game), opponentsName (name of the opponent), opponentWebId (WebId of the opponent), and
    * gameUrl (url of the game).
    */
-  async findGamesToJoin(userWebId, dataSync) {
+ /* async findGamesToJoin(userWebId, dataSync) {
     const deferred = Q.defer();
     const promises = [];
     const updates = await
@@ -478,7 +478,7 @@ class SolidChessCore {
     });
 
     return deferred.promise;
-  }
+  }*/
 
   /**
    * This method checks if the current user has write access to a file.
@@ -527,7 +527,7 @@ class SolidChessCore {
    * @param response: the response which is either "yes" or "no".
    * @returns {Promise<string>}
    */
-  async generateResponseToInvitation(baseUrl, invitationUrl, userWebId, opponentWebId, response) {
+  /*async generateResponseToInvitation(baseUrl, invitationUrl, userWebId, opponentWebId, response) {
     const rsvpUrl = await this.generateUniqueUrlForResource(baseUrl);
     let responseUrl;
 
@@ -554,6 +554,7 @@ class SolidChessCore {
       sparqlUpdate
     };
   }
+  */
 
   /**
    * This method returns the SAN of a move.
@@ -591,7 +592,7 @@ class SolidChessCore {
    * where the invitationUrl is the url of the invitation and responseUrl the url of the response.
    * If no response is found, the promise is resolved with null.
    */
-  async getResponseToInvitation(fileurl) {
+  /*async getResponseToInvitation(fileurl) {
     const deferred = Q.defer();
     const rdfjsSource = await rdfjsSourceFromUrl(fileurl, this.fetch);
 
@@ -621,7 +622,7 @@ class SolidChessCore {
     }
 
     return deferred.promise;
-  }
+  }*/
 
   /**
    * This method returns the game to which a move belongs.
@@ -817,10 +818,8 @@ class SolidChessCore {
    * @param userDataUrl: the url of the file where the data is stored
    * @param userWebId: the WebId of the current user
    * @param opponentWebId: the WebId of the opponent
-   * @param startPosition: the FEN of the start position of the chess board
    * @param name: the name of the game
    * @param dataSync: the DataSync instance used to write data
-   * @param realTime: is true when the game is played in real time
    * @returns {SemanticChess}: the newly created chess game
    */
   async setUpNewGame(userDataUrl, userWebId, opponentWebId, name, dataSync) {
@@ -872,7 +871,7 @@ class SolidChessCore {
    * @param fileurl: the url of the file containing the notification.
    * @returns {Promise<void>}
    */
-  async processGameToJoin(game, fileurl) {
+ /* async processGameToJoin(game, fileurl) {
     game.fileUrl = fileurl;
     game.name = await this.getObjectFromPredicateForResource(game.gameUrl, namespaces.schema + 'name');
     game.realTime = await this.getObjectFromPredicateForResource(game.gameUrl, namespaces.chess + 'isRealTime');
@@ -889,7 +888,7 @@ class SolidChessCore {
 
     game.opponentsName = await this.getFormattedName(game.opponentWebId);
     return game;
-  }
+  }*/
 
   /**
    * This method joins the player with a game.
@@ -902,7 +901,7 @@ class SolidChessCore {
    * @param fileUrl: the url of the file that contains the notification about the game
    * @returns {Promise<void>}
    */
-  async joinExistingChessGame(gameUrl, invitationUrl, opponentWebId, userWebId, userDataUrl, dataSync, fileUrl) {
+ /* async joinExistingChessGame(gameUrl, invitationUrl, opponentWebId, userWebId, userDataUrl, dataSync, fileUrl) {
     const loader = new Loader(this.fetch);
     const semanticGame = await loader.loadFromUrl(gameUrl, userWebId, userDataUrl);
     const response = await this.generateResponseToInvitation(userDataUrl, invitationUrl, userWebId, opponentWebId, "yes");
@@ -918,7 +917,7 @@ class SolidChessCore {
     dataSync.deleteFileForUser(fileUrl);
 
     return semanticGame;
-  }
+  }*/
 
   /**
    * This method check an inbox for new notifications.
