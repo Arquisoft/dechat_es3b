@@ -1,4 +1,4 @@
-const {Loader} = require('semantic-chess');
+const Loader = require('../lib/loader');
 const auth = require('solid-auth-client');
 const DataSync = require('../lib/datasync');
 const namespaces = require('../lib/namespaces');
@@ -236,7 +236,7 @@ async function checkForNotifications() {
     let newMessageFound = false;
     // check for new moves
     await core.checkForNewMessage(semanticChat, userWebId, fileurl, userDataUrl, dataSync, (san, url) => {
-      semanticChat.loadMove(san, {url});
+      semanticChat.loadMessage(san, {url});
       newMessageFound = true;
     });
 

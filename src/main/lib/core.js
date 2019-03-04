@@ -3,7 +3,8 @@ const Q = require('q');
 const newEngine = require('@comunica/actor-init-sparql-rdfjs').newEngine;
 const namespaces = require('./namespaces');
 const uniqid = require('uniqid');
-const {SemanticChess, Loader} = require('semantic-chess');
+const SemanticChat = require('./semanticchat');
+const Loader = require('./loader');
 const winston = require('winston');
 const URI = require('uri-js');
 const {format} = require('date-fns');
@@ -252,7 +253,7 @@ class SolidChessCore {
    * invitationUrl is the url of the invitation.
    * If no request was found, null is returned.
    */
-  /*async getJoinRequest(fileurl, userWebId) {
+  async getJoinRequest(fileurl, userWebId) {
     const deferred = Q.defer();
     const rdfjsSource = await rdfjsSourceFromUrl(fileurl, this.fetch);
 
@@ -325,7 +326,7 @@ class SolidChessCore {
     }
 
     return deferred.promise;
-  }/*
+  }
 
   /**
    * This method checks if a file contains information about a chess game.
@@ -709,7 +710,7 @@ class SolidChessCore {
 
   /**
    * This method checks for new moves in a notification.
-   * @param semanticGame: the current semantic game being used
+   * @param semanticChat: the current semantic chat being used
    * @param userWebId: the WebId of the current user
    * @param fileurl: the url of file that contains the notification.
    * @param userDataUrl: the url where the new data is stored for the game
@@ -717,7 +718,7 @@ class SolidChessCore {
    * @param callback: the function with as parameters the san and url of the next move that is called at the end of this method
    * @returns {Promise<void>}
    */
-  async checkForNewMessage(semanticGame = null, userWebId, fileurl, userDataUrl, dataSync, callback) {
+  async checkForNewMessage(semanticChat = null, userWebId, fileurl, userDataUrl, dataSync, callback) {
     const originalMove = await this.getOriginalHalfMove(fileurl);
 
     if (originalMove) {
@@ -733,7 +734,7 @@ class SolidChessCore {
 
       if (gameUrl) {
         gameUrl = gameUrl.value;
-        let game = semanticGame;
+        let game = semanticChat;
         let gameStorageUrl;
 
         if (!game || game.getUrl() !== gameUrl) {
@@ -787,7 +788,7 @@ class SolidChessCore {
             }`);
             }
 
-            if (semanticGame && game.getUrl() === semanticGame.getUrl()) {
+            if (semanticChat && game.getUrl() === semanticChat.getUrl()) {
               let san = await this.getObjectFromPredicateForResource(nextMoveUrl, namespaces.chess + 'hasSANRecord');
 
               if (!san) {
@@ -820,21 +821,22 @@ class SolidChessCore {
    * @param friendWebId: the WebId of the friend
    * @param name: the name of the chat
    * @param dataSync: the DataSync instance used to write data
-   * @returns {SemanticChess}: the newly created chat
+   * @returns {semanticChat}: the newly created chat
    */
   async setUpNewChat(userDataUrl, userWebId, friendWebId, name, dataSync) {
     const chatUrl = await this.generateUniqueUrlForResource(userDataUrl);
-    const semanticGame = new SemanticChess({
+    const semanticChat = new SemanticChat({
       url: chatUrl,
-      moveBaseUrl: userDataUrl,
+      messageBaseUrl: userDataUrl,
       userWebId,
       friendWebId,
-      name
+      name,
+      messages
     });
-    const invitation = await this.generateInvitation(userDataUrl, semanticGame.getUrl(), userWebId, friendWebId);
+    const invitation = await this.generateInvitation(userDataUrl, semanticChat.getUrl(), userWebId, friendWebId);
 
     try {
-      await dataSync.executeSPARQLUpdateForUser(userDataUrl, `INSERT DATA {${semanticGame.getMinimumRDF()} \n <${chatUrl}> <${namespaces.storage}storeIn> <${userDataUrl}>}`);
+      await dataSync.executeSPARQLUpdateForUser(userDataUrl, `INSERT DATA {${semanticChat.getMinimumRDF()} \n <${chatUrl}> <${namespaces.storage}storeIn> <${userDataUrl}>}`);
     } catch (e) {
       this.logger.error(`Could not save new chat data.`);
       this.logger.error(e);
@@ -861,7 +863,7 @@ class SolidChessCore {
       this.logger.error(e);
     }
 
-    return semanticGame;
+    return semanticChat;
   }
 
   /**
@@ -903,7 +905,7 @@ class SolidChessCore {
    */
  /* async joinExistingChessGame(gameUrl, invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, fileUrl) {
     const loader = new Loader(this.fetch);
-    const semanticGame = await loader.loadFromUrl(gameUrl, userWebId, userDataUrl);
+    const semanticChat = await loader.loadFromUrl(gameUrl, userWebId, userDataUrl);
     const response = await this.generateResponseToInvitation(userDataUrl, invitationUrl, userWebId, friendWebId, "yes");
 
     dataSync.executeSPARQLUpdateForUser(userDataUrl, `INSERT DATA {
@@ -916,7 +918,7 @@ class SolidChessCore {
     dataSync.sendToFriendsInbox(await this.getInboxUrl(friendWebId), response.notification);
     dataSync.deleteFileForUser(fileUrl);
 
-    return semanticGame;
+    return semanticChat;
   }*/
 
   /**
