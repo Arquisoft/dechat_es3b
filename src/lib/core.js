@@ -10,7 +10,7 @@ const URI = require('uri-js');
 const {format} = require('date-fns');
 const rdfjsSourceFromUrl = require('./rdfjssourcefactory').fromUrl;
 
-class SolidChessCore {
+class SolidChatCore {
 
   constructor(fetch) {
     this.inboxUrls = {};
@@ -997,4 +997,4 @@ class SolidChessCore {
   }
 }
 
-module.exports = SolidChessCore;
+module.exports = SolidChatCore;
