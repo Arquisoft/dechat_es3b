@@ -22,7 +22,7 @@ let core = new Core(auth.fetch);
 /*Log in-out*/
 
 $('.login-btn').click(() => {
-  auth.popupLogin({ popupUri: 'popup.html' });
+  auth.popupLogin({ popupUri: 'https://solid.github.io/solid-auth-client/dist/popup.html' });
 });
 
 $('#logout-btn').click(() => {
