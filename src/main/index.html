@@ -46,9 +46,9 @@
               <input type="text" class="form-control rounded-0" id="chat-name" placeholder="Enter the chat's name">
             </div>
             <div class="form-group">
-              <label for="possible-opps">Your friend</label>
+              <label for="possible-friends">Your friend</label>
               <!-- <input type="text" class="form-control rounded-0" id="opp-webid" placeholder="Enter opponent's WebID" value="https://ph2.solid.community/profile/card#me"> -->
-              <select id="possible-opps"></select>
+              <select id="possible-friends"></select>
             </div>
             <div class="form-group">
               <label for="data-url">Path on your POD to store the chat</label>
@@ -92,7 +92,7 @@
         <div id="chat" class="hidden" >
           <p>Friend: <span id="opponent-name"></span></p>
           <div id="chat-area" style="width: 400px">
-            <textarea id="messages" rows="32" cols="60"></textarea>
+            <textarea id="messages" rows="32" cols="60" disabled></textarea>
             </div>
           <div id="chat-details">
             <input type="text" class="form-control rounded-0" id="message" placeholder="Write your message...">
