@@ -545,10 +545,10 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>The main goal of this project is to create a decentralized chat, better said, an application or program through two or more people can communicate in a way that all the information does not pass through any external server, avoiding lose confidenciality of the data, allowing real private conversations, not like other softwares.</p>
+<p>The main goal of this project is to create a decentralized chat, better said, an application or program through two or more people can communicate in a way that all the information does not pass through any external server, avoiding lose confidentiality of the data, allowing real private conversations, not like other software.</p>
 </div>
 <div class="paragraph">
-<p>We are going to use SOLID framework to get that decentralization. Every user must have a SOLID POD to login and use our application</p>
+<p>We are going to use SOLID framework to get that decentralization. Every user must have a SOLID POD to log in and use our application</p>
 </div>
 </div>
 </div>
@@ -557,7 +557,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>The application will have a "home" with a list of the users who the "protagonist" could communicate. After selecting one of them, he will be able to send and receive messages. First we are going to implement just sending messages, then, we would like to add the posibility of pictures transmission, or even video recordings.</p>
+<p>The application will have a "home" with a list of the users who the "protagonist" could communicate. After selecting one of them, he will be able to send and receive messages. First, we are going to implement just sending messages, then, we would like to add the possibility of pictures transmission, or even video recordings.</p>
 </div>
 </div>
 </div>
@@ -567,61 +567,26 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>With this project we must seek to get a real private peer to peer communication between users, avoiding information leaks or security probles. Our Quality scenarios are:</p>
+<p>With this project we must seek to get a real private peer to peer communication between users, avoiding information leaks or security problems. Our most important quality scenarios are:</p>
 </div>
 </div>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>AQ</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Scenario</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Priority</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Functional suitability</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The application must correctly meet the minimum requirements for a conversation to take place between two users</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">High, high</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The application must be easy to understand and use to satisfy the user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">High, medium</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Efficiency</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The sending of messages must be correctly reaching the receiver in reasonable times</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">High, medium</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Testability</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The application must pass unit tests and integration tests correctly</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">High, medium</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Maintainability</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ensuring continuous improvement against errors, unexpected component failures and new requirements</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Medium, high</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Securability</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Require each user to identify themselves in order to use the application and allow them to control who has access to their data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Medium, medium</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Scalability</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Although the number of users increases, the application will continue to operate with the same efficiency</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Medium, medium</p></td>
-</tr>
-</tbody>
-</table>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Functional suitability &#8594; The application must correctly meet the minimum requirements for a conversation to take place between two users. At the first place we want a basic text conversation</p>
+</li>
+<li>
+<p>Usability &#8594; The application must be easy to use. All users must be able to use the application, even users with little knowledge.</p>
+</li>
+<li>
+<p>Efficiency &#8594; The time between sending and receiving messages must be reasonable.</p>
+</li>
+<li>
+<p>Testability &#8594; The application must pass our unit test without any problem.</p>
+</li>
+</ol>
+</div>
 <div class="sidebarblock">
 <div class="content">
 
@@ -633,7 +598,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>The users whom the aplication is directed are exposed just below. All the users must be capable of login the application and communicate</p>
+<p>The users whom the application is directed are exposed just below. All the users must be capable of log in the application and communicate</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -672,7 +637,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-03-04 10:38:15 CET
+Last updated 2019-03-08 20:41:04 CET
 </div>
 </div>
 </body>
