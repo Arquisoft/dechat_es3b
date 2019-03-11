@@ -422,15 +422,15 @@ class SolidChatCore {
   }
 
   /**
-   * This method finds all games that a player can join.
-   * @param userWebId: the WebId of the player for which we want to check for new games.
+   * This method finds all chats that we can join.
+   * @param userWebId: the WebId of the friend for which we want to check for new chats.
    * @param dataSync: the DataSync object that is used to access some of the data.
-   * @returns {Promise}: a promise that resolves with an array containing all games that the player can join.
+   * @returns {Promise}: a promise that resolves with an array containing all chats that we can join.
    * Each object in the array has the following attributes: fileUrl (url of the file that contained the request),
-   * name (name of the chess game), opponentsName (name of the opponent), friendWebId (WebId of the opponent), and
-   * gameUrl (url of the game).
+   * name (name of the chat), friendsName (name of the friend), friendWebId (WebId of the friend), and
+   * chatUrl (url of the chat).
    */
- /* async findGamesToJoin(userWebId, dataSync) {
+  async findChatsToJoin(userWebId, dataSync) {
     const deferred = Q.defer();
     const promises = [];
     const updates = await
@@ -452,7 +452,7 @@ class SolidChatCore {
             result.name = result.name.value;
           }
 
-          result.opponentsName = await this.getFormattedName(result.friendWebId);
+          result.friendsName = await this.getFormattedName(result.friendWebId);
           results.push(result);
         }
 
@@ -464,13 +464,13 @@ class SolidChatCore {
     });
 
     Q.all(promises).then(() => {
-      const gameUrls = [];
+      const chatUrls = [];
       const keep = [];
 
       // filter out duplicate requests based on the url of the game
       results.forEach(r => {
-        if (gameUrls.indexOf(r.gameUrl) === -1) {
-          gameUrls.push(r.gameUrl);
+        if (chatUrls.indexOf(r.chatUrl) === -1) {
+          chatUrls.push(r.chatUrl);
           keep.push(r);
         }
       });
@@ -479,7 +479,7 @@ class SolidChatCore {
     });
 
     return deferred.promise;
-  }*/
+  }
 
   /**
    * This method checks if the current user has write access to a file.
