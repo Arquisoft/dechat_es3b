@@ -83,7 +83,6 @@ async function setUpChat() {
 
 auth.trackSession(async session => {
   const loggedIn = !!session;
-  //console.log(`logged in: ${loggedIn}`);
 
   if (loggedIn) {
     $('#user-menu').removeClass('hidden');
@@ -164,29 +163,29 @@ $('#write-chat').click(async() => {
 });
 
 //-----------TODO JOIN-----------
-/*
+
 
 $('#join-btn').click(async () => {
   if (userWebId) {
     afterChatOption();
-    $('#join-game-options').removeClass('hidden');
+    $('#join-chat-options').removeClass('hidden');
     $('#join-data-url').prop('value', core.getDefaultDataUrl(userWebId));
     $('#join-looking').addClass('hidden');
 
     if (chatsToJoin.length > 0) {
       $('#join-loading').addClass('hidden');
       $('#join-form').removeClass('hidden');
-      const $select = $('#game-urls');
+      const $select = $('#chat-urls');
       $select.empty();
 
-      chatsToJoin.forEach(game => {
-        let name = game.name;
+      chatsToJoin.forEach(chat => {
+        let name = chat.name;
 
         if (!name) {
-          name = game.gameUrl;
+          name = chat.chatUrl;
         }
 
-        $select.append($(`<option value="${game.gameUrl}">${name} (${game.realTime ? `real time, ` : ''}${game.opponentsName})</option>`));
+        $select.append($(`<option value="${chat.chatUrl}">${name} ${chat.friendsName}</option>`));
       });
     } else {
       $('#no-join').removeClass('hidden');
@@ -196,33 +195,28 @@ $('#join-btn').click(async () => {
   }
 });
 
-$('#join-game-btn').click(async () => {
+$('#join-chat-btn').click(async () => {
   if ($('#join-data-url').val() !== userWebId) {
     userDataUrl = $('#join-data-url').val();
 
     if (await core.writePermission(userDataUrl, dataSync)){
-      $('#join-game-options').addClass('hidden');
-      const gameUrl = $('#game-urls').val();
+      $('#join-chat-options').addClass('hidden');
+      const chatUrl = $('#chat-urls').val();
 
       let i = 0;
 
-      while (i < chatsToJoin.length && chatsToJoin[i].gameUrl !== gameUrl) {
+      while (i < chatsToJoin.length && chatsToJoin[i].chatUrl !== chatUrl) {
         i++;
       }
 
-      const game = chatsToJoin[i];
+      const chat = chatsToJoin[i];
 
       // remove it from the array so it's no longer shown in the UI
       chatsToJoin.splice(i, 1);
-
-      afterGameSpecificOptions();
+	    
       setUpForEveryChatOption();
-      friendWebId = game.opponentWebId;
-      semanticChat = await core.joinExistingChessGame(gameUrl, game.invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, game.fileUrl);
-
-
-      setUpBoard(semanticChat);
-      setUpAfterEveryGameOptionIsSetUp();
+      friendWebId = chat.opponentWebId;
+      semanticChat = await core.joinExistingChat(chatUrl, chat.invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, chat.fileUrl);
     } else {
       $('#write-permission-url').text(userDataUrl);
       $('#write-permission').modal('show');
@@ -231,7 +225,7 @@ $('#join-game-btn').click(async () => {
     console.warn('We are pretty sure you do not want to remove your WebID.');
   }
 });
-*/
+
 //-------------------------------------------
 
 
@@ -247,24 +241,22 @@ async function checkForNotifications() {
 
   updates.forEach(async (fileurl) => {
     let newMessageFound = false;
-    // check for new moves
+	  
     await core.checkForNewMessage(semanticChat, userWebId, fileurl, userDataUrl, dataSync, (san, url) => {
       semanticChat.loadMessage(san, {url});
       newMessageFound = true;
     });
 
     if (!newMessageFound) {
-      // check for acceptances of invitations
       const response = await core.getResponseToInvitation(fileurl);
 
       if (response) {
         processResponseInNotification(response, fileurl);
       } else {
-        // check for chats to join
         const chatToJoin = await core.getJoinRequest(fileurl, userWebId);
 
         if (chatToJoin) {
-          chatsToJoin.push(await core.processGameToJoin(chatToJoin, fileurl));
+          chatsToJoin.push(await core.processChatToJoin(chatToJoin, fileurl));
         }
       }
     }
