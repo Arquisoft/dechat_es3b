@@ -2,6 +2,7 @@
 == Quality Requirements
 
 
+[role="arc42help"]
 ****
 This section deals with the quality requirements of the application using the quality tree and quality scenarios. 
 The quality goals are further explained in section 1.2.
@@ -9,16 +10,18 @@ The quality goals are further explained in section 1.2.
 
 === Quality Tree
 
+[role="arc42help"]
 ****
 image::images/MindMap10.PNG[Quality tree diagram of dechat_es3b]
 ****
 
 === Quality Scenarios
 
+[role="arc42help"]
 ****
 [options="header",cols="1,2,3"]
 |===
-| *Quality attributes* | *Scenario* | *Priority*
+| *AQ* | *Scenario* | *Priority*
 | Functional suitability | The application must correctly meet the minimum requirements for a conversation to take place between two users| High, high
 | Usability | The application must be easy to understand and use to satisfy the user| High, medium
 | Efficiency | The sending of messages must be correctly reaching the receiver in reasonable times | High, medium
@@ -28,10 +31,41 @@ Ensuring continuous improvement against errors, unexpected component failures an
 | Securability | Require each user to identify themselves in order to use the application and allow them to control who has access to their data | Medium, medium
 | Scalability | Although the number of users increases, the application will continue to operate with the same efficiency| Medium, medium
 |===
-
-Priority defines the importance of the quality attribute for our application, it is measured in three levels (high, medium, low) which in turn also have three levels. 
-For example, high high is the highest priority while high medium would be somewhat lower but not as high as medium high.
 ****
 
+[[section-quality-scenarios]]
+== Requerimientos de Calidad
 
+
+[role="arc42help"]
+****
+
+En esta sección se tratarán los requisitos de calidad de la aplicación mediante el árbol de calidad y escenarios de calidad. 
+Los objetivos de calidad principales se explican con más profundidad en la sección 1.2.
+****
+
+=== Árbol de Calidad
+
+[role="arc42help"]
+****
+image::images/MindMap10.PNG[Árbol de atributos de calidad de dechat_es3b]
+****
+
+=== Escenarios de calidad
+
+[role="arc42help"]
+****
+[options="header",cols="1,2,3"]
+|===
+| *AC* | *Escenario* | *Prioridad*
+| Funcionalidad | La aplicación debe cumplir correctamente las necesidades mínimas para que se lleve a cabo una conversación entre dos usuarios| Alta, alta
+| Usabilidad | La aplicación debe ser fácil de comprender y usar para así satisfacer al usuario| Alta, media
+| Eficiencia | El envío de mensajes deben llegar correctamente al receptor en tiempos razonables | Alta, media
+| Testeabilidad | La aplicación debe pasar correctamente pruebas unitarias y pruebas de integración | Alta, media
+| Mantenibilidad | 
+Garantizar la mejora continua contra errores, fallos inesperados de los componentes y nuevos requisitos | Media, alta
+| Seguridad | Exigir la identificación a cada usuario para usar la aplicación y permitirle controlar quién tendrá acceso a sus datos | Media, media
+| Escalabilidad | Aunque el número de usuarios aumenta, la aplicación seguirá funcionando con la misma eficiencia | Media, media
+|===
+****
 
