@@ -528,7 +528,7 @@ class SolidChatCore {
    * @param response: the response which is either "yes" or "no".
    * @returns {Promise<string>}
    */
-  /*async generateResponseToInvitation(baseUrl, invitationUrl, userWebId, friendWebId, response) {
+  async generateResponseToInvitation(baseUrl, invitationUrl, userWebId, friendWebId, response) {
     const rsvpUrl = await this.generateUniqueUrlForResource(baseUrl);
     let responseUrl;
 
@@ -555,7 +555,6 @@ class SolidChatCore {
       sparqlUpdate
     };
   }
-  */
 
   /**
    * This method returns the SAN of a move.
