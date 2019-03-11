@@ -157,6 +157,7 @@ $('#start-new-chat-btn').click(async () => {
 
 $('#write-chat').click(async() => {
 	const message =">>" + $("#message").val();
+	dataSync.sendToFriendsInbox(await core.getInboxUrl(friendWebId), $("#message").val());
 	//TODO: Save the message on SOLID Pod
 	$("#messages").val($("#messages").val() + "\n" + message);
 	$("#message").attr('value', '');
