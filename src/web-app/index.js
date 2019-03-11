@@ -270,27 +270,21 @@ async function checkForNotifications() {
  * @param fileurl: the url of the file containing the notification.
  * @returns {Promise<void>}
  */
-/*async function processResponseInNotification(response, fileurl) {
+async function processResponseInNotification(response, fileurl) {
   const rsvpResponse = await core.getObjectFromPredicateForResource(response.responseUrl, namespaces.schema + 'rsvpResponse');
-  let gameUrl = await core.getObjectFromPredicateForResource(response.invitationUrl, namespaces.schema + 'event');
+  let chatUrl = await core.getObjectFromPredicateForResource(response.invitationUrl, namespaces.schema + 'event');
 
-  if (gameUrl) {
-    gameUrl = gameUrl.value;
+  if (chatUrl) {
+    chatUrl = chatUrl.value;
 
-    if (semanticChat && semanticChat.getUrl() === gameUrl && semanticChat.isRealTime()) {
-      if (rsvpResponse.value === namespaces.schema + 'RsvpResponseYes') {
-        $('#real-time-setup .modal-body ul').append('<li>Invitation accepted</li><li>Setting up direct connection</li>');
-        webrtc.start();
-      }
-    } else {
-      let chatName = await core.getObjectFromPredicateForResource(gameUrl, namespaces.schema + 'name');
+      let chatName = await core.getObjectFromPredicateForResource(chatUrl, namespaces.schema + 'name');
       const loader = new Loader(auth.fetch);
-      const gameOppWebId = await loader.findWebIdOfOpponent(gameUrl, userWebId);
-      const opponentsName = await core.getFormattedName(gameOppWebId);
+      const chatFriendWebId = await loader.findWebIdOfFriend(chatUrl, userWebId);
+      const friendsName = await core.getFormattedName(chatFriendWebId);
 
       //show response in UI
       if (!chatName) {
-        chatName = gameUrl;
+        chatName = chatUrl;
       } else {
         chatName = chatName.value;
       }
@@ -298,9 +292,9 @@ async function checkForNotifications() {
       let text;
 
       if (rsvpResponse.value === namespaces.schema + 'RsvpResponseYes') {
-        text = `${opponentsName} accepted your invitation to join "${chatName}"!`;
+        text = `${friendsName} accepted your invitation to join "${chatName}"!`;
       } else if (rsvpResponse.value === namespaces.schema + 'RsvpResponseNo') {
-        text = `${opponentsName} refused your invitation to join ${chatName}...`;
+        text = `${friendsName} refused your invitation to join ${chatName}...`;
       }
 
       if (!$('#invitation-response').is(':visible')) {
@@ -314,17 +308,15 @@ async function checkForNotifications() {
       $('#invitation-response .modal-body').append(text);
       $('#invitation-response').modal('show');
 
-      dataSync.executeSPARQLUpdateForUser(await core.getStorageForChat(userWebId, gameUrl), `INSERT DATA {
+      dataSync.executeSPARQLUpdateForUser(await core.getStorageForChat(userWebId, chatUrl), `INSERT DATA {
     <${response.invitationUrl}> <${namespaces.schema}result> <${response.responseUrl}>}
   `);
-    }
 
     dataSync.deleteFileForUser(fileurl);
   } else {
     console.log(`No chat url was found for response ${response.value}.`);
   }
 }
-*/
 
 function stopPlaying() {
   $('#chat').addClass('hidden');
