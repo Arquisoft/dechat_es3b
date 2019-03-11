@@ -873,7 +873,7 @@ class SolidChatCore {
    * @param fileurl: the url of the file containing the notification.
    * @returns {Promise<void>}
    */
- /* async processGameToJoin(game, fileurl) {
+ /* async processChatToJoin(game, fileurl) {
     game.fileUrl = fileurl;
     game.name = await this.getObjectFromPredicateForResource(game.gameUrl, namespaces.schema + 'name');
     game.realTime = await this.getObjectFromPredicateForResource(game.gameUrl, namespaces.chat + 'isRealTime');
@@ -903,7 +903,7 @@ class SolidChatCore {
    * @param fileUrl: the url of the file that contains the notification about the game
    * @returns {Promise<void>}
    */
- /* async joinExistingChessGame(gameUrl, invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, fileUrl) {
+ /* async joinExistingChat(gameUrl, invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, fileUrl) {
     const loader = new Loader(this.fetch);
     const semanticChat = await loader.loadFromUrl(gameUrl, userWebId, userDataUrl);
     const response = await this.generateResponseToInvitation(userDataUrl, invitationUrl, userWebId, friendWebId, "yes");
