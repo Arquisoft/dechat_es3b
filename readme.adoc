@@ -1,5 +1,7 @@
 = dechat_es3b
 
+image:https://api.codacy.com/project/badge/Grade/e3c6ed46db8b447aa0ef55dcd1ab6f58[link="https://app.codacy.com/app/UO250898/dechat_es3b?utm_source=github.com&utm_medium=referral&utm_content=Arquisoft/dechat_es3b&utm_campaign=Badge_Grade_Dashboard"]
+
 image:https://travis-ci.org/Arquisoft/dechat_es3b.svg?branch=master["Build Status", link="https://travis-ci.org/Arquisoft/dechat_es3b"]
 image:https://codecov.io/gh/Arquisoft/dechat_es3b/branch/master/graph/badge.svg["Codecov",link="https://codecov.io/gh/Arquisoft/dechat_es3b"]
 image:https://coveralls.io/repos/github/Arquisoft/dechat_es3b/badge.svg["Coverage",link="https://coveralls.io/github/Arquisoft/dechat_es3b"]
