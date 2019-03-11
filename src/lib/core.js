@@ -271,26 +271,26 @@ class SolidChatCore {
             invitationFound = true;
             result = result.toObject();
             const invitationUrl = result['?invitation'].value;
-            let gameUrl = await self.getObjectFromPredicateForResource(invitationUrl, namespaces.schema + 'event');
+            let chatUrl = await self.getObjectFromPredicateForResource(invitationUrl, namespaces.schema + 'event');
 
-            if (!gameUrl) {
-              gameUrl = await self.getGameFromInvitation(invitationUrl);
+            if (!chatUrl) {
+              chatUrl = await self.getChatFromInvitation(invitationUrl);
 
-              if (gameUrl) {
-                self.logger.info('game: found by using Comunica directly, but not when using LDflex. Caching issue (reported).');
+              if (chatUrl) {
+                self.logger.info('chat: found by using Comunica directly, but not when using LDflex. Caching issue (reported).');
               }
             }
 
-            if (!gameUrl) {
+            if (!chatUrl) {
               deferred.resolve(null);
             } else {
-              gameUrl = gameUrl.value;
+              chatUrl = chatUrl.value;
 
-              const types = await self.getAllObjectsFromPredicateForResource(gameUrl, namespaces.rdf + 'type');
+              const types = await self.getAllObjectsFromPredicateForResource(chatUrl, namespaces.rdf + 'type');
 
               let i = 0;
 
-              while (i < types.length && types[i].value !== namespaces.chat + 'ChessGame') {
+              while (i < types.length && types[i].value !== namespaces.chat + 'Chat') {
                 i++
               }
 
@@ -305,11 +305,11 @@ class SolidChatCore {
               }
 
               const loader = new Loader(self.fetch);
-              const friendWebId = await loader.findWebIdOfOpponent(gameUrl, userWebId);
+              const friendWebId = await loader.findWebIdOfOpponent(chatUrl, userWebId);
 
               deferred.resolve({
                 friendWebId,
-                gameUrl,
+                chatUrl,
                 invitationUrl
               });
             }
@@ -639,7 +639,7 @@ class SolidChatCore {
    * @param url: the url of the invitation.
    * @returns {Promise}: a promise that returns the url of the game (NamedNode) or null if none is found.
    */
-  async getGameFromInvitation(url) {
+  async getChatFromInvitation(url) {
     return this.getObjectFromPredicateForResource(url, namespaces.schema + 'event');
   }
 
@@ -722,34 +722,36 @@ class SolidChatCore {
     const originalMove = await this.getOriginalHalfMove(fileurl);
 
     if (originalMove) {
-      let gameUrl = await this.getObjectFromPredicateForResource(originalMove, namespaces.schema + 'subEvent');
+      let chatUrl = await this.getObjectFromPredicateForResource(originalMove, namespaces.schema + 'subEvent');
 
-      if (!gameUrl) {
+      if (!chatUrl) {
         gameUrl = await this.getGameOfMove(originalMove);
 
-        if (gameUrl) {
+        if (chatUrl) {
           console.error('game: found by using Comunica directly, but not when using LDflex. Caching issue (reported).');
         }
       }
 
-      if (gameUrl) {
-        gameUrl = gameUrl.value;
-        let game = semanticChat;
-        let gameStorageUrl;
+      if (chatUrl) {
+        chatUrl = chatUrl.value;
+        let chat = semanticChat;
+        let chatStorageUrl;
 
-        if (!game || game.getUrl() !== gameUrl) {
-          gameStorageUrl = await this.getStorageForChat(userWebId, gameUrl);
+        if (!chat || chat.getUrl() !== chatUrl) {
+          chatStorageUrl = await this.getStorageForChat(userWebId, chatUrl);
 
-          if (gameStorageUrl) {
+          if (chatStorageUrl) {
             const loader = new Loader(this.fetch);
-            game = await
-            loader.loadFromUrl(gameUrl, userWebId, gameStorageUrl);
+            chat = await
+            loader.loadFromUrl(chatUrl, userWebId, chatStorageUrl);
           } else {
-            this.logger.debug(`No storage location is found for game "${gameUrl}". Ignoring notification in ${fileurl}.`);
+            this.logger.debug(`No storage location is found for game "${chatUrl}". Ignoring notification in ${fileurl}.`);
           }
         } else {
-          gameStorageUrl = userDataUrl;
+          chatStorageUrl = userDataUrl;
         }
+        
+        //Ojo mirar a partir de aquí que igual no hace falta
 
         if (game && game.isOpponentsTurn() && !game.isRealTime()) {
           const lastMoveUrl = game.getLastMove();
