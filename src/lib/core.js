@@ -503,12 +503,12 @@ class SolidChatCore {
    * @returns {Promise<string>}
    */
 
-  async generateInvitation(baseUrl, gameUrl, userWebId, friendWebId) {
+  async generateInvitation(baseUrl, chatUrl, userWebId, friendWebId) {
     const invitationUrl = await this.generateUniqueUrlForResource(baseUrl);
     const notification = `<${invitationUrl}> a <${namespaces.schema}InviteAction>.`;
     const sparqlUpdate = `
     <${invitationUrl}> a <${namespaces.schema}InviteAction>;
-      <${namespaces.schema}event> <${gameUrl}>;
+      <${namespaces.schema}event> <${chatUrl}>;
       <${namespaces.schema}agent> <${userWebId}>;
       <${namespaces.schema}recipient> <${friendWebId}>.
   `;
