@@ -7,60 +7,105 @@ async function login () {
   }, err => console.log(err));
   $('#login').hide();
   $('#logout').show();
+  $('#chatRef').show();
 }
 
 async function logout () {
-  await fileClient.logout().then ( console.log( `Bye now!` ));
+  await fileClient.logout();
   $('#login').show();
   $('#logout').hide();
+  $('#chatRef').hide();
 }
 
-module.exports = {
-  login: login,
-  logout: logout
-}
-
-// Log the user in and out on click
 const popupUri = 'popup.html';
-$('#login  button').click(() => solid.auth.login());
-$('#logout button').click(() => solid.auth.logout());
+$('#login  button').click(() => login());
+$('#logout button').click(() => logout());
 
-// Update components to match the user's login status
+
 solid.auth.trackSession(session => {
   const loggedIn = !!session;
   $('#login').toggle(!loggedIn);
   $('#logout').toggle(loggedIn);
   if (loggedIn) {
     $('#user').text(session.webId);
-    // Use the user's WebID as default profile
+
     if (!$('#profile').val())
       $('#profile').val(session.webId);
   }
+  loadProfile();
 });
 
-$('#view').click(async function loadProfile() {
-  // Set up a local data store and associated data fetcher
+async function loadProfile() {
   const store = $rdf.graph();
+  
   const fetcher = new $rdf.Fetcher(store);
 
-  // Load the person's data into the store
-  const person = $('#profile').val();
-  await fetcher.load(person);
+  dataChat.user = $('#profile').text();
+  await fetcher.load(dataChat.user);
 
-  // Display their details
-  const fullName = store.any($rdf.sym(person), FOAF('name'));
+  dataChat.userName = store.any($rdf.sym(dataChat.user), FOAF('name'));
   $('#fullName').text(fullName && fullName.value);
 
-  // Display their friends
-  const friends = store.each($rdf.sym(person), FOAF('knows'));
+  const friends = store.each($rdf.sym(dataChat.user), FOAF('knows'));
   $('#friends').empty();
-  friends.forEach(async (friend) => {
-    await fetcher.load(friend);
-    const fullName = store.any(friend, FOAF('name'));
-    $('#friends').append(
-      $('<li>').append(
-        $('<a>').text(fullName && fullName.value || friend.value)
-                .click(() => $('#profile').val(friend.value))
-                .click(loadProfile)));
+  friends.forEach(
+    async (friend) => {
+      await fetcher.load(friend);
+      $('#friends').append(
+        $('<li>').append(
+          $('<a href="chat.html">').text(store.any(friend, FOAF('name')))
+          .click(
+              () => {
+                dataChat.receiver = friend.value;
+                dataChat.receiverName = store.any(friend, FOAF('name'));
+                dataChat.receiverURI = dataChat.receiver.substr(0,(dataChat.receiver.length-15));
+              }
+            )));
   });
-});
+}
+  
+
+
+var dataChat = 
+{
+  user: "",
+  userName: "" ,
+  userURI:"" ,
+  friend:""  ,
+  friendName:"" ,
+  friendURI:""
+}
+
+
+async function sendMessage(text){
+  var chat=dataChat.userURI+"public/Chat/";
+  var chatFriend=dataChat.friendURI+"public/Chat/"
+  var folder= chat+dataChat.friendName;
+  var folderFriend=chatFriend+dataChat.userName+"public/Chat/"
+  try{
+      var err = await readFolder(chat);
+      if(!err){
+          throw("error")
+      }
+  
+    }catch(error){
+      await createChatFolder(chat);}
+  try{
+        var err2 = await readFolder(chatFriend);
+        if(!err2){
+            throw("error2")
+        }}
+      catch(error2){
+        await createChatFolder(chatFriend);
+  }
+  await writeMessage(folder+"/"+(new Date().getTime()), text);
+  await writeMessage(folderFriend+"/"+(new Date().getTime()), text);
+}
+
+$('#sendButton').click(
+  async function sendFunc()  {
+      dataChat.userURI = dataChat.user.substr(0,(dataChat.user.length-15));
+	    var text = $('#messageText').val();
+      sendMessage(text);
+	  
+  });
