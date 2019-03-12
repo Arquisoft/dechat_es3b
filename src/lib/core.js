@@ -3,7 +3,7 @@ const Q = require('q');
 const newEngine = require('@comunica/actor-init-sparql-rdfjs').newEngine;
 const namespaces = require('./namespaces');
 const uniqid = require('uniqid');
-const SemanticChat = require('./semanticchat');
+const SemanticChat = require('../lib/semanticchat');
 const Loader = require('./loader');
 const winston = require('winston');
 const URI = require('uri-js');
@@ -305,7 +305,7 @@ class SolidChatCore {
               }
 
               const loader = new Loader(self.fetch);
-              const friendWebId = await loader.findWebIdOfOpponent(gameUrl, userWebId);
+              const friendWebId = await loader.findWebIdOfFriend(gameUrl, userWebId);
 
               deferred.resolve({
                 friendWebId,
@@ -873,7 +873,7 @@ class SolidChatCore {
    * @param fileurl: the url of the file containing the notification.
    * @returns {Promise<void>}
    */
- /* async processGameToJoin(game, fileurl) {
+  async processGameToJoin(game, fileurl) {
     game.fileUrl = fileurl;
     game.name = await this.getObjectFromPredicateForResource(game.gameUrl, namespaces.schema + 'name');
     game.realTime = await this.getObjectFromPredicateForResource(game.gameUrl, namespaces.chat + 'isRealTime');
@@ -890,7 +890,7 @@ class SolidChatCore {
 
     game.opponentsName = await this.getFormattedName(game.friendWebId);
     return game;
-  }*/
+  }
 
   /**
    * This method joins the player with a game.
@@ -903,7 +903,7 @@ class SolidChatCore {
    * @param fileUrl: the url of the file that contains the notification about the game
    * @returns {Promise<void>}
    */
- /* async joinExistingChessGame(gameUrl, invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, fileUrl) {
+ async joinExistingChessGame(gameUrl, invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, fileUrl) {
     const loader = new Loader(this.fetch);
     const semanticChat = await loader.loadFromUrl(gameUrl, userWebId, userDataUrl);
     const response = await this.generateResponseToInvitation(userDataUrl, invitationUrl, userWebId, friendWebId, "yes");
@@ -919,7 +919,7 @@ class SolidChatCore {
     dataSync.deleteFileForUser(fileUrl);
 
     return semanticChat;
-  }*/
+  }
 
   /**
    * This method check an inbox for new notifications.

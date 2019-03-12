@@ -3,7 +3,7 @@ const newEngine = require('@comunica/actor-init-sparql-rdfjs').newEngine;
 const Q = require('q');
 const streamify = require('streamify-array');
 const namespaces = require('./namespaces');
-const SemanticChess = require('./semanticchat');
+const SemanticChat = require('../lib/semanticchat');
 
 /**
  * The Loader allows creating a Semantic Chat instance via information loaded from an url.
@@ -24,7 +24,7 @@ class Loader {
    * @param {string} gameUrl: the url that represents the game
    * @param {string} userWebId: the WebId of the user
    * @param {string|function(): string} moveBaseUrl: base url used to create urls for new moves
-   * @returns {SemanticChess}: an instance of SemanticChess
+   * @returns {SemanticChat}: an instance of SemanticChat
    */
   async loadFromUrl(chatUrl, userWebId, messageBaseUrl) {
     const rdfjsSource = await this._getRDFjsSourceFromUrl(chatUrl);

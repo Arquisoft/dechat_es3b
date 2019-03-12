@@ -157,14 +157,15 @@ $('#start-new-chat-btn').click(async () => {
 });
 
 $('#write-chat').click(async() => {
-	const message =">>" + $("#message").val();
+	const messageText =">>" + $('#message').val();
 	//TODO: Save the message on SOLID Pod
-	$("#messages").val($("#messages").val() + "\n" + message);
-	$("#message").attr('value', '');
+    const valueMes = $('#messages').val();
+	$('#messages').val( valueMes + "\n" + messageText);
+	$('#message').attr('value', '');
 });
 
 //-----------TODO JOIN-----------
-/*
+
 
 $('#join-btn').click(async () => {
   if (userWebId) {
@@ -195,6 +196,7 @@ $('#join-btn').click(async () => {
     $('#login-required').modal('show');
   }
 });
+
 
 $('#join-game-btn').click(async () => {
   if ($('#join-data-url').val() !== userWebId) {
@@ -231,7 +233,7 @@ $('#join-game-btn').click(async () => {
     console.warn('We are pretty sure you do not want to remove your WebID.');
   }
 });
-*/
+
 //-------------------------------------------
 
 
