@@ -1,4 +1,4 @@
-language: java
+language: javascript
 sudo: false # faster builds
 jdk:
 - oraclejdk8
