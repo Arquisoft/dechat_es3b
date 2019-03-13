@@ -31,8 +31,8 @@ mvn generate-resources
 
 == Compile and run
 
-The skeleton project is an angular aplication combined with solid tecnology 
- https://angular.io/[Angular] application which can be run using the following command:
+The skeleton project is a javascript aplication combined with solid tecnology 
+application which can be run using the following command:
 
 ----
 ng serve --open
