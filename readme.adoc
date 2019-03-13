@@ -1,5 +1,8 @@
 = dechat_es3b
 
+image:https://avatars3.githubusercontent.com/u/14262490?v=3&s=200["Solid", 100, 100] 
+
+
 image:https://travis-ci.org/Arquisoft/dechat_es3b.svg?branch=master["Build Status", link="https://travis-ci.org/Arquisoft/dechat_es3b"]
 image:https://codecov.io/gh/Arquisoft/dechat_es3b/branch/master/graph/badge.svg["Codecov",link="https://codecov.io/gh/Arquisoft/dechat_es3b"]
 image:https://coveralls.io/repos/github/Arquisoft/dechat_es3b/badge.svg["Coverage",link="https://coveralls.io/github/Arquisoft/dechat_es3b"]
