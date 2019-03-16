@@ -65,8 +65,8 @@ async function setUpChat() {
     var i = 0;
 	while (i < friendMessages.length) {
 		var nameThroughUrl = friendMessages[i].author.split("/").pop();
-		if (nameThroughUrl === intName) {
-			$("#messages").val($("#messages").val() + "\n" + intName + friendMessages[i].messageTx);
+		if (nameThroughUrl === friendName) {
+			$("#messages").val($("#messages").val() + "\n" + friendName + friendMessages[i].messageTx);
 			await core.storeMessage(userDataUrl, friendMessages[i].author, userWebId, friendMessages[i].messageTx, friendWebId, dataSync, false);
 			dataSync.deleteFileForUser(friendMessages[i].inboxUrl);
 			friendMessages[i] = "hi";
@@ -211,14 +211,17 @@ $('#join-chat-btn').click(async () => {
       $('#join-chat-options').addClass('hidden');
         setUpForEveryChatOption();
       const chatUrl  = $('#chat-urls').val();
+        console.log(chatUrl);
 
       let i = 0;
 
       while (i < chatsToJoin.length && chatsToJoin[i].chatUrl !== chatUrl) {
         i++;
       }
-
+        console.log(chatsToJoin[i]);
       const chat = chatsToJoin[i];
+        console.log("Aqui esta el fallo");
+        console.log(chat);
         
       // remove it from the array so it's no longer shown in the UI
       chatsToJoin.splice(i, 1);
@@ -244,8 +247,6 @@ $('#join-chat-btn').click(async () => {
  * @returns {Promise<void>}
  */
 async function checkForNotifications() {
-  console.log('Checking for new notifications');
-
   const updates = await core.checkUserInboxForUpdates(await core.getInboxUrl(userWebId));
 
   updates.forEach(async (fileurl) => {
@@ -273,7 +274,10 @@ async function checkForNotifications() {
         const chatToJoin = await core.getJoinRequest(fileurl, userWebId);
 
         if (chatToJoin) {
+            console.log(userWebId);
+            console.log(fileurl);
           chatsToJoin.push(await core.processChatToJoin(chatToJoin, fileurl));
+            console.log(chatToJoin);
         }
       }
     }
@@ -352,6 +356,6 @@ $('.btn-cancel').click(() => {
   $('#new-chat-options').addClass('hidden');
   $('#join-chat-options').addClass('hidden');
   $('#chat-options').removeClass('hidden');
-    $("#messages").val("");
+$("#messages").val("");
 
 });
