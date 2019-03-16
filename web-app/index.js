@@ -6,17 +6,16 @@ const { default: data } = require('@solid/query-ldflex');
 const Core = require('../lib/core');
 
 let userWebId;
-let semanticChat;
-let dataSync = new DataSync(auth.fetch);
-
-let userDataUrl;
 let friendWebId;
-let chatsToJoin = [];
-
-let chatName;
-
+let semanticChat;
 let refreshIntervalId;
 let core = new Core(auth.fetch);
+let dataSync = new DataSync(auth.fetch);
+let userDataUrl;
+let chatsToJoin = [];
+let chatName;
+let openChat=false;
+
 
 
 /*Log in-out*/
@@ -248,11 +247,25 @@ async function checkForNotifications() {
 
   updates.forEach(async (fileurl) => {
     let newMessageFound = false;
-    // check for new moves
-    await core.checkForNewMessage(semanticChat, userWebId, fileurl, userDataUrl, dataSync, (san, url) => {
-      semanticChat.loadMessage(san, {url});
-      newMessageFound = true;
-    });
+    console.log("Looking for new messages");
+      let message = await core.getNewMessage(fileurl, userWebId, dataSync);
+      console.log(message);
+      
+      if (message) {
+			console.log("Guardando mensajes");
+
+			newMessageFound = true;
+			if (openChat) {
+				$("#messagesarea").val($("#messagesarea").val() + "\n" + message.author + " ["+ message.time +"]> " + message.messageTx);
+				await core.storeMessage(userDataUrl, message.author, userWebId, message.time, message.messageTx, interlocWebId, dataSync, false);
+			} else {
+				//If open there is no need to store them
+				interlocutorMessages.push(message);
+			}
+		}
+      
+      
+      
 
     if (!newMessageFound) {
       // check for acceptances of invitations
