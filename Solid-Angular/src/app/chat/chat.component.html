@@ -13,11 +13,8 @@
     </div>
   </div>
   <h1>Chat</h1>
-  <!-- Message -->
-  <div>
-   Messagge <input type="text"  name="yourMessage" placeholder="Write your messagge here" />
-  </div>
-  <div>
-    <button type="submit" onclick="">Send</button>
-  </div>
+      <input type="text" id ="input_text"/>
+      <button id="button" (click)="sendMessage()" type="button">Send</button>
+        <input type="text" class="write_msg" id ="input_add_webid" placeholder="Type a friend's webid" />
+        <button class="msg_send_btn" type="button" (click)="addChat()"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
 </div>
