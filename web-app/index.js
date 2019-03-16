@@ -14,9 +14,8 @@ let dataSync = new DataSync(auth.fetch);
 let userDataUrl;
 let chatsToJoin = [];
 let chatName;
+let friendMessages = [];
 let openChat=false;
-
-
 
 /*Log in-out*/
 
@@ -28,7 +27,6 @@ $('#logout-btn').click(() => {
   auth.logout();
 });
 
-/******
 /**
  * This method does the necessary updates of the UI when the different chat options are shown.
  */
@@ -42,11 +40,7 @@ function setUpForEveryChatOption() {
  */
 async function setUpNewChat() {
   setUpForEveryChatOption();
-
   semanticChat = await core.setUpNewChat(userDataUrl, userWebId, friendWebId, chatName, dataSync);
-
-
-
   setUpChat();
 }
 
@@ -56,27 +50,36 @@ async function setUpNewChat() {
  */
 async function setUpChat() {
     
+    if (semanticChat) {
+		semanticChat.getMessages().forEach(async(message) => {
+			$("#messages").val($("#messages").val() + "\n" + message.author + message.messagetext);
+		});
+	}
+    
     $('#chat').removeClass('hidden');
     $('#chat-loading').addClass('hidden');
         
     const friendName = await core.getFormattedName(friendWebId);
     $('#friend-name').text(friendName);
-
-        
-  
-
-//Ejemplo d como hay q guardar y enviar el mensaje
-  const onDrop = async function(source, target) {
     
-    await dataSync.executeSPARQLUpdateForUser(userDataUrl, move.sparqlUpdate); 
-
-    if (move.notification) {
-       dataSync.sendToFriendsInbox(await core.getInboxUrl(friendWebId), move.notification);
-    }
-
-  };
-
-    
+    var i = 0;
+	while (i < friendMessages.length) {
+		var nameThroughUrl = friendMessages[i].author.split("/").pop();
+		if (nameThroughUrl === intName) {
+			$("#messages").val($("#messages").val() + "\n" + intName + friendMessages[i].messageTx);
+			await core.storeMessage(userDataUrl, friendMessages[i].author, userWebId, friendMessages[i].messageTx, friendWebId, dataSync, false);
+			dataSync.deleteFileForUser(friendMessages[i].inboxUrl);
+			friendMessages[i] = "hi";
+		}
+		i++;
+	}
+	i = friendMessages.length;
+	while (i--) {
+		if (friendMessages[i] == "hi") {
+			friendMessages.splice(i, 1);
+		}
+	}
+	openChat = true;
 };
 
 auth.trackSession(async session => {
@@ -108,7 +111,6 @@ auth.trackSession(async session => {
     $('#chat-options').removeClass('hidden');
 
     userWebId = null;
-    semanticChat = null;
     clearInterval(refreshIntervalId);
     refreshIntervalId = null;
   }
@@ -155,11 +157,16 @@ $('#start-new-chat-btn').click(async () => {
 });
 
 $('#write-chat').click(async() => {
-	const messageText =">>" + $('#message').val();
+    const username = $('#user-name').text();
+    const message=$('#message').val();
+    const messageText =username+" >> " + message;
+
 	//TODO: Save the message on SOLID Pod
     const valueMes = $('#messages').val();
 	$('#messages').val( valueMes + "\n" + messageText);
 	$('#message').attr('value', '');
+	await core.storeMessage(userDataUrl, username, userWebId, message, friendWebId, dataSync, true);
+    
 });
 
 //-----------TODO JOIN-----------
@@ -168,24 +175,24 @@ $('#write-chat').click(async() => {
 $('#join-btn').click(async () => {
   if (userWebId) {
     afterChatOption();
-    $('#join-game-options').removeClass('hidden');
+    $('#join-chat-options').removeClass('hidden');
     $('#join-data-url').prop('value', core.getDefaultDataUrl(userWebId));
     $('#join-looking').addClass('hidden');
 
     if (chatsToJoin.length > 0) {
       $('#join-loading').addClass('hidden');
       $('#join-form').removeClass('hidden');
-      const $select = $('#game-urls');
+      const $select = $('#chat-urls');
       $select.empty();
 
-      chatsToJoin.forEach(game => {
-        let name = game.name;
+      chatsToJoin.forEach(chat => {
+        let name = chat.name;
 
         if (!name) {
-          name = game.gameUrl;
+          name = chat.chatUrl;
         }
 
-        $select.append($(`<option value="${game.gameUrl}">${name} (${game.realTime ? `real time, ` : ''}${game.opponentsName})</option>`));
+        $select.append($(`<option value="${chat.chatUrl}">${name}${chat.friendsName})</option>`));
       });
     } else {
       $('#no-join').removeClass('hidden');
@@ -196,33 +203,29 @@ $('#join-btn').click(async () => {
 });
 
 
-$('#join-game-btn').click(async () => {
+$('#join-chat-btn').click(async () => {
   if ($('#join-data-url').val() !== userWebId) {
     userDataUrl = $('#join-data-url').val();
 
     if (await core.writePermission(userDataUrl, dataSync)){
-      $('#join-game-options').addClass('hidden');
-      const gameUrl = $('#game-urls').val();
+      $('#join-chat-options').addClass('hidden');
+        setUpForEveryChatOption();
+      const chatUrl  = $('#chat-urls').val();
 
       let i = 0;
 
-      while (i < chatsToJoin.length && chatsToJoin[i].gameUrl !== gameUrl) {
+      while (i < chatsToJoin.length && chatsToJoin[i].chatUrl !== chatUrl) {
         i++;
       }
 
-      const game = chatsToJoin[i];
-
+      const chat = chatsToJoin[i];
+        
       // remove it from the array so it's no longer shown in the UI
       chatsToJoin.splice(i, 1);
 
-      afterGameSpecificOptions();
-      setUpForEveryChatOption();
-      friendWebId = game.opponentWebId;
-      semanticChat = await core.joinExistingChessGame(gameUrl, game.invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, game.fileUrl);
-
-
-      setUpBoard(semanticChat);
-      setUpAfterEveryGameOptionIsSetUp();
+      friendWebId = chat.friendWebId.id;
+      await core.joinExistingChat(chat.invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, chat.fileUrl);
+      setUpChat();
     } else {
       $('#write-permission-url').text(userDataUrl);
       $('#write-permission').modal('show');
@@ -247,43 +250,37 @@ async function checkForNotifications() {
 
   updates.forEach(async (fileurl) => {
     let newMessageFound = false;
-    console.log("Looking for new messages");
+      
       let message = await core.getNewMessage(fileurl, userWebId, dataSync);
       console.log(message);
       
       if (message) {
-			console.log("Guardando mensajes");
-
 			newMessageFound = true;
 			if (openChat) {
-				$("#messagesarea").val($("#messagesarea").val() + "\n" + message.author + " ["+ message.time +"]> " + message.messageTx);
-				await core.storeMessage(userDataUrl, message.author, userWebId, message.time, message.messageTx, interlocWebId, dataSync, false);
+				$("#messages").val($("#messages").val() + "\n" + message.author + " >> " + message.messageTx);
+				await core.storeMessage(userDataUrl, message.author, userWebId, message.messageTx, friendWebId, dataSync, false);
 			} else {
-				//If open there is no need to store them
-				interlocutorMessages.push(message);
+				friendMessages.push(message);
 			}
-		}
-      
-      
-      
+		} 
 
     if (!newMessageFound) {
-      // check for acceptances of invitations
       const response = await core.getResponseToInvitation(fileurl);
 
       if (response) {
-        processResponseInNotification(response, fileurl);
+        this.processResponseInNotification(response, fileurl);
       } else {
-        // check for chats to join
         const chatToJoin = await core.getJoinRequest(fileurl, userWebId);
 
         if (chatToJoin) {
-          chatsToJoin.push(await core.processGameToJoin(chatToJoin, fileurl));
+          chatsToJoin.push(await core.processChatToJoin(chatToJoin, fileurl));
         }
       }
     }
   });
 }
+
+/////////////////
 
 
 /**
@@ -338,23 +335,23 @@ async function checkForNotifications() {
 }
 */
 
-function stopPlaying() {
+function stopChating() {
   $('#chat').addClass('hidden');
   $('#chat-options').removeClass('hidden');
-  semanticChat = null;
 }
 
-$('#stop-playing').click(() => {
-    stopPlaying();
+$('#stop-chating').click(() => {
+    this.stopChating();
 });
 
 $('.btn-cancel').click(() => {
-  semanticChat = null;
   friendWebId = null;
+    openChat=false;
 
   $('#chat').addClass('hidden');
   $('#new-chat-options').addClass('hidden');
   $('#join-chat-options').addClass('hidden');
   $('#chat-options').removeClass('hidden');
+    $("#messages").val("");
 
 });
