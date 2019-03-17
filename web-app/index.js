@@ -162,7 +162,7 @@ $('#write-chat').click(async() => {
     const messageText =username+" >> " + message;
     const valueMes = $('#messages').val();
 	$('#messages').val( valueMes + "\n" + messageText);
-	$('#message').attr('value', '');
+	document.getElementById("message").value="";
 	await core.storeMessage(userDataUrl, username, userWebId, message, friendWebId, dataSync, true);
     
 });
@@ -334,13 +334,13 @@ async function processResponseInNotification(response, fileurl) {
 }
 
 
-function stopChating() {
+async function stopChating() {
   $('#chat').addClass('hidden');
   $('#chat-options').removeClass('hidden');
 }
 
-$('#stop-chating').click(() => {
-    this.stopChating();
+$('#stop-chatting').click(() => {
+    stopChatting();
 });
 
 $('.btn-cancel').click(() => {
