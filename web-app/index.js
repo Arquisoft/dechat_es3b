@@ -185,12 +185,13 @@ $('#join-btn').click(async () => {
 
       chatsToJoin.forEach(chat => {
         let name = chat.name;
+        let friend = chat.friendName;
 
         if (!name) {
           name = chat.chatUrl;
         }
 
-        $select.append($(`<option value="${chat.chatUrl}">${name}${chat.friendsName})</option>`));
+        $select.append($(`<option value="${chat.chatUrl}">${name+friend})</option>`));
       });
     } else {
       $('#no-join').removeClass('hidden');
