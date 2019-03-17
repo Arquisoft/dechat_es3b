@@ -1,0 +1,79 @@
+= dechat_es3b
+
+image:https://github.com/Arquisoft/dechat_es3b/blob/intentoJoin/adocs/images/Logo.jpeg?raw=true[]
+
+image:https://travis-ci.org/Arquisoft/dechat_es3b.svg?branch=master["Build Status", link="https://travis-ci.org/Arquisoft/dechat_es3b"]
+image:https://codecov.io/gh/Arquisoft/dechat_es3b/branch/master/graph/badge.svg["Codecov",link="https://codecov.io/gh/Arquisoft/dechat_es3b"]
+image:https://api.codacy.com/project/badge/Grade/fc7dc1da60ee4e9fb67ccff782625794["Codacy code quality", link="https://www.codacy.com/app/jelabra/dechat_es3b?utm_source=github.com&utm_medium=referral&utm_content=Arquisoft/dechat_es3b&utm_campaign=Badge_Grade"]
+image:http://inch-ci.org/github/Arquisoft/dechat_es3b.svg?branch=master["Inch CI",link="https://inch-ci.org/github/Arquisoft/dechat_es3b?branch=master&pending_build=498882"]
+
+DeChat is a decentralized chat application, build on top of https://solid.inrupt.com/[Solid]. The purpose of using this technology is that all our information is not stored on a server but is stored on our POD. Currently we can do two things: start a new chat or continue with one we already had. 
+
+== Authors
+****
+
+* Mar Rodríguez Medina
+* Alba Serena Suárez
+* Yago García Rodríguez
+* David Rico Díaz
+****
+== Documentation
+
+The documentation is done in http://asciidoc.org/[AsciiDoc]
+using the https://arc42.org/[arc42] templates.
+The source documents are located at
+ https://github.com/Arquisoft/dechat_es3b/tree/master/src/docs[src/docs].
+
+== Compile and run
+You can run the game locally by doing the following:
+
+. The first thing you should do is https://inrupt.net/[create an account in Solid] .
+. Download the Windows installer from the https://nodejs.org/es/[Nodes.js® website] if you don't already have it.
+. Then clone this repository.
+. Install Node.js dependencies with this command: 
++
+----
+npm i
+----
+.To run the app use
++
+----
+npm start
+----
+
+You may also need to install these dependencies: 
+----
+npm i @solid/query-ldflex
+npm i @comunica/actor-init-sparql-rdfjs
+----
+
+
+
+
+== Testing
+
+There are some simple Unit tests at:
+ https://github.com/Arquisoft/dechat_es3b/tree/master/src/test[src/test].
+
+There are also some
+ https://cucumber.io/[Cucumber based tests]
+ with a simple user story defined at:
+ https://github.com/Arquisoft/dechat_es3b/tree/master/src/test/resources/features[src/test/resources/features].
+
+To run tests execute:
+
+----
+npm test
+----
+
+
+
+
+
+
+
+
+
+
+
+
