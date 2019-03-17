@@ -6,6 +6,8 @@ image:https://coveralls.io/repos/github/Arquisoft/dechat_es3b/badge.svg["Coverag
 image:https://api.codacy.com/project/badge/Grade/fc7dc1da60ee4e9fb67ccff782625794["Codacy code quality", link="https://www.codacy.com/app/jelabra/dechat_es3b?utm_source=github.com&utm_medium=referral&utm_content=Arquisoft/dechat_es3b&utm_campaign=Badge_Grade"]
 image:http://inch-ci.org/github/Arquisoft/dechat_es3b.svg?branch=master["Inch CI",link="https://inch-ci.org/github/Arquisoft/dechat_es3b?branch=master&pending_build=498882"]
 
+DeChat is a decentralized chat application, build on top of https://solid.inrupt.com/[Solid]. The purpose of using this technology is that all our information is not stored on a server but is stored on our POD. Currently we can do two things: start a new chat or continue with one we already had. 
+
 == Authors
 ****
 
@@ -14,33 +16,43 @@ image:http://inch-ci.org/github/Arquisoft/dechat_es3b.svg?branch=master["Inch CI
 * Yago García Rodríguez
 * David Rico Díaz
 ****
-== Build documentation
+== Documentation
 
 The documentation is done in http://asciidoc.org/[AsciiDoc]
 using the https://arc42.org/[arc42] templates.
 The source documents are located at
  https://github.com/Arquisoft/dechat_es3b/tree/master/src/docs[src/docs].
 
-Using https://maven.apache.org/[Maven] and the
-https://asciidoctor.org/[AsciiDoctor plugin] it is possible to generate
-the documentation running:
-
-----
-mvn generate-resources
-----
-
 == Compile and run
+You can run the game locally by doing the following:
 
-The skeleton project is an angular aplication combined with solid tecnology 
- https://angular.io/[Angular] application which can be run using the following command:
-
+. The first thing you should do is https://inrupt.net/[create an account in Solid] .
+. Download the Windows installer from the https://nodejs.org/es/[Nodes.js® website] if you don't already have it.
+. Then clone this repository.
+. Install Node.js dependencies with this command: 
++
 ----
-ng serve --open
-
-IMPORTANT --> To do this, it is necessary this dependency: npm i @solid/query-ldflex
+'npm i'
+----
+. Bundle the JavaScript via Webpack: 
++
+----
+npm run build:web
+----
+. Serve the contents of the root folder
++
+----
+http-server
 ----
 
-Once executed, the application should be available at: http://localhost:4200
+You may also need to install these dependencies: 
+----
+npm i @solid/query-ldflex
+npm i @comunica/actor-init-sparql-rdfjs
+----
+
+
+
 
 == Testing
 
