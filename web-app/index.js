@@ -52,7 +52,7 @@ async function setUpChat() {
     
     if (semanticChat) {
 		semanticChat.getMessages().forEach(async(message) => {
-			$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + message.messagetext);
+			$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messagetext);
 		});
 	}
     
