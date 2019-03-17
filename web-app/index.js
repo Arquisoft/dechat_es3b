@@ -140,7 +140,7 @@ $('#new-btn').click(async () => {
 });
 
 $('#start-new-chat-btn').click(async () => {
-  const dataUrl = core.getDefaultDataUrl(userWebId)+$('#chat-name').val();
+  const dataUrl = core.getDefaultDataUrl(userWebId)+$('#possible-friends').text();
 
   if (await core.writePermission(dataUrl, dataSync)) {
     $('#new-chat-options').addClass('hidden');
@@ -188,7 +188,7 @@ $('#join-btn').click(async () => {
           name = chat.urlChat;
         }
 
-        $select.append($(`<option value="${chat.urlChat}">${name+friend}</option>`));
+        $select.append($(`<option value="${chat.urlChat}">${friend}</option>`));
       });
     } else {
       $('#no-join').removeClass('hidden');
@@ -200,7 +200,7 @@ $('#join-btn').click(async () => {
 
 
 $('#join-chat-btn').click(async () => {
-    userDataUrl = core.getDefaultDataUrl(userWebId);
+    userDataUrl = core.getDefaultDataUrl(userWebId)+$('#chat-urls').text();
 
     if (await core.writePermission(userDataUrl, dataSync)){
       $('#join-chat-options').addClass('hidden');
@@ -214,10 +214,6 @@ $('#join-chat-btn').click(async () => {
         i++;
       }
       const chat = chatsToJoin[i];
-        
-      // remove it from the array so it's no longer shown in the UI
-      chatsToJoin.splice(i, 1);
-
       friendWebId = chat.friendWebId.id;
       userDataUrl=userDataUrl+friendWebId;
       await core.joinExistingChat(chat.invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, chat.fileUrl);
