@@ -55,7 +55,7 @@ There are also some
 To run tests execute:
 
 ----
-mvn test
+npm test
 ----
 
 == Site documentation
