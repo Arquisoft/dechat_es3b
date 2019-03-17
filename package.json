@@ -1,9 +1,10 @@
 {
-  "name": "solid-chess",
-  "version": "0.2.0",
-  "description": "A Solid-based chess game",
+  "name": "dechat",
+  "version": "0.1.0",
+  "description": "A Solid-based chat",
   "main": "index.js",
   "scripts": {
+    "start":"webpack --config webpack.config.js && http-server -c-1 -p 8080",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:web": "webpack --config webpack.config.js",
     "doc": "./node_modules/.bin/jsdoc -c jsdoc.json ./lib"
