@@ -188,10 +188,10 @@ $('#join-btn').click(async () => {
         let friend = chat.friendName;
 
         if (!name) {
-          name = chat.chatUrl;
+          name = chat.urlChat;
         }
 
-        $select.append($(`<option value="${chat.chatUrl}">${name+friend})</option>`));
+        $select.append($(`<option value="${chat.urlChat}">${name+friend})</option>`));
       });
     } else {
       $('#no-join').removeClass('hidden');
@@ -214,7 +214,7 @@ $('#join-chat-btn').click(async () => {
 
       let i = 0;
 
-      while (i < chatsToJoin.length && chatsToJoin[i].chatUrl !== chatUrl) {
+      while (i < chatsToJoin.length && chatsToJoin[i].urlChat !== chatUrl) {
         i++;
       }
         console.log(chatsToJoin[i]);
