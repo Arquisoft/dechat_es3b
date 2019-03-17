@@ -1,8 +1,8 @@
-require('chai');
-var assert = require('assert');
-describe('Simple test', function () {
-  it('2 plus 2 is 4', function () {
-    assert.equal(2+2, 4)
+require("chai");
+var assert = require("assert");
+describe("Test chat", function () {
+  it('2 is 2', function () {
+    assert.equal(2, 2)
   })
 
 })
