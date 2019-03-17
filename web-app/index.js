@@ -335,7 +335,7 @@ async function processResponseInNotification(response, fileurl) {
 }
 
 
-async function stopChating() {
+async function stopChatting() {
   $('#chat').addClass('hidden');
   $('#chat-options').removeClass('hidden');
 }
