@@ -160,8 +160,6 @@ $('#write-chat').click(async() => {
     const username = $('#user-name').text();
     const message=$('#message').val();
     const messageText =username+" >> " + message;
-
-	//TODO: Save the message on SOLID Pod
     const valueMes = $('#messages').val();
 	$('#messages').val( valueMes + "\n" + messageText);
 	$('#message').attr('value', '');
@@ -238,9 +236,6 @@ $('#join-chat-btn').click(async () => {
   }
 });
 
-//-------------------------------------------
-
-
 /**
  * This method checks if a new move has been made by the opponent.
  * The necessarily data is stored and the UI is updated.
@@ -258,7 +253,7 @@ async function checkForNotifications() {
       if (message) {
 			newMessageFound = true;
 			if (openChat) {
-				$("#messages").val($("#messages").val() + "\n" + message.author + " >> " + message.messageTx);
+				$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messageTx);
 				await core.storeMessage(userDataUrl, message.author, userWebId, message.messageTx, friendWebId, dataSync, false);
 			} else {
 				friendMessages.push(message);
