@@ -66,7 +66,7 @@ async function setUpChat() {
 	while (i < friendMessages.length) {
 		var nameThroughUrl = friendMessages[i].author.split("/").pop();
 		if (nameThroughUrl === friendName) {
-			$("#messages").val($("#messages").val() + "\n" + friendName + friendMessages[i].messageTx);
+			$("#messages").val($("#messages").val() + "\n" + friendName +" >> "+ friendMessages[i].messageTx);
 			await core.storeMessage(userDataUrl, friendMessages[i].author, userWebId, friendMessages[i].messageTx, friendWebId, dataSync, false);
 			dataSync.deleteFileForUser(friendMessages[i].inboxUrl);
 			friendMessages[i] = "hi";
