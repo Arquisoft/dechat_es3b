@@ -5,15 +5,13 @@ require("chai");
  * password= Justfortesting1@
  * url=https://justtestajccount.inrupt.net/profile/card#me
  */
-const Chat = require("../src/lib/semanticchat");
-const Core = require("../src/lib/core");
-const Sync = require("../src/lib/dataSync");
+const Chat = require("../lib/semanticchat");
+const Core = require("../lib/core");
+const Sync = require("../lib/dataSync");
 var MyID= "https://justtestajccount.inrupt.net/profile/card#me";
 const chai = require("chai");
 var asserto = chai.assert;
 var assert = require("assert");
-var span = document.getElementById("mySPAN");
-var div = document.getElementById("myDIV").contains(span);
 const OK = 200;
 
 describe("Test chat", function () {
@@ -30,9 +28,9 @@ describe("Test chat", function () {
 
   it("Crear nuevo chat", async function(){
     var response = await Core.setUpNewChat(MyID,MyID,MyID,"JustForTesting",Sync );
-    asserto(response !=null)
+    assert.notnull()
   });
 
-    
+
 
 });
