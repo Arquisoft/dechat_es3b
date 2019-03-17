@@ -200,8 +200,9 @@ $('#join-btn').click(async () => {
 
 
 $('#join-chat-btn').click(async () => {
-    userDataUrl = core.getDefaultDataUrl(userWebId)+$('#chat-urls').text();
-
+  var elt = document.getElementById("chat-urls");
+     
+    userDataUrl = core.getDefaultDataUrl(userWebId)+elt.options[elt.selectedIndex].text;
     if (await core.writePermission(userDataUrl, dataSync)){
       $('#join-chat-options').addClass('hidden');
         setUpForEveryChatOption();
