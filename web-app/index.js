@@ -127,8 +127,6 @@ $('#new-btn').click(async () => {
   if (userWebId) {
     afterChatOption();
     $('#new-chat-options').removeClass('hidden');
-    $('#data-url').prop('value', core.getDefaultDataUrl(userWebId));
-
     const $select = $('#possible-friends');
 
     for await (const friend of data[userWebId].friends) {
@@ -142,7 +140,7 @@ $('#new-btn').click(async () => {
 });
 
 $('#start-new-chat-btn').click(async () => {
-  const dataUrl = $('#data-url').val();
+  const dataUrl = core.getDefaultDataUrl(userWebId)+$('#chat-name').val();
 
   if (await core.writePermission(dataUrl, dataSync)) {
     $('#new-chat-options').addClass('hidden');
@@ -174,7 +172,6 @@ $('#join-btn').click(async () => {
   if (userWebId) {
     afterChatOption();
     $('#join-chat-options').removeClass('hidden');
-    $('#join-data-url').prop('value', core.getDefaultDataUrl(userWebId));
     $('#join-looking').addClass('hidden');
 
     if (chatsToJoin.length > 0) {
@@ -191,7 +188,7 @@ $('#join-btn').click(async () => {
           name = chat.urlChat;
         }
 
-        $select.append($(`<option value="${chat.urlChat}">${name+friend})</option>`));
+        $select.append($(`<option value="${chat.urlChat}">${name+friend}</option>`));
       });
     } else {
       $('#no-join').removeClass('hidden');
@@ -203,8 +200,7 @@ $('#join-btn').click(async () => {
 
 
 $('#join-chat-btn').click(async () => {
-  if ($('#join-data-url').val() !== userWebId) {
-    userDataUrl = $('#join-data-url').val();
+    userDataUrl = core.getDefaultDataUrl(userWebId);
 
     if (await core.writePermission(userDataUrl, dataSync)){
       $('#join-chat-options').addClass('hidden');
@@ -217,24 +213,19 @@ $('#join-chat-btn').click(async () => {
       while (i < chatsToJoin.length && chatsToJoin[i].urlChat !== chatUrl) {
         i++;
       }
-        console.log(chatsToJoin[i]);
       const chat = chatsToJoin[i];
-        console.log("Aqui esta el fallo");
-        console.log(chat);
         
       // remove it from the array so it's no longer shown in the UI
       chatsToJoin.splice(i, 1);
 
       friendWebId = chat.friendWebId.id;
+      userDataUrl=userDataUrl+friendWebId;
       await core.joinExistingChat(chat.invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, chat.fileUrl);
       setUpChat();
     } else {
       $('#write-permission-url').text(userDataUrl);
       $('#write-permission').modal('show');
     }
-  } else {
-    console.warn('We are pretty sure you do not want to remove your WebID.');
-  }
 });
 
 /**
