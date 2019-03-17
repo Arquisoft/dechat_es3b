@@ -34,15 +34,10 @@ You can run the game locally by doing the following:
 ----
 'npm i'
 ----
-. Bundle the JavaScript via Webpack: 
+.To run the app use
 +
 ----
-npm run build:web
-----
-. Serve the contents of the root folder
-+
-----
-http-server
+npm start
 ----
 
 You may also need to install these dependencies: 
