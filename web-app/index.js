@@ -140,7 +140,8 @@ $('#new-btn').click(async () => {
 });
 
 $('#start-new-chat-btn').click(async () => {
-  const dataUrl = core.getDefaultDataUrl(userWebId)+$('#possible-friends').text();
+  var elt = document.getElementById("possible-friends");
+  const dataUrl = core.getDefaultDataUrl(userWebId)+elt.options[elt.selectedIndex].text;
 
   if (await core.writePermission(dataUrl, dataSync)) {
     $('#new-chat-options').addClass('hidden');
