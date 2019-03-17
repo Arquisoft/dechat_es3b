@@ -1,0 +1,26 @@
+== Glossary
+
+[options="header"]
+|===
+| Term | Definition
+| Solid         | Is a web decentralization project led by Tim Berners-Lee, the inventor of the World Wide Web. More information in 
+https://en.wikipedia.org/wiki/Solid_(web_decentralization_project)) 
+| Web Server     | It is a computer that is part of a network and that provides services to other equipment
+| Angular     | It is a framework for web applications developed in TypeScript, open source, which is used to create and maintain web applications of a single page.
+| JavaScript	| It is an interpreted programming language, oriented to objects, based on prototypes, imperative, weakly typed and dynamic. It is mainly used in its customer side form.
+| MySQL	| It is a relational database management system based on structured query language (SQL).
+| ARC42	| It is a structure for documenting software systems. More information in https://arc42.org/ 
+| C# | It is an object-oriented programming language developed and standardized by Microsoft as part of its .NET platform
+| Java | It is a general object-oriented programming language that allows application developers to write the program once and execute it on any device, meaning that the code that is executed on one platform does not have to be recompiled to run on another.
+| Framework | Abstraction in which software providing generic functionality can be selectively changed by additional user-written code, thus providing application-specific software.
+| SOLID Pod | Web-accessible personal online datastore
+| Decentralized | In computer engineering; Communication that does not pass through external servers.
+| Agile methodology | Iterative development methodology that values human communication and feedback, adapting to changes, and producing working results.
+| Software | Set of instructions, data or programs used to operate computers and execute specific tasks. 
+| P2P | It is a distributed application architecture that partitions tasks or workloads between peers.
+| Unit testing | Is a level of software testing where individual units/ components of a software are tested. The purpose is to validate that each unit of the software performs as designed. 
+| Integration testing | Is a level of software testing where individual units are combined and tested as a group. The purpose of this level of testing is to expose faults in the interaction between integrated units.
+| Software unit | A unit is the smallest testable part of any software. It usually has one or a few inputs and usually a single output. In procedural programming, a unit may be an individual program, function, procedure, etc. In object-oriented programming, the smallest unit is a method.
+|===
+
+

@@ -1,0 +1,32 @@
+[[section-solution-strategy]]
+
+== Solution Strategy
+
+
+****
+
+Because of our little experience on the architecture of sofware creation some or this early decisions may change in the future
+if better technologies are discovered.
+
+* Technology decisions:
+
+The language selected to create de application will be javascrip. It was selected because it's good integration with solid.
+The use of solid will make a descentralized chat using pods so we assume no database will be needed. In case it's finally needed 
+we would use a sql database because of our knowelge about this model.
+Angular will be the framework that we use also because of it's good integration with solid. On the solid oficial page we have a easy tutorial
+about creation of solid apps with angular:https://solid.inrupt.com/docs/writing-solid-apps-with-angular
+TypeScript will also be use for the creation of the angular components.
+The grafic interface will be done using html and css, this and angular will make our app run both in pc and moviles.
+
+* Decisions about the top-level decomposition of the system:
+
+Because of the angular framework it will be easier to implement a MVC(Model View Controller) to have a better organization o the code 
+
+* Decisions on how to achieve key quality goals:
+
+* Organizational decisions:
+
+The decisions about organization will be agile, we will have meetings every week were we will distribute the tasks.
+
+****
+
