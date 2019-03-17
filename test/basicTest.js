@@ -7,7 +7,7 @@ require("chai");
  */
 const Chat = require("../lib/semanticchat");
 const Core = require("../lib/core");
-const Sync = require("../lib/dataSync");
+const Sync = require("../lib/datasync");
 var MyID= "https://justtestajccount.inrupt.net/profile/card#me";
 const chai = require("chai");
 var asserto = chai.assert;
