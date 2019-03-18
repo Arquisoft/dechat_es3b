@@ -1,6 +1,6 @@
 = dechat_es3b
 
-image:https://github.com/Arquisoft/dechat_es3b/blob/intentoJoin/adocs/images/Logo.jpeg?raw=true[]
+image:https://github.com/Arquisoft/dechat_es3b/blob/master/adocs/images/Logo.jpeg[]
 
 image:https://travis-ci.org/Arquisoft/dechat_es3b.svg?branch=master["Build Status", link="https://travis-ci.org/Arquisoft/dechat_es3b"]
 image:https://codecov.io/gh/Arquisoft/dechat_es3b/branch/master/graph/badge.svg["Codecov",link="https://codecov.io/gh/Arquisoft/dechat_es3b"]
