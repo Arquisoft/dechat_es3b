@@ -1,5 +1,5 @@
 {
-  "name": "dechat",
+  "name": "dechat_es3B",
   "version": "0.1.0",
   "description": "A Solid-based chat",
   "main": "index.js",
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pheyvaer/solid-chess.git"
+    "url": "git+https://github.com/Arquisoft/dechat_es3b"
   },
-  "author": "Pieter Heyvaert <pheyvaer.heyvaert@ugent.be>",
+  "author": "DeChatES3B",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pheyvaer/solid-chess/issues"
+    "url": "https://github.com/Arquisoft/dechat_es3b/issues"
   },
-  "homepage": "https://github.com/pheyvaer/solid-chess#readme",
+  "homepage": "https://github.com/Arquisoft/dechat_es3b#readme",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
