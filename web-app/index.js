@@ -5,27 +5,19 @@ const namespaces = require('../lib/namespaces');
 const { default: data } = require('@solid/query-ldflex');
 const Core = require('../lib/core');
 
-let userWebId;
-let friendWebId;
-let semanticChat;
-let refreshIntervalId;
-let core = new Core(auth.fetch);
-let dataSync = new DataSync(auth.fetch);
-let userDataUrl;
-let chatsToJoin = [];
-let chatName;
-let friendMessages = [];
-let openChat=false;
 
-/*Log in-out*/
+var userWebId;
+var friendWebId;
+var semanticChat;
+var refreshIntervalId;
+var core = new Core(auth.fetch);
+var dataSync = new DataSync(auth.fetch);
+var userDataUrl;
+var chatsToJoin = [];
+var chatName;
+var friendMessages = [];
+var openChat=false;
 
-$('.login-btn').click(() => {
-  auth.popupLogin({ popupUri: 'https://solid.github.io/solid-auth-client/dist/popup.html' });
-});
-
-$('#logout-btn').click(() => {
-  auth.logout();
-});
 
 /**
  * This method does the necessary updates of the UI when the different chat options are shown.
@@ -33,7 +25,6 @@ $('#logout-btn').click(() => {
 function setUpForEveryChatOption() {
   $('#chat-loading').removeClass('hidden');
 }
-
 /**
  * This method sets up a new chat.
  * @returns {Promise<void>}
@@ -81,6 +72,22 @@ async function setUpChat() {
 	}
 	openChat = true;
 };
+
+$('#start-new-chat-btn').click(async () => {
+  var elt = document.getElementById("possible-friends");
+  const dataUrl = core.getDefaultDataUrl(userWebId)+elt.options[elt.selectedIndex].text;
+
+  if (await core.writePermission(dataUrl, dataSync)) {
+    $('#new-chat-options').addClass('hidden');
+    friendWebId = $('#possible-friends').val();
+    userDataUrl = dataUrl;
+    chatName = $('#chat-name').val();
+    setUpNewChat();
+  } else {
+    $('#write-permission-url').text(dataUrl);
+    $('#write-permission').modal('show');
+  }
+});
 
 auth.trackSession(async session => {
   const loggedIn = !!session;
@@ -139,21 +146,7 @@ $('#new-btn').click(async () => {
   }
 });
 
-$('#start-new-chat-btn').click(async () => {
-  var elt = document.getElementById("possible-friends");
-  const dataUrl = core.getDefaultDataUrl(userWebId)+elt.options[elt.selectedIndex].text;
 
-  if (await core.writePermission(dataUrl, dataSync)) {
-    $('#new-chat-options').addClass('hidden');
-    friendWebId = $('#possible-friends').val();
-    userDataUrl = dataUrl;
-    chatName = $('#chat-name').val();
-    setUpNewChat();
-  } else {
-    $('#write-permission-url').text(dataUrl);
-    $('#write-permission').modal('show');
-  }
-});
 
 $('#write-chat').click(async() => {
     const username = $('#user-name').text();
@@ -165,8 +158,6 @@ $('#write-chat').click(async() => {
 	await core.storeMessage(userDataUrl, username, userWebId, message, friendWebId, dataSync, true);
     
 });
-
-//-----------TODO JOIN-----------
 
 
 $('#join-btn').click(async () => {

@@ -1,9 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  entry: './web-app/index.js',
+  entry: {
+    login: './web-app/login.js',
+    createChat: './web-app/createChat.js',
+    main: './web-app/index.js'  
+  },
   output: {
-    filename: 'main.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'web-app/dist')
   },
   mode: 'development',
