@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack --config webpack.config.js && http-server -c-1 -p 8080",
     "test": "mocha \"./test/*\"",
-    "cucumber":"cucumber-js",
+    "cucumber": "cucumber-js",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "build:web": "webpack --config webpack.config.js",
     "doc": "jsdoc -c jsdoc.json ./lib"
   },
@@ -33,6 +34,7 @@
     "asciidoctor-cli": "^1.5.6-rc.1",
     "asciidoctor.js": "^1.5.9",
     "cucumber": "^5.1.0",
+    "codecov": "^3.2.0",
     "jsdoc": "^3.5.5",
     "minami": "^1.2.3",
     "webpack": "^4.23.1",
