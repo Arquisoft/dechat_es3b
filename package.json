@@ -7,7 +7,7 @@
     "start": "webpack --config webpack.config.js && http-server -c-1 -p 8080",
     "test": "mocha \"./test/*\"",
     "cucumber": "cucumber-js",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
+     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "build:web": "webpack --config webpack.config.js",
     "doc": "jsdoc -c jsdoc.json ./lib"
   },
