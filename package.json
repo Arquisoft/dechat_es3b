@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack --config webpack.config.js && http-server -c-1 -p 8080",
-    "test": "mocha \"./test/*\"",
-    "cucumber":"cucumber-js",
+    "test": "nyc mocha \"./test/*\"",
+    "cucumber": "cucumber-js",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "build:web": "webpack --config webpack.config.js",
     "doc": "jsdoc -c jsdoc.json ./lib"
   },
@@ -32,9 +33,11 @@
     "@babel/register": "^7.0.0",
     "asciidoctor-cli": "^1.5.6-rc.1",
     "asciidoctor.js": "^1.5.9",
+    "codecov": "^3.2.0",
     "cucumber": "^5.1.0",
     "jsdoc": "^3.5.5",
     "minami": "^1.2.3",
+    "nyc": "^13.3.0",
     "webpack": "^4.23.1",
     "webpack-cli": "^3.1.2"
   },
@@ -57,7 +60,6 @@
     "uniqid": "^5.0.3",
     "uri-js": "^4.2.2",
     "winston": "^3.1.0",
-    "nyc": "^13.3.0",
     "standard": "*"
   },
   "directories": {
