@@ -1,22 +1,25 @@
 const assert = require('assert');
 const { Given, When, Then } = require('cucumber');
 
-function isItFriday(today) {
-  if (today === "Friday") {
-    return "TGIF";
+
+//----------------------- Test Login -------------------------
+function loginUser(user,password) {
+  if (user === "userTest3" && password === "passwordTest3") {
+    return "Login in!";
   } else {
-    return "Nope";
+    return "error";
   }
 }
 
-Given('today is {string}', function (givenDay) {
-  this.today = givenDay;
+Given('a {string} and {string}', function (user,password) {
+    this.user = user;
+    this.password = password;
 });
 
-When('I ask whether it\'s Friday yet', function () {
-  this.actualAnswer = isItFriday(this.today);
+When('the user make login', function () {
+  this.reply = loginUser(this.user,this.password);
 });
 
-Then('I should be told {string}', function (expectedAnswer) {
-  assert.equal(this.actualAnswer, expectedAnswer);
+Then('the login is successfull {string}', function (expectedReply) {
+  assert.equal(this.reply, expectedReply);
 });
