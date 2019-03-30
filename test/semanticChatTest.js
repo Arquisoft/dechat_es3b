@@ -13,12 +13,18 @@ describe("SemanticChat basic tests", function () {
     assert.equal(chat.getFriendWebId(), "idTest");
   });
     
-    it('getName', function () {
+it('getName', function () {
     assert.equal(chat.getName(), "nameTest");
   });
     
-    it("getMinimumRDF", function () {
+it("getMinimumRDF", function () {
     assert.equal(chat.getMinimumRDF(), "<urlTest>");
+  });
+    
+it("loadMessage", function () {
+    chat.loadMessage("messageTest");
+    assert.equal(chat.totalMessages, 1);
+    assert.equal(chat.messages[0], "messageTest");
   });
 
 });
