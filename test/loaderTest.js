@@ -7,11 +7,17 @@ const loader = new Loader(auth.fetch);
       
 
 describe("Loader tests", function () {
-  /*it("findWebIdOfFriend", function () {
-      const friendWebId = loader.findWebIdOfFriend("", 25);
-    assert.equal(friendWebId, null);
-      
-  });*/
+  it("findWebIdOfFriend", function () {
+      var url='https://test3b.inrupt.net/profile/card#me';
+      var friendWebId = loader.findWebIdOfFriend(url, 25);
+      assert(friendWebId, "Promise { <pending> }");      
+  });
+    
+    it("findWebIdOfFriend", function () {
+      var url='https://test3b.inrupt.net/profile/card#me';
+      var friendWebId = loader.findWebIdOfFriend(url, 25);
+      assert(friendWebId, "Promise { <pending> }");      
+  });
 
 });
 
