@@ -22,7 +22,7 @@ it('generateUniqueUrlForResource', function() {
   });
     
 it('writePermission', function() {
-    assert(chat.writePermission("urlTest",null), false);
+    assert(chat.writePermission("urlTest",new DataSync(auth.fecth)), false);
   });
     
  it('generate invitation ', function() {
