@@ -21,10 +21,13 @@ it("getMinimumRDF", function () {
     assert.equal(chat.getMinimumRDF(), "<urlTest>");
   });
     
-it("loadMessage", function () {
+it("loadMessage and getMessages", function () {
     chat.loadMessage("messageTest");
     assert.equal(chat.totalMessages, 1);
     assert.equal(chat.messages[0], "messageTest");
+    
+    assert.equal(chat.getMessages()[0], "messageTest");
+    
   });
 
 });
