@@ -12,12 +12,6 @@ describe("Loader tests", function () {
       var friendWebId = loader.findWebIdOfFriend(url, 25);
       assert(friendWebId, "Promise { <pending> }");      
   });
-    
-    it("findWebIdOfFriend", function () {
-      var url='https://test3b.inrupt.net/profile/card#me';
-      var friendWebId = loader.findWebIdOfFriend(url, 25);
-      assert(friendWebId, "Promise { <pending> }");      
-  });
 
 });
 
