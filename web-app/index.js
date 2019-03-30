@@ -254,7 +254,7 @@ async function checkForNotifications() {
       const response = await core.getResponseToInvitation(fileurl);
 
       if (response) {
-        this.processResponseInNotification(response, fileurl);
+        await processResponseInNotification(response, fileurl);
       } else {
         const chatToJoin = await core.getJoinRequest(fileurl, userWebId);
 
