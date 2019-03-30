@@ -56,3 +56,27 @@ When('a {string} start a {string} with {string}', function (user,chat,friend) {
 Then('the {string} is created {string}', function (chat,expectedReply) {
   assert.equal(this.message, expectedReply);
 });
+
+//-------------- Test send a message -------------------
+function sendAMessage(user,message,friend,chat) {
+  if(message === null){
+     return "error";
+  }
+  else{
+      return "message send";
+  }
+}
+Given('a {string} and a {string}', function (user,friend) {
+    this.user = user;
+    this.friend = friend;
+});
+
+When('a {string} send a {string} to {string} in {string}', function (user,message,friend,chat) {
+    this.message = message;
+    this.reply = sendAMessage(this.user,this.message, this.friend, this.chat);
+});
+
+Then('the {string} is shown {string}', function (message,expectedReply) {
+  assert.equal(this.reply, expectedReply);
+});
+
