@@ -63,7 +63,6 @@ it('setUpNewChat', function() {
     assert(result, "Promise { <pending> }");
   });
 
-    // Miosssssss ---- Acuérdate de borrar después este comentario
      it('getStorageForChat', function() {
     var result=chat.getStorageForChat("https://test3b.inrupt.net/inbox/fdf1ee20-53a9-11e9-89e0-5336b442946f.txt","https://test3b.inrupt.net/public/chat_20190316.ttl");
     assert(result, "Promise { <pending> }");
