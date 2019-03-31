@@ -60,6 +60,10 @@ it('setUpNewChat', function() {
     assert(result, "Promise { <pending> }");
   });
 
+     it('getStorageForChat', function() {
+    var result=chat.getStorageForChat("https://test3b.inrupt.net/profile/card#me","https://test3b.inrupt.net/public/chat_20190316.ttl");
+    assert(result, "Promise { <pending> }");
+  });
   
 
  
