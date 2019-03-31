@@ -60,13 +60,25 @@ it('setUpNewChat', function() {
     assert(result, "Promise { <pending> }");
   });
 
+    // Miosssssss ---- Acuérdate de borrar después este comentario
      it('getStorageForChat', function() {
-    var result=chat.getStorageForChat("https://test3b.inrupt.net/profile/card#me","https://test3b.inrupt.net/public/chat_20190316.ttl");
+    var result=chat.getStorageForChat("https://test3b.inrupt.net/inbox/fdf1ee20-53a9-11e9-89e0-5336b442946f.txt","https://test3b.inrupt.net/public/chat_20190316.ttl");
     assert(result, "Promise { <pending> }");
   });
-  
-
- 
-
+    
+    it('getChatFromInvitation', function() {
+    var result=chat.getChatFromInvitation("https://test3b.inrupt.net/public/chat_OtherTest#jtwuu2cu");
+    assert(result, "Promise { <pending> }");
+  });
+    
+    it('joinExistingChat', function() {
+     var result=chat.joinExistingChat("https://test3b.inrupt.net/public/chat_OtherTest#jtwuu2cu",1234,1234,"https://test3b.inrupt.net/profile/card#me",new DataSync(auth.fecth),"https://test3b.inrupt.net/public/chat_20190316.ttl");    
+    assert(result, "Promise { <pending> }");
+  });
+    
+//    it('getDefaultDataUrl', function() {
+//     var result=chat.getDefaultDataUrl(1234);    
+//    assert(result, `https://1234.inrupt.net/public/chat_`);
+//  });
 
 });
