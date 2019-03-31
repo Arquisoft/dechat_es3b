@@ -1,7 +1,7 @@
 [[section-deployment-view]]
 
 
-== Deployment View (TO DO)
+== Deployment View
 
 
 === Sending Message View
