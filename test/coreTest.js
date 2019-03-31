@@ -48,10 +48,9 @@ it('setUpNewChat', function() {
     var result=chat.checkUserInboxForUpdates("https://test3b.inrupt.net/profile/card#me");
     assert(result, "Promise { <pending> }");
   });
-    
     it('getNewMessage', function() {
-    var result=chat.getNewMessage("https://test3b.inrupt.net/profile/card#me",1234);
-    assert(result, "Promise { <pending> }");
+        var result=chat.getNewMessage("no",  "https://urlIncorrect.inrupt.net/profile/card#me");
+        assert(result, null);
   });
     
     it('getObjectFromPredicateForResource', function() {
