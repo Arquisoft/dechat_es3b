@@ -86,11 +86,6 @@ it('setUpNewChat', function() {
         assert(result, "Promise { <pending> }");
     });
     
-    it('getFriendWebId', function() {
-        var result=chat.getFriendWebId("no",  "https://urlIncorrect.inrupt.net/profile/card#me");    
-        assert(result, null);
-    });
-    
     it('storeMessage', function() {
         var result=chat.storeMessage("https://test3b.inrupt.net/profile/card#me","userName",1234,"hola",1234,new DataSync(auth.fecth),true);    
         assert(result, null);
