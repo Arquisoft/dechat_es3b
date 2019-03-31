@@ -17,6 +17,10 @@ it('getFormattedName ', function() {
     assert(chat.getFormattedName("https://alba.inrupt.net/profile/card#me"), "alba");
   });
     
+it('getFormattedName ', function() {
+    assert(chat.getFormattedName("https://maarr.inrupt.net/profile/card#me"), "Mar Rodriguez");
+  });
+    
 it('generateUniqueUrlForResource', function() {
     assert(chat.generateUniqueUrlForResource("baseUrlTest"), "baseUrlTest#");
   });
