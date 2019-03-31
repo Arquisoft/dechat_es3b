@@ -54,7 +54,7 @@ npm i @comunica/actor-init-sparql-rdfjs
 There are some simple Unit tests at:
  https://github.com/Arquisoft/dechat_es3b/tree/master/test[test].
  
- To run tests execute:
+To run tests execute:
 
 ----
 npm test
@@ -66,8 +66,7 @@ There are also some
  with a simple user story defined at:
  https://github.com/Arquisoft/dechat_es3b/tree/master/features[features].
  
- To run Cucumber tests execute:
-
+To run Cucumber tests execute:
 ----
 npm run cucumber
 ----
