@@ -2,3 +2,16 @@
 
 
 == Deployment View (TO DO)
+
+
+=== Sending Message View
+****
+The procedure of sending a new message is fairly simple. The First User sends a Message to a friend through the interface.  The interface transmits the message to deChat app which drives the message to the Pod of the principal user and to the friend's POD as well. Then deChat catches the new message from the friend's POD and send it to the interface.
+
+image:https://github.com/Arquisoft/dechat_es3b/blob/master/adocs/images/Sending.png[View,1200,600,role="center"] 
+
+****
+=== Infrastructure
+The infrastructure requires 2 machines (hardware) per user; The first is the one user is going to use to send or receive Messages, it must support HTML5 and javascript.  The other machine is SOLID servers which going to save all the information in the user's POD.
+[role="arc42help"]
+****
