@@ -14,7 +14,7 @@ it('getInboxUrl', function() {
     assert(chat.getInboxUrl(25), null);
   });
 it('getFormattedName ', function() {
-    assert(chat.getFormattedName("https://test3b.inrupt.net/profile/card#me"), "test3b");
+    assert(chat.getFormattedName("https://alba.inrupt.net/profile/card#me"), "alba");
   });
     
 it('generateUniqueUrlForResource', function() {
