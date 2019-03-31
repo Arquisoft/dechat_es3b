@@ -80,5 +80,25 @@ it('setUpNewChat', function() {
 //     var result=chat.getDefaultDataUrl(1234);    
 //    assert(result, `https://1234.inrupt.net/public/chat_`);
 //  });
+    
+    it('generateResponseToInvitation1', function() {
+        var result=chat.generateResponseToInvitation("https://test3b.inrupt.net/profile/card#me","https://test3b.inrupt.net/public/chat_OtherTest#jtwuu2cu",1234,1234,"no");    
+        assert(result, "Promise { <pending> }");
+    });
+    
+    it('generateResponseToInvitation2', function() {
+        var result=chat.generateResponseToInvitation("https://test3b.inrupt.net/profile/card#me","https://test3b.inrupt.net/public/chat_OtherTest#jtwuu2cu",1234,1234,"");    
+        assert(result, "Promise { <pending> }");
+    });
+    
+    it('getFriendWebId', function() {
+        var result=chat.getFriendWebId("no",  "https://urlIncorrect.inrupt.net/profile/card#me");    
+        assert(result, null);
+    });
+    
+    it('storeMessage', function() {
+        var result=chat.storeMessage("https://test3b.inrupt.net/profile/card#me","userName",1234,"hola",1234,new DataSync(auth.fecth),null);    
+        assert(result, null);
+    });
 
 });
