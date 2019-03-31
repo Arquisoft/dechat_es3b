@@ -22,7 +22,7 @@ it('generateUniqueUrlForResource', function() {
   });
     
 it('writePermission', function() {
-    assert(chat.writePermission("urlTest",new DataSync(auth.fecth)), false);
+    assert(chat.writePermission("https://alba.inrupt.net/profile/card#me",new DataSync(auth.fecth)), false);
   });
     
  it('generate invitation ', function() {
@@ -76,11 +76,6 @@ it('setUpNewChat', function() {
     assert(result, "Promise { <pending> }");
   });
     
-//    it('getDefaultDataUrl', function() {
-//     var result=chat.getDefaultDataUrl(1234);    
-//    assert(result, `https://1234.inrupt.net/public/chat_`);
-//  });
-    
     it('generateResponseToInvitation1', function() {
         var result=chat.generateResponseToInvitation("https://test3b.inrupt.net/profile/card#me","https://test3b.inrupt.net/public/chat_OtherTest#jtwuu2cu",1234,1234,"no");    
         assert(result, "Promise { <pending> }");
@@ -97,8 +92,13 @@ it('setUpNewChat', function() {
     });
     
     it('storeMessage', function() {
-        var result=chat.storeMessage("https://test3b.inrupt.net/profile/card#me","userName",1234,"hola",1234,new DataSync(auth.fecth),null);    
+        var result=chat.storeMessage("https://test3b.inrupt.net/profile/card#me","userName",1234,"hola",1234,new DataSync(auth.fecth),true);    
         assert(result, null);
     });
+    
+    it('getDefaultDataUrl', function () {
+		var s= chat.getDefaultDataUrl("https://test3b.inrupt.net/profile/card#me");
+		assert(s.includes("https://test3b.inrupt.net/public/chat_"));
+	})
 
 });
