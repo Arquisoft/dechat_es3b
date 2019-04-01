@@ -14,8 +14,8 @@ let friendWebId;
 let semanticChat;
 let refreshIntervalId;
 let core = new Core(auth.fetch);
-let createChat = new CreateChat(core);
 let joinChat = new JoinChat(core);
+let createChat = new CreateChat(core,joinChat);
 let checkNotifications = new CheckNotifications(core);
 let messageManager = new MessageManager(core);
 let dataSync = new DataSync(auth.fetch);
@@ -261,7 +261,7 @@ async function checkForNotifications() {
 		} 
 
     if (!newMessageFound) {
-      const response = await core.getResponseToInvitation(fileurl);
+      const response = await checkNotifications.getResponseToInvitation(fileurl);
 
       if (response) {
         await processResponseInNotification(response, fileurl);
