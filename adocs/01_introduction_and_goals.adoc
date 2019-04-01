@@ -14,7 +14,7 @@ We are going to use SOLID framework to get that decentralization. Every user mus
 
 ****
 
-The application will have a "home" with a list of the users who the "protagonist" could communicate. After selecting one of them, he will be able to send and receive messages. First, we are going to implement just sending messages, then, we would like to add the possibility of pictures transmission, or even video recordings.
+The application will have a "home" page with a list of the users whose the "protagonist" could communicate. After selecting one of them, he will be able to send and receive messages. First, we are going to implement just sending messages, then, we would like to add the possibility of pictures transmission, or even video recordings.
 
 ****
 
