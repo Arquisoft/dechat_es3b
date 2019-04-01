@@ -1,5 +1,5 @@
 [[section-concepts]]
-== Cross-cutting Concepts (TO DO)
+== Cross-cutting Concepts
 image::https://github.com/Arquisoft/dechat_es3b/blob/master/adocs/images/concepts.jpg[]
 === Problems during development
 
