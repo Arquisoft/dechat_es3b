@@ -5,18 +5,16 @@
 
 ****
 
-Because of our little experience on the architecture of sofware creation some or this early decisions may change in the future
+Because of our little experience on the Software Architecture World some or this early decisions may change in the future
 if better technologies are discovered.
 
 * Technology decisions:
 
-The language selected to create de application will be javascrip. It was selected because it's good integration with solid.
-The use of solid will make a descentralized chat using pods so we assume no database will be needed. In case it's finally needed 
-we would use a sql database because of our knowelge about this model.
-Angular will be the framework that we use also because of it's good integration with solid. On the solid oficial page we have a easy tutorial
-about creation of solid apps with angular:https://solid.inrupt.com/docs/writing-solid-apps-with-angular
-TypeScript will also be use for the creation of the angular components.
-The grafic interface will be done using html and css, this and angular will make our app run both in pc and moviles.
+The language selected to create de application is going to be JavaScript. It was selected because it's good integration with SOLID.
+The use of SOLID will make a decentralized chat using PODS so we assume no database will be needed. In case it's finally needed 
+we would use a SQL database because of our knowelge about this database type.
+
+The grafic interface will be done using html and css, this and angular will make our app run both in Desktop computers and smartphones.
 
 * Decisions about the top-level decomposition of the system:
 
