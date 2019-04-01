@@ -29,7 +29,6 @@ let openChat=false;
 
 $('.login-btn').click(() => {
   auth.popupLogin({ popupUri: 'https://solid.github.io/solid-auth-client/dist/popup.html' });
-  clearInbox();
 });
 
 $('#logout-btn').click(() => {
@@ -234,6 +233,7 @@ $('#join-chat-btn').click(async () => {
       $('#write-permission-url').text(userDataUrl);
       $('#write-permission').modal('show');
     }
+    //clearInbox();
 });
 
 /**
@@ -337,6 +337,7 @@ async function processResponseInNotification(response, fileurl) {
 async function stopChatting() {
   $('#chat').addClass('hidden');
   $('#chat-options').removeClass('hidden');
+  $("#messages").val("");
 }
 
 $('#stop-chatting').click(() => {
