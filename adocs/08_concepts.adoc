@@ -1,2 +1,20 @@
 [[section-concepts]]
 == Cross-cutting Concepts (TO DO)
+
+=== Problems during development
+
+We had many problems and issues during the project building. We got to solve most of them in this short amount of time, Probably the most challenging ones are:
+1. Microsoft Edge incompatibility -> Is known that a lot of javascript applications do not work on the new Microsoft's browser, and our app is not an excepcion.
+2. Loads chats that are not supposed to sbe shown -> When you open a new conversations, sometimes in the text area are shown messages of another past conversation. We are fixing this issue.
+3. Delay on sending Messages -> We have a delay about 5 seconds between sending and receiving messages. It is still under development.
+
+=== Technical risks
+
+1. Using SOLID: We have never ever used a technology like SOLID. This was probably the most challenging problem we had, We were unable to find easy and functional examples even though the SOLID company has a bunch of it, most of them didn't work properly.
+2. Node JS language -> This is the first "big" application we build in Node and javascript, so we had to do a lot of self-learning.
+
+=== Solution
+
+Our chat is built on the top of the SOLID Chess project. We cleaned the code of the game and converted it into a functional chat. At first we thoght that it would be easy using this example as our base, but we could not be more wrong. We had to dissasembly the example and try to understand a bunch of code that was new to us. A lot of methods werent aporting us any funtionality and others were not adapted to do the function we wanted. 
+
+After a lot of ours of work we got a working decentralized chat with a fairly simple and greate interface. We think that is very important to decentralize the conversations and keep the users privacy private.
