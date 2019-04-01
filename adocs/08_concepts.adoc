@@ -1,6 +1,6 @@
 [[section-concepts]]
 == Cross-cutting Concepts (TO DO)
-
+image::https://github.com/Arquisoft/dechat_es3b/blob/master/adocs/images/concepts.jpg[]
 === Problems during development
 
 We had many problems and issues during the project building. We got to solve most of them in this short amount of time, Probably the most challenging ones are:
