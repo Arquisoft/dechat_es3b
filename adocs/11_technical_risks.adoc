@@ -3,8 +3,8 @@
 
 List of identified technical risks or technical debts, ordered by priority
 
-* *Inexperience with the technology that we must use:* One of the requirements is to use the SOLID platform in our application. Being a new technology, we have to learn to use it.
-* *Loss of time to specialize in a programming language:* We have decided to use a language (JavaScript) of which we have a slight notion. This can delay us when carrying out the project. However, if we had chosen another language we would have to learn how to couple that language to the SOLID platform. Therefore, comparing the advantages and disadvantages of each one, we decided that it was best to use the language previously mentioned.
+* *Inexperience with the technology that we must use:* One of the requirements is using the SOLID platform in our application. Being a new technology, we have to learn.
+* *Loss of time to specialize in a programming language:* We have decided to use a language (JavaScript) of which we have a slight notion. This can delay us when carrying out the project. However, if we had chosen another language we would have to learn how to adapt that language to the SOLID platform. Therefore, comparing the advantages and disadvantages of each one, we decided that it was best to use the language previously mentioned.
 * *Loss of team members:* This could harm us in the future since we are 4 in the team and could cause us to delay with deliveries.
 * *Little applications on which to base ourselves:* Being a practically new technology, there are hardly any projects that we can use as an example.
 
