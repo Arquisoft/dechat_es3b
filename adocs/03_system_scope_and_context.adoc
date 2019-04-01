@@ -3,7 +3,7 @@
 
 
 ****
-Our application consists of a decentralized chat in which a user can have conversations with other users. Based on this information we can differentiate two different contexts of our system:
+Our application consists on a decentralized chat in which a user can have conversations with other users. Based on this information we can differentiate two different contexts of our system:
 ****
 
 
