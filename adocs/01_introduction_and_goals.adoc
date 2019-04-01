@@ -5,7 +5,7 @@
 image:https://github.com/Arquisoft/dechat_es3b/blob/master/adocs/images/Logo.jpeg[]
 
 ****
-The main goal of this project is to create a decentralized chat, better said, an application or program through two or more people can communicate in a way that all the information does not pass through any external server, avoiding lose confidentiality of the data, allowing real private conversations, not like other software.
+The main goal of this project is to create a decentralized chat, better said, an application or program through two or more people can communicate in a way that all the information does not pass through any external server, avoiding confidentiality losing of the data, allowing real private conversations.
 
 We are going to use SOLID framework to get that decentralization. Every user must have a SOLID POD to log in and use our application
 ****
