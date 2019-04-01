@@ -21,6 +21,7 @@ let openChat=false;
 
 $('.login-btn').click(() => {
   auth.popupLogin({ popupUri: 'https://solid.github.io/solid-auth-client/dist/popup.html' });
+  clearInbox();
 });
 
 $('#logout-btn').click(() => {
@@ -99,6 +100,7 @@ auth.trackSession(async session => {
       $('#user-name').text(name);
     }
 
+    
     checkForNotifications();
     // refresh every 5sec
     refreshIntervalId = setInterval(checkForNotifications, 5000);
@@ -344,3 +346,12 @@ $('.btn-cancel').click(() => {
 $("#messages").val("");
 
 });
+
+async function clearInbox() {
+  const resources = await core.getAllResourcesInInbox(await core.getInboxUrl(userWebId));
+
+  resources.forEach(async r => {
+    if (await core.fileContainsChessInfo(r)) {
+      dataSync.deleteFileForUser(r);
+    }
+  });}
