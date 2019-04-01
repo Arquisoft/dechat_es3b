@@ -138,7 +138,7 @@ $('#new-btn').click(async () => {
     afterChatOption();
     $('#new-chat-options').removeClass('hidden');
     const $select = $('#possible-friends');
-
+    $select.empty();
     for await (const friend of data[userWebId].friends) {
         let name = await core.getFormattedName(friend.value);
 
