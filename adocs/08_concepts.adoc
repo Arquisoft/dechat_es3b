@@ -4,8 +4,11 @@
 === Problems during development
 
 We had many problems and issues during the project building. We got to solve most of them in this short amount of time, Probably the most challenging ones are:
+
 1. Microsoft Edge incompatibility -> Is known that a lot of javascript applications do not work on the new Microsoft's browser, and our app is not an excepcion.
+
 2. Loads chats that are not supposed to sbe shown -> When you open a new conversations, sometimes in the text area are shown messages of another past conversation. We are fixing this issue.
+
 3. Delay on sending Messages -> We have a delay about 5 seconds between sending and receiving messages. It is still under development.
 
 === Technical risks
