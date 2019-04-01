@@ -4,12 +4,20 @@ const DataSync = require('../lib/datasync');
 const namespaces = require('../lib/namespaces');
 const { default: data } = require('@solid/query-ldflex');
 const Core = require('../lib/core');
+const CreateChat = require('../lib/createChat');
+const CheckNotifications = require('../lib/checkNotifications');
+const MessageManager = require('../lib/messageManager');
+const JoinChat = require('../lib/joinChat');
 
 let userWebId;
 let friendWebId;
 let semanticChat;
 let refreshIntervalId;
 let core = new Core(auth.fetch);
+let joinChat = new JoinChat(core);
+let createChat = new CreateChat(core,joinChat);
+let checkNotifications = new CheckNotifications(core);
+let messageManager = new MessageManager(core);
 let dataSync = new DataSync(auth.fetch);
 let userDataUrl;
 let chatsToJoin = [];
@@ -41,7 +49,7 @@ function setUpForEveryChatOption() {
  */
 async function setUpNewChat() {
   setUpForEveryChatOption();
-  semanticChat = await core.setUpNewChat(userDataUrl, userWebId, friendWebId, chatName, dataSync);
+  semanticChat = await createChat.setUpNewChat(userDataUrl, userWebId, friendWebId, chatName, dataSync);
   setUpChat();
 }
 
@@ -68,7 +76,7 @@ async function setUpChat() {
 		var nameThroughUrl = friendMessages[i].author.split("/").pop();
 		if (nameThroughUrl === friendName) {
 			$("#messages").val($("#messages").val() + "\n" + friendName +" >> "+ friendMessages[i].messageTx);
-			await core.storeMessage(userDataUrl, friendMessages[i].author, userWebId, friendMessages[i].messageTx, friendWebId, dataSync, false);
+			await messageManager.storeMessage(userDataUrl, friendMessages[i].author, userWebId, friendMessages[i].messageTx, friendWebId, dataSync, false);
 			dataSync.deleteFileForUser(friendMessages[i].inboxUrl);
 			friendMessages[i] = "hi";
 		}
@@ -164,7 +172,7 @@ $('#write-chat').click(async() => {
     const valueMes = $('#messages').val();
 	$('#messages').val( valueMes + "\n" + messageText);
 	document.getElementById("message").value="";
-	await core.storeMessage(userDataUrl, username, userWebId, message, friendWebId, dataSync, true);
+	await messageManager.storeMessage(userDataUrl, username, userWebId, message, friendWebId, dataSync, true);
     
 });
 
@@ -220,7 +228,7 @@ $('#join-chat-btn').click(async () => {
       const chat = chatsToJoin[i];
       friendWebId = chat.friendWebId.id;
       userDataUrl=userDataUrl+friendWebId;
-      await core.joinExistingChat(chat.invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, chat.fileUrl);
+      await joinChat.joinExistingChat(chat.invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, chat.fileUrl);
       setUpChat();
     } else {
       $('#write-permission-url').text(userDataUrl);
@@ -234,36 +242,36 @@ $('#join-chat-btn').click(async () => {
  * @returns {Promise<void>}
  */
 async function checkForNotifications() {
-  const updates = await core.checkUserInboxForUpdates(await core.getInboxUrl(userWebId));
+  const updates = await checkNotifications.checkUserInboxForUpdates(await core.getInboxUrl(userWebId));
 
   updates.forEach(async (fileurl) => {
     let newMessageFound = false;
       
-      let message = await core.getNewMessage(fileurl, userWebId, dataSync);
+      let message = await messageManager.getNewMessage(fileurl, userWebId, dataSync);
       console.log(message);
       
       if (message) {
 			newMessageFound = true;
 			if (openChat) {
 				$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messageTx);
-				await core.storeMessage(userDataUrl, message.author, userWebId, message.messageTx, friendWebId, dataSync, false);
+				await messageManager.storeMessage(userDataUrl, message.author, userWebId, message.messageTx, friendWebId, dataSync, false);
 			} else {
 				friendMessages.push(message);
 			}
 		} 
 
     if (!newMessageFound) {
-      const response = await core.getResponseToInvitation(fileurl);
+      const response = await checkNotifications.getResponseToInvitation(fileurl);
 
       if (response) {
         await processResponseInNotification(response, fileurl);
       } else {
-        const chatToJoin = await core.getJoinRequest(fileurl, userWebId);
+        const chatToJoin = await joinChat.getJoinRequest(fileurl, userWebId);
 
         if (chatToJoin) {
             console.log(userWebId);
             console.log(fileurl);
-          chatsToJoin.push(await core.processChatToJoin(chatToJoin, fileurl));
+          chatsToJoin.push(await joinChat.processChatToJoin(chatToJoin, fileurl));
             console.log(chatToJoin);
         }
       }
@@ -315,7 +323,7 @@ async function processResponseInNotification(response, fileurl) {
       }
       $('#invitation-response .modal-body').append(text);
       $('#invitation-response').modal('show');
-      dataSync.executeSPARQLUpdateForUser(await core.getStorageForChat(userWebId, chatUrl), `INSERT DATA {
+      dataSync.executeSPARQLUpdateForUser(await joinChat.getStorageForChat(userWebId, chatUrl), `INSERT DATA {
     <${response.invitationUrl}> <${namespaces.schema}result> <${response.responseUrl}>}
   `);
     }
