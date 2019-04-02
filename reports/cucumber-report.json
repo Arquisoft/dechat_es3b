@@ -13,7 +13,7 @@
             "name": "a \"test3b\" with a \"SolidTest3b$\" that wants to talk with a friend",
             "result": {
               "status": "passed",
-              "duration": 11393333799
+              "duration": 10544655617
             },
             "line": 4,
             "match": {
@@ -26,7 +26,7 @@
             "name": "the chat is created",
             "result": {
               "status": "passed",
-              "duration": 798438323
+              "duration": 519962922
             },
             "line": 5,
             "match": {
@@ -38,7 +38,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 1506952219
+              "duration": 36905569
             },
             "hidden": true,
             "match": {
@@ -71,7 +71,7 @@
             "name": "a \"test3b\" and \"SolidTest3b$\" and the user make login",
             "result": {
               "status": "passed",
-              "duration": 11075904827
+              "duration": 8980698413
             },
             "line": 4,
             "match": {
@@ -84,7 +84,7 @@
             "name": "the login is successfull",
             "result": {
               "status": "passed",
-              "duration": 42022931
+              "duration": 7054355
             },
             "line": 5,
             "match": {
@@ -96,7 +96,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 51743388
+              "duration": 41791851
             },
             "hidden": true,
             "match": {
@@ -118,10 +118,10 @@
   {
     "elements": [
       {
-        "id": "make-login-in-the-chat;do-login-in-chat",
+        "id": "make-bad-login-in-the-chat;do-bad-login-in-chat",
         "keyword": "Scenario",
         "line": 9,
-        "name": "Do login in chat",
+        "name": "Do bad login in chat",
         "steps": [
           {
             "arguments": [],
@@ -129,7 +129,7 @@
             "name": "a \"userTest3\" and \"passwordInvalid\" and the user make bad login",
             "result": {
               "status": "passed",
-              "duration": 10393576207
+              "duration": 7245546144
             },
             "line": 4,
             "match": {
@@ -142,7 +142,7 @@
             "name": "the login is unsuccessfull",
             "result": {
               "status": "passed",
-              "duration": 11324423
+              "duration": 18902861
             },
             "line": 5,
             "match": {
@@ -154,7 +154,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 1431017563
+              "duration": 999969794
             },
             "hidden": true,
             "match": {
@@ -166,10 +166,10 @@
         "type": "scenario"
       },
       {
-        "id": "make-login-in-the-chat;do-login-in-chat",
+        "id": "make-bad-login-in-the-chat;do-bad-login-in-chat",
         "keyword": "Scenario",
         "line": 10,
-        "name": "Do login in chat",
+        "name": "Do bad login in chat",
         "steps": [
           {
             "arguments": [],
@@ -177,7 +177,7 @@
             "name": "a \"userInvalid\" and \"password\" and the user make bad login",
             "result": {
               "status": "passed",
-              "duration": 9794768986
+              "duration": 7422398133
             },
             "line": 4,
             "match": {
@@ -190,7 +190,7 @@
             "name": "the login is unsuccessfull",
             "result": {
               "status": "passed",
-              "duration": 17735757
+              "duration": 20582344
             },
             "line": 5,
             "match": {
@@ -202,7 +202,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 1487366690
+              "duration": 1111443551
             },
             "hidden": true,
             "match": {
@@ -214,20 +214,20 @@
         "type": "scenario"
       }
     ],
-    "id": "make-login-in-the-chat",
+    "id": "make-bad-login-in-the-chat",
     "keyword": "Feature",
     "line": 1,
-    "name": "Make login in the chat",
+    "name": "Make bad login in the chat",
     "tags": [],
     "uri": "C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/loginFailure.feature"
   },
   {
     "elements": [
       {
-        "id": "make-login-in-the-chat;do-login-in-chat",
+        "id": "make-logout-in-the-chat;do-logout-in-chat",
         "keyword": "Scenario",
         "line": 9,
-        "name": "Do login in chat",
+        "name": "Do logout in chat",
         "steps": [
           {
             "arguments": [],
@@ -235,7 +235,7 @@
             "name": "a \"test3b\" and \"SolidTest3b$\" and the user make login and log out",
             "result": {
               "status": "passed",
-              "duration": 12227831154
+              "duration": 8106898980
             },
             "line": 4,
             "match": {
@@ -248,7 +248,7 @@
             "name": "the main window is shows",
             "result": {
               "status": "passed",
-              "duration": 509296245
+              "duration": 472628553
             },
             "line": 5,
             "match": {
@@ -260,7 +260,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 49397474
+              "duration": 31814638
             },
             "hidden": true,
             "match": {
@@ -272,10 +272,10 @@
         "type": "scenario"
       }
     ],
-    "id": "make-login-in-the-chat",
+    "id": "make-logout-in-the-chat",
     "keyword": "Feature",
     "line": 1,
-    "name": "Make login in the chat",
+    "name": "Make logout in the chat",
     "tags": [],
     "uri": "C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/logout.feature"
   }
