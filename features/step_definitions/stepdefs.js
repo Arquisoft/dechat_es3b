@@ -112,8 +112,39 @@ module.exports = function () {
         return driver.findElement(by.xpath("//*[@id='nav-login-btn']"));
     });
     
+    //----------------------- Test create a chat -------------------------
+    this.Given(/^a "([^"]*)" with a "([^"]*)" that wants to talk with a friend$/, function (user,password) {
+        //Parent --> First window
+        var parent = driver.getWindowHandle();
+        return helpers.loadPage("https://arquisoft.github.io/dechat_es3b/")
+            .then(()=> {
+                    return driver.findElement(by.xpath("//*[@id='nav-login-btn']")).click()
+                        .then(() => {
+                            // select the newly opened window
+                            return driver.getAllWindowHandles().then(function gotWindowHandles(allhandles) {
+                                // Switching to Child window
+                                driver.switchTo().window(allhandles[allhandles.length - 1]);
+                                return driver.findElement(by.xpath("/html/body/div/div/div/button[4]")).click()
+                                    .then(() => {
+                                        driver.wait(until.elementsLocated(by.name("username")), 10000);
+                                        driver.findElement(By.name("username")).sendKeys(user); 
+                                        driver.findElement(By.name("password")).sendKeys(password); 
+                                        return driver.findElement(by.xpath("//*[@id='login']")).click().then(() => {
+                                            driver.switchTo().window(parent);                                           
+                                            return driver.wait(until.elementsLocated(by.xpath("//*[@id='user-name']")), 20000);
+                                        })
+                                })
+                            });
+                    })
+                })
+    });
     
-    
+    this.Then(/^the chat is created$/,function (){
+        return driver.wait(until.elementsLocated(by.xpath("//*[@id='user-name']")), 10000)
+            .then(() => {
+                    return driver.findElement(by.xpath("//*[@id='new-btn']")).click()
+                    });
+            });
 };
 
 //
