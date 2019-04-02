@@ -2,5 +2,12 @@
 == Runtime View
 
 === First Scenario: Login into deChat
+This is the first situation the User finds when enter in our page, to do any sort of actio he must be logged in.
+
+image::https://github.com/Arquisoft/dechat_es3b/blob/master/adocs/images/Login.png[]
 
 === Second Scenario: Sending a Message
+The activity of sending a message to a friend is draw below:
+
+image::https://github.com/Arquisoft/dechat_es3b/blob/master/adocs/images/message.png[]
+
