@@ -7,7 +7,7 @@ This is the first situation the User finds when enter in our page, to do any sor
 image::https://github.com/Arquisoft/dechat_es3b/blob/master/adocs/images/Login.png[]
 
 === Second Scenario: Sending a Message
-The activity of sending a message to a friend is draw below:
+The activity of sending a message to a friend is drawn below:
 
 image::https://github.com/Arquisoft/dechat_es3b/blob/master/adocs/images/message.png[]
 
