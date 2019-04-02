@@ -359,7 +359,7 @@ async function clearInbox() {
   const resources = await core.getAllResourcesInInbox(await core.getInboxUrl(userWebId));
 
   resources.forEach(async r => {
-    if (await core.fileContainsChessInfo(r)) {
+    if (await core.fileContainsChatInfo(r)) {
       dataSync.deleteFileForUser(r);
     }
   });}
