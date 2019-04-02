@@ -13,7 +13,7 @@
             "name": "a \"test3b\" and \"SolidTest3b$\" and the user make login",
             "result": {
               "status": "passed",
-              "duration": 10319819441
+              "duration": 8974976543
             },
             "line": 4,
             "match": {
@@ -26,7 +26,7 @@
             "name": "the login is successfull",
             "result": {
               "status": "passed",
-              "duration": 21665625
+              "duration": 11252683
             },
             "line": 5,
             "match": {
@@ -38,7 +38,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 30584100
+              "duration": 37484024
             },
             "hidden": true,
             "match": {
@@ -71,7 +71,7 @@
             "name": "a \"userTest3\" and \"passwordInvalid\" and the user make bad login",
             "result": {
               "status": "passed",
-              "duration": 7819875889
+              "duration": 7945948834
             },
             "line": 4,
             "match": {
@@ -84,7 +84,7 @@
             "name": "the login is unsuccessfull",
             "result": {
               "status": "passed",
-              "duration": 13514774
+              "duration": 84898440
             },
             "line": 5,
             "match": {
@@ -96,7 +96,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 885985119
+              "duration": 1551576686
             },
             "hidden": true,
             "match": {
@@ -119,7 +119,7 @@
             "name": "a \"userInvalid\" and \"password\" and the user make bad login",
             "result": {
               "status": "passed",
-              "duration": 6438188591
+              "duration": 7883665259
             },
             "line": 4,
             "match": {
@@ -132,7 +132,7 @@
             "name": "the login is unsuccessfull",
             "result": {
               "status": "passed",
-              "duration": 16922069
+              "duration": 9666086
             },
             "line": 5,
             "match": {
@@ -144,7 +144,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 871276055
+              "duration": 1125557169
             },
             "hidden": true,
             "match": {
@@ -177,7 +177,7 @@
             "name": "a \"test3b\" and \"SolidTest3b$\" and the user make login and log out",
             "result": {
               "status": "passed",
-              "duration": 8897911030
+              "duration": 8653888806
             },
             "line": 4,
             "match": {
@@ -190,11 +190,11 @@
             "name": "the main window is shows",
             "result": {
               "status": "passed",
-              "duration": 53614304
+              "duration": 848740860
             },
             "line": 5,
             "match": {
-              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:115"
+              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:109"
             }
           },
           {
@@ -202,7 +202,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 889761311
+              "duration": 1058348799
             },
             "hidden": true,
             "match": {
