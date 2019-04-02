@@ -76,8 +76,8 @@ async function setUpChat() {
 		if (nameThroughUrl === friendName) {
 			$("#messages").val($("#messages").val() + "\n" + friendName +" >> "+ friendMessages[i].messageTx);
 			await messageManager.storeMessage(userDataUrl, friendMessages[i].author, userWebId, friendMessages[i].messageTx, friendWebId, dataSync, false);
-			dataSync.deleteFileForUser(friendMessages[i].inboxUrl);
-			friendMessages[i] = "hi";
+      friendMessages[i] = "hi";
+      //dataSync.deleteFileForUser(friendMessages[i].inboxUrl);
 		}
 		i++;
 	}
@@ -146,6 +146,7 @@ $('#new-btn').click(async () => {
   } else {
     $('#login-required').modal('show');
   }
+  //clearInbox();
 });
 
 $('#start-new-chat-btn').click(async () => {
@@ -261,10 +262,10 @@ async function checkForNotifications() {
 		} 
 
     if (!newMessageFound) {
-      const response = await checkNotifications.getResponseToInvitation(fileurl);
+      //const response = await checkNotifications.getResponseToInvitation(fileurl);
 
       if (response) {
-        await processResponseInNotification(response, fileurl);
+        //await processResponseInNotification(response, fileurl);
       } else {
         const chatToJoin = await joinChat.getJoinRequest(fileurl, userWebId);
 
