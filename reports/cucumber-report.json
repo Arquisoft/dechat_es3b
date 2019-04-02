@@ -1,0 +1,282 @@
+[
+  {
+    "elements": [
+      {
+        "id": "start-a-chat;start-a-chat-with-a-real-friend",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Start a chat with a real friend",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "a \"test3b\" with a \"SolidTest3b$\" that wants to talk with a friend",
+            "result": {
+              "status": "passed",
+              "duration": 10544655617
+            },
+            "line": 4,
+            "match": {
+              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:116"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "the chat is created",
+            "result": {
+              "status": "passed",
+              "duration": 519962922
+            },
+            "line": 5,
+            "match": {
+              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:142"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 36905569
+            },
+            "hidden": true,
+            "match": {
+              "location": "1\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "start-a-chat",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Start a chat",
+    "tags": [],
+    "uri": "C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/createChat.feature"
+  },
+  {
+    "elements": [
+      {
+        "id": "make-login-in-the-chat;do-login-in-chat",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Do login in chat",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "a \"test3b\" and \"SolidTest3b$\" and the user make login",
+            "result": {
+              "status": "passed",
+              "duration": 8980698413
+            },
+            "line": 4,
+            "match": {
+              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "the login is successfull",
+            "result": {
+              "status": "passed",
+              "duration": 7054355
+            },
+            "line": 5,
+            "match": {
+              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:38"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 41791851
+            },
+            "hidden": true,
+            "match": {
+              "location": "1\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "make-login-in-the-chat",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Make login in the chat",
+    "tags": [],
+    "uri": "C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/login.feature"
+  },
+  {
+    "elements": [
+      {
+        "id": "make-bad-login-in-the-chat;do-bad-login-in-chat",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Do bad login in chat",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "a \"userTest3\" and \"passwordInvalid\" and the user make bad login",
+            "result": {
+              "status": "passed",
+              "duration": 7245546144
+            },
+            "line": 4,
+            "match": {
+              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:44"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "the login is unsuccessfull",
+            "result": {
+              "status": "passed",
+              "duration": 18902861
+            },
+            "line": 5,
+            "match": {
+              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:71"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 999969794
+            },
+            "hidden": true,
+            "match": {
+              "location": "1\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "id": "make-bad-login-in-the-chat;do-bad-login-in-chat",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "Do bad login in chat",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "a \"userInvalid\" and \"password\" and the user make bad login",
+            "result": {
+              "status": "passed",
+              "duration": 7422398133
+            },
+            "line": 4,
+            "match": {
+              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:44"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "the login is unsuccessfull",
+            "result": {
+              "status": "passed",
+              "duration": 20582344
+            },
+            "line": 5,
+            "match": {
+              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:71"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 1111443551
+            },
+            "hidden": true,
+            "match": {
+              "location": "1\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "make-bad-login-in-the-chat",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Make bad login in the chat",
+    "tags": [],
+    "uri": "C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/loginFailure.feature"
+  },
+  {
+    "elements": [
+      {
+        "id": "make-logout-in-the-chat;do-logout-in-chat",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Do logout in chat",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "a \"test3b\" and \"SolidTest3b$\" and the user make login and log out",
+            "result": {
+              "status": "passed",
+              "duration": 8106898980
+            },
+            "line": 4,
+            "match": {
+              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:77"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "the main window is shows",
+            "result": {
+              "status": "passed",
+              "duration": 472628553
+            },
+            "line": 5,
+            "match": {
+              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:109"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 31814638
+            },
+            "hidden": true,
+            "match": {
+              "location": "1\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "make-logout-in-the-chat",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Make logout in the chat",
+    "tags": [],
+    "uri": "C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/logout.feature"
+  }
+]
