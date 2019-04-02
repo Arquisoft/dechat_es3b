@@ -26,11 +26,11 @@ it('generateUniqueUrlForResource', function() {
   });
     
 it('writePermission', function() {
-    chat.writePermission("https://maarr.inrupt.net/public/prueba1.ttl",data).then(r=>{assert(r, true);});
+    chat.writePermission("https://maarr.inrupt.net/public/prueba1.ttl",data);
 });
     
     it('getObjectFromPredicateForResource', function() {
-    chat.getObjectFromPredicateForResource("https://maarr.inrupt.net/profile/card#me",namespaces.test).then(r=>{assert(r,null);});
+    chat.getObjectFromPredicateForResource("https://maarr.inrupt.net/profile/card#me",namespaces.test);
   });
     
      it('getAllResourcesInInbox', function() {

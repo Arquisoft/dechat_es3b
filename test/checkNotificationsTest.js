@@ -12,32 +12,17 @@ const CheckNotifications = require('../lib/checkNotifications');
 const chat = new CheckNotifications(c);
 
 describe('CheckNotifications Test', function () {
-
+    
     it('checkUserInboxForUpdates', function() {
-        try {
-            var result =chat.checkUserInboxForUpdates("https://test3b.inrupt.net/public/"); 
-            assert(result, undefined);
-
-        }catch(err) {
-            console.log('err', err)
-            console.log('err', result)
-        }
-        
-       // console.log(updates);
-		//
-  //  var result=chat.checkUserInboxForUpdates("https://test3b.inrupt.net/profile/card#me");
-    //assert(result, "Promise { <pending> }");
+    chat.checkUserInboxForUpdates("https://maarr.inrupt.net/public/").then(r=>{assert.notEqual(r,null);});
   });
   
     it('getResponseToInvitation', function() {
-    var result=chat.getResponseToInvitation("https://test3b.inrupt.net/profile/card#me");
-    assert(result, "Promise { <pending> }");
+    chat.getResponseToInvitation("https://maarr.inrupt.net/public/prueba1.ttl").then(r=>{assert.equal(r,null);});
   });
 
-    
     it('getChatFromInvitation', function() {
-    var result=chat.getChatFromInvitation("https://test3b.inrupt.net/public/chat_OtherTest#jtwuu2cu");
-    assert(result, "Promise { <pending> }");
+        chat.getChatFromInvitation("https://maarr.inrupt.net/public/prueba1.ttl#jtd43qtk").then(r=>{assert.notEqual(r,null);});
   });
 
 
