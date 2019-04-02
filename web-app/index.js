@@ -244,23 +244,6 @@ $('#join-chat-btn').click(async () => {
  */
 async function checkForNotifications() {
   const updates = await checkNotifications.checkUserInboxForUpdates(await core.getInboxUrl(userWebId));
-  if(friendWebId!=undefined){
-    const myMessages =  await(checkNotifications.checkUserInboxForUpdates(await core.getInboxUrl(friendWebId)));
-    myMessages.forEach(async (fileurl) => {
-      let message = await messageManager.getNewMessage(fileurl, userWebId, dataSync);
-      console.log(message);
-      
-      if (message) {
-			newMessageFound = true;
-			if (openChat) {
-				$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messageTx);
-				await messageManager.storeMessage(userDataUrl, message.author, userWebId, message.messageTx, friendWebId, dataSync, false);
-			} else {
-				friendMessages.push(message);
-			}
-		} 
-  });
-  }
   updates.forEach(async (fileurl) => {   
       let message = await messageManager.getNewMessage(fileurl, userWebId, dataSync);
       console.log(message);
