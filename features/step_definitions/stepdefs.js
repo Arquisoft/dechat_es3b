@@ -73,31 +73,45 @@ module.exports = function () {
     });
     
     
+    //----------------------- Test logout -------------------------
+    this.Given(/^a "([^"]*)" and "([^"]*)" and the user make login and log out$/, function (user,password) {
+        //Parent --> First window
+        var parent = driver.getWindowHandle();
+        return helpers.loadPage("https://arquisoft.github.io/dechat_es3b/")
+            .then(()=> {
+                    return driver.findElement(by.xpath("//*[@id='nav-login-btn']")).click()
+                        .then(() => {
+                            // select the newly opened window
+                            return driver.getAllWindowHandles().then(function gotWindowHandles(allhandles) {
+                                // Switching to Child window
+                                driver.switchTo().window(allhandles[allhandles.length - 1]);
+                                return driver.findElement(by.xpath("/html/body/div/div/div/button[4]")).click()
+                                    .then(() => {
+                                        driver.wait(until.elementsLocated(by.name("username")), 10000);
+                                        driver.findElement(By.name("username")).sendKeys(user); 
+                                        driver.findElement(By.name("password")).sendKeys(password); 
+                                        return driver.findElement(by.xpath("//*[@id='login']")).click().then(() => {
+                                            driver.switchTo().window(parent);                                           
+                                            // open the menu
+                                           return driver.wait(until.elementsLocated(by.xpath("//*[@id='user-menu']")), 12000).then(() => {
+                                               driver.findElement(By.xpath("//*[@id='user-menu']")).click();
+                                               driver.findElement(By.xpath("//*[@id='logout-btn']")).click();
+                                            });
+                                        })
+                                })
+                            });
+                    })
+                })
+    });
+    
+    this.Then(/^the main window is shows$/,function (){
+        return driver.findElement(by.xpath("//*[@id='nav-login-btn']"));
+    });
+    
+    
+    
 };
 
-
-////----------------------- Test Login -------------------------
-//function loginUser(user,password) {
-//  if (user === "userTest3" && password === "passwordTest3") {
-//    return "Login in!";
-//  } else {
-//    return "error";
-//  }
-//}
-//
-//Given('a {string} and {string}', function (user,password) {
-//    this.user = user;
-//    this.password = password;
-//});
-//
-//When('the user make login', function () {
-//  this.reply = loginUser(this.user,this.password);
-//});
-//
-//Then('the login is successfull {string}', function (expectedReply) {
-//  assert.equal(this.reply, expectedReply);
-//});
-//
 //
 ////------------------ Test create a chat ------------------
 //
