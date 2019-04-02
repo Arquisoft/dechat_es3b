@@ -1,9 +1,11 @@
 require("chai");
 var assert = require('assert');
 const auth = require('solid-auth-client');
+const namespaces = require('../lib/namespaces');
 
 const semanticChat=require("../lib/semanticchat");
 const DataSync=require("../lib/datasync");
+const data=new DataSync(auth.fetch);
 
 const Core = require('../lib/core');
 const chat = new Core(auth.fetch);
@@ -11,32 +13,36 @@ const chat = new Core(auth.fetch);
 describe('Core test', function () {
 
 it('getInboxUrl', function() {
-    assert(chat.getInboxUrl(25), null);
-  });
-it('getFormattedName ', function() {
-    assert(chat.getFormattedName("https://alba.inrupt.net/profile/card#me"), "alba");
+    chat.getInboxUrl("https://maarr.inrupt.net/profile/card#me").then(r=>{assert(r,"https://maarr.inrupt.net/inbox/");});
   });
     
 it('getFormattedName ', function() {
-    assert(chat.getFormattedName("https://maarr.inrupt.net/profile/card#me"), "Mar Rodriguez");
+    chat.getFormattedName("https://alba.inrupt.net/profile/card#me").then(r=>{assert(r, "alba");});
+    chat.getFormattedName("https://maarr.inrupt.net/profile/card#me").then(r=>{assert(r, "Mar Rodriguez");});
   });
     
 it('generateUniqueUrlForResource', function() {
-    assert(chat.generateUniqueUrlForResource("baseUrlTest"), "baseUrlTest#");
+    chat.generateUniqueUrlForResource("baseUrlTest").then(r=>{assert(r, "baseUrlTest#");});
   });
     
 it('writePermission', function() {
-    assert(chat.writePermission("https://alba.inrupt.net/profile/card#me",new DataSync(auth.fecth)), false);
-  });
+    chat.writePermission("https://maarr.inrupt.net/public/prueba1.ttl",data);
+});
     
     it('getObjectFromPredicateForResource', function() {
-    var result=chat.getObjectFromPredicateForResource("https://test3b.inrupt.net/profile/card#me","");
-    assert(result, "Promise { <pending> }");
+    chat.getObjectFromPredicateForResource("https://maarr.inrupt.net/profile/card#me",namespaces.test);
+  });
+    
+     it('getAllResourcesInInbox', function() {
+    chat.getAllResourcesInInbox("https://maarr.inrupt.net/inbox/").then(r=>{assert(r,null);});
+  });
+    
+    it('fileContainsChatInfo', function() {
+    chat.fileContainsChatInfo("https://maarr.inrupt.net/public/prueba1.ttl").then(r=>{assert(r,true);});
   });
   
     it('getDefaultDataUrl', function () {
-		var s= chat.getDefaultDataUrl("https://test3b.inrupt.net/profile/card#me");
-		assert(s.includes("https://test3b.inrupt.net/public/chat_"));
+		assert(chat.getDefaultDataUrl("https://maarr.inrupt.net/profile/card#me"),"https://maarr.inrupt.net/public/chat_");
 	})
 
 });
