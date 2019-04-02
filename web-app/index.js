@@ -17,7 +17,7 @@ let core = new Core(auth.fetch);
 let joinChat = new JoinChat(core);
 let createChat = new CreateChat(core,joinChat);
 let checkNotifications = new CheckNotifications(core);
-let messageManager = new MessageManager(core);
+let messageManager = new MessageManager(core,auth.fetch);
 let dataSync = new DataSync(auth.fetch);
 let userDataUrl;
 let chatsToJoin = [];
@@ -243,7 +243,22 @@ $('#join-chat-btn').click(async () => {
  * @returns {Promise<void>}
  */
 async function checkForNotifications() {
-  const updates = await checkNotifications.checkUserInboxForUpdates(await core.getInboxUrl(userWebId));
+  var updates = await checkNotifications.checkUserInboxForUpdates(await core.getPublicUrl(userWebId));
+  updates.forEach(async (fileurl) => {   
+      let message = await messageManager.getNewMessage(fileurl, userWebId, dataSync);
+      console.log(message);
+      
+      if (message) {
+			newMessageFound = true;
+			if (openChat) {
+				$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messageTx);
+				await messageManager.storeMessage(userDataUrl, message.author, userWebId, message.messageTx, friendWebId, dataSync, false);
+			} else {
+				friendMessages.push(message);
+			}
+		} 
+  });
+  updates = await checkNotifications.checkUserInboxForUpdates(await core.getInboxUrl(userWebId));
   updates.forEach(async (fileurl) => {   
       let message = await messageManager.getNewMessage(fileurl, userWebId, dataSync);
       console.log(message);
