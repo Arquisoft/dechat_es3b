@@ -5,9 +5,9 @@
             <property name="URI" value="C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/createChat.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;test3b&quot; with a &quot;SolidTest3b$&quot; that wants to talk with a friend" classname="start-a-chat;start-a-chat-with-a-real-friend" time="9.587748237">
+        <testcase name="Given a &quot;test3b&quot; with a &quot;SolidTest3b$&quot; that wants to talk with a friend" classname="start-a-chat;start-a-chat-with-a-real-friend" time="11.393333799">
         </testcase>
-        <testcase name="Then the chat is created" classname="start-a-chat;start-a-chat-with-a-real-friend" time="0.635323124">
+        <testcase name="Then the chat is created" classname="start-a-chat;start-a-chat-with-a-real-friend" time="0.798438323">
         </testcase>
     </testsuite>
     <testsuite name="make-login-in-the-chat;do-login-in-chat" tests="2" failures="0" skipped="0">
@@ -15,19 +15,9 @@
             <property name="URI" value="C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/login.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login" classname="make-login-in-the-chat;do-login-in-chat" time="8.008998522">
+        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login" classname="make-login-in-the-chat;do-login-in-chat" time="11.075904827">
         </testcase>
-        <testcase name="Then the login is successfull" classname="make-login-in-the-chat;do-login-in-chat" time="0.008795761">
-        </testcase>
-    </testsuite>
-    <testsuite name="make-login-in-the-chat;do-login-in-chat" tests="2" failures="0" skipped="0">
-        <properties>
-            <property name="URI" value="C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/loginFailure.feature">
-            </property>
-        </properties>
-        <testcase name="Given a &quot;userTest3&quot; and &quot;passwordInvalid&quot; and the user make bad login" classname="make-login-in-the-chat;do-login-in-chat" time="7.099875209">
-        </testcase>
-        <testcase name="Then the login is unsuccessfull" classname="make-login-in-the-chat;do-login-in-chat" time="0.010889072">
+        <testcase name="Then the login is successfull" classname="make-login-in-the-chat;do-login-in-chat" time="0.042022931">
         </testcase>
     </testsuite>
     <testsuite name="make-login-in-the-chat;do-login-in-chat" tests="2" failures="0" skipped="0">
@@ -35,9 +25,19 @@
             <property name="URI" value="C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/loginFailure.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;userInvalid&quot; and &quot;password&quot; and the user make bad login" classname="make-login-in-the-chat;do-login-in-chat" time="7.098282193">
+        <testcase name="Given a &quot;userTest3&quot; and &quot;passwordInvalid&quot; and the user make bad login" classname="make-login-in-the-chat;do-login-in-chat" time="10.393576207">
         </testcase>
-        <testcase name="Then the login is unsuccessfull" classname="make-login-in-the-chat;do-login-in-chat" time="0.04224457">
+        <testcase name="Then the login is unsuccessfull" classname="make-login-in-the-chat;do-login-in-chat" time="0.011324423">
+        </testcase>
+    </testsuite>
+    <testsuite name="make-login-in-the-chat;do-login-in-chat" tests="2" failures="0" skipped="0">
+        <properties>
+            <property name="URI" value="C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/loginFailure.feature">
+            </property>
+        </properties>
+        <testcase name="Given a &quot;userInvalid&quot; and &quot;password&quot; and the user make bad login" classname="make-login-in-the-chat;do-login-in-chat" time="9.794768986">
+        </testcase>
+        <testcase name="Then the login is unsuccessfull" classname="make-login-in-the-chat;do-login-in-chat" time="0.017735757">
         </testcase>
     </testsuite>
     <testsuite name="make-login-in-the-chat;do-login-in-chat" tests="2" failures="0" skipped="0">
@@ -45,9 +45,9 @@
             <property name="URI" value="C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/logout.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login and log out" classname="make-login-in-the-chat;do-login-in-chat" time="9.47859283">
+        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login and log out" classname="make-login-in-the-chat;do-login-in-chat" time="12.227831154">
         </testcase>
-        <testcase name="Then the main window is shows" classname="make-login-in-the-chat;do-login-in-chat" time="0.852970905">
+        <testcase name="Then the main window is shows" classname="make-login-in-the-chat;do-login-in-chat" time="0.509296245">
         </testcase>
     </testsuite>
 </testsuites>
