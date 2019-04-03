@@ -12,7 +12,7 @@ Our application consists on a decentralized chat in which a user can have conver
 ****
 The following diagram shows how all parts of the system communicate when chatting, that is, when one user sends a message to another:
 
-image::images/3-Business context1.PNG[Business context diagram of dechat_es3b]
+image::https://raw.githubusercontent.com/Arquisoft/dechat_es3b/master/adocs/images/3-Business%20context1.PNG[Business context diagram of dechat_es3b]
 
 As you can see in the diagram, each user has his own SOLID Pod, where all the messages he sends will be stored. However, sent messages will not be stored in the receiver's Pod, keeping the SOLID philosophy in which each user has full control over their data. 
 This way to see the message history of the conversation both users will have to allow the other one 
@@ -35,7 +35,7 @@ the visualization of your sent messages.
 ****
 For now the technical context of our application shows in a very general way the technologies to use, as the application is implemented will be added to the project new technologies and updating this section.
 
-image::images/TechnicalContext.png[Technical context diagram of dechat_es3b]
+image::https://raw.githubusercontent.com/Arquisoft/dechat_es3b/master/adocs/images/TechnicalContext.png[Technical context diagram of dechat_es3b]
 
 The application consists of a device responsible for logging in or out and another that will handle the char itself, ie sending and receiving messages. The whole application itself will use a Pod server that will identify the user and save the messages sent by him.
 
