@@ -22,6 +22,7 @@ The documentation is done in http://asciidoc.org/[AsciiDoc]
 using the https://arc42.org/[arc42] templates.
 The source documents are located at
  https://github.com/Arquisoft/dechat_es3b/tree/master/adocs[adocs].
+The HTML documents can be read at: https://arquisoft.github.io/dechat_es3b/doc
 
 == Compile and run
 You can run the game locally by doing the following:
