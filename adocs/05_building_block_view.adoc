@@ -3,3 +3,10 @@
 
 == Building Block View(TO DO)
 
+We are going to partition our system in 2 totally different boxes. We begin the decomposition by displaying a white box description of the overall system with the Login, and the application itself. Then, in the next box we are gonna show all the parts that our application has and uses to send messages.
+
+
+image:https://github.com/Arquisoft/dechat_es3b/blob/master/adocs/images/WhiteBox.png[WhiteBox of the system]
+
+First of all the chat itself is being created in the createChat.js after creating it the chat is gonna be a semanticChat type variable. When the user sends a message the MessageManager file takes place distributing it to the two pods. Messagemanager stores the message in the sender's pods and then calls the dataSync file to store it into the reveiver's POD. After all that process the MessageManageer file gets the new message through the rdjsFactory file which gets the message from the pod.
+
