@@ -1,7 +1,7 @@
 [[section-building-block-view]]
 
 
-== Building Block View(TO DO)
+== Building Block View
 
 We are going to partition our system in 2 totally different boxes. We begin the decomposition by displaying a white box description of the overall system with the Login, and the application itself. Then, in the next box we are gonna show all the parts that our application has and uses to send messages.
 
