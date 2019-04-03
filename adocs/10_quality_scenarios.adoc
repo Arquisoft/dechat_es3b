@@ -10,7 +10,7 @@ The quality goals are further explained in section 1.2.
 === Quality Tree
 
 ****
-image::images/MindMap10.PNG[Quality tree diagram of dechat_es3b]
+image::https://raw.githubusercontent.com/Arquisoft/dechat_es3b/master/adocs/images/MindMap10.PNG[Quality tree diagram of dechat_es3b]
 ****
 
 === Quality Scenarios
