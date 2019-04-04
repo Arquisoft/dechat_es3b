@@ -13,7 +13,6 @@ let userWebId;
 let friendWebId;
 let semanticChat;
 let refreshIntervalIdInbox;
-let refreshIntervalIdPublic;
 let core = new Core(auth.fetch);
 let joinChat = new JoinChat(core);
 let createChat = new CreateChat(core,joinChat);
@@ -131,7 +130,6 @@ auth.trackSession(async session => {
     checkForNotificationsPublic();
     // refresh every 5sec
     refreshIntervalIdInbox = setInterval(checkForNotificationsInbox, 5000);
-    refreshIntervalIdPublic = setInterval(checkForNotificationsPublic, 5000);
   } else {
     $('#nav-login-btn').removeClass('hidden');
     $('#user-menu').addClass('hidden');
@@ -142,9 +140,7 @@ auth.trackSession(async session => {
 
     userWebId = null;
     clearInterval(refreshIntervalIdInbox);
-    clearInterval(refreshIntervalIdPublic);
     refreshIntervalIdInbox = null;
-    refreshIntervalIdPublic = null;
   }
 });
 
@@ -267,6 +263,7 @@ $('#join-chat-btn').click(async () => {
  */
 async function checkForNotificationsInbox() {
   var updates = await checkNotifications.checkUserInboxForUpdates(await core.getInboxUrl(userWebId));
+  console.log(updates.length);
   updates.forEach(async (fileurl) => {   
       let message = await messageManager.getNewMessage(fileurl, userWebId,"/inbox/", dataSync,);
       console.log(message);
