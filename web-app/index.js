@@ -12,7 +12,8 @@ const JoinChat = require('../lib/joinChat');
 let userWebId;
 let friendWebId;
 let semanticChat;
-let refreshIntervalId;
+let refreshIntervalIdInbox;
+let refreshIntervalIdPublic;
 let core = new Core(auth.fetch);
 let joinChat = new JoinChat(core);
 let createChat = new CreateChat(core,joinChat);
@@ -23,6 +24,7 @@ let userDataUrl;
 let chatsToJoin = [];
 let chatName;
 let friendMessages = [];
+let myMessages = [];
 let openChat=false;
 
 /*Log in-out*/
@@ -57,7 +59,7 @@ async function setUpNewChat() {
  * @returns {Promise<void>}
  */
 async function setUpChat() {
-    
+  const username = $('#user-name').text();
     if (semanticChat) {
 		semanticChat.getMessages().forEach(async(message) => {
 			$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messagetext);
@@ -86,6 +88,23 @@ async function setUpChat() {
 		if (friendMessages[i] == "hi") {
 			friendMessages.splice(i, 1);
 		}
+  }
+  i = 0;
+  while (i < myMessages.length) {
+		var nameThroughUrl = myMessages[i].author.split("/").pop();
+		if (nameThroughUrl === username) {
+			$("#messages").val($("#messages").val() + "\n" + username +" >> "+ myMessages[i].messageTx);
+			await messageManager.storeMessage(userDataUrl, myMessages[i].author, userWebId, myMessages[i].messageTx, friendWebId, dataSync, false);
+      myMessages[i] = "hi";
+      //dataSync.deleteFileForUser(myMessages[i].inboxUrl);
+		}
+		i++;
+	}
+	i = myMessages.length;
+	while (i--) {
+		if (myMessages[i] == "hi") {
+			myMessages.splice(i, 1);
+		}
 	}
 	openChat = true;
 };
@@ -108,9 +127,11 @@ auth.trackSession(async session => {
     }
 
     
-    checkForNotifications();
+    checkForNotificationsInbox();
+    checkForNotificationsPublic();
     // refresh every 5sec
-    refreshIntervalId = setInterval(checkForNotifications, 5000);
+    refreshIntervalIdInbox = setInterval(checkForNotificationsInbox, 5000);
+    refreshIntervalIdPublic = setInterval(checkForNotificationsPublic, 5000);
   } else {
     $('#nav-login-btn').removeClass('hidden');
     $('#user-menu').addClass('hidden');
@@ -120,8 +141,10 @@ auth.trackSession(async session => {
     $('#chat-options').removeClass('hidden');
 
     userWebId = null;
-    clearInterval(refreshIntervalId);
-    refreshIntervalId = null;
+    clearInterval(refreshIntervalIdInbox);
+    clearInterval(refreshIntervalIdPublic);
+    refreshIntervalIdInbox = null;
+    refreshIntervalIdPublic = null;
   }
 });
 
@@ -242,25 +265,10 @@ $('#join-chat-btn').click(async () => {
  * The necessarily data is stored and the UI is updated.
  * @returns {Promise<void>}
  */
-async function checkForNotifications() {
-  var updates = await checkNotifications.checkUserInboxForUpdates(await core.getPublicUrl(userWebId));
+async function checkForNotificationsInbox() {
+  var updates = await checkNotifications.checkUserInboxForUpdates(await core.getInboxUrl(userWebId));
   updates.forEach(async (fileurl) => {   
-      let message = await messageManager.getNewMessage(fileurl, userWebId, dataSync);
-      console.log(message);
-      
-      if (message) {
-			newMessageFound = true;
-			if (openChat) {
-				$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messageTx);
-				await messageManager.storeMessage(userDataUrl, message.author, userWebId, message.messageTx, friendWebId, dataSync, false);
-			} else {
-				friendMessages.push(message);
-			}
-		} 
-  });
-  updates = await checkNotifications.checkUserInboxForUpdates(await core.getInboxUrl(userWebId));
-  updates.forEach(async (fileurl) => {   
-      let message = await messageManager.getNewMessage(fileurl, userWebId, dataSync);
+      let message = await messageManager.getNewMessage(fileurl, userWebId,"/inbox/", dataSync,);
       console.log(message);
       
       if (message) {
@@ -274,6 +282,29 @@ async function checkForNotifications() {
 		} 
   });
   
+}
+
+/**
+ * This method checks if a new move has been made by the opponent.
+ * The necessarily data is stored and the UI is updated.
+ * @returns {Promise<void>}
+ */
+async function checkForNotificationsPublic() {
+  var updates = await checkNotifications.checkUserInboxForUpdates(await core.getPublicUrl(userWebId));
+  updates.forEach(async (fileurl) => {   
+      let message = await messageManager.getNewMessage(fileurl, userWebId,"/public/", dataSync);
+      console.log(message);
+      
+      if (message) {
+			newMessageFound = true;
+			if (openChat) {
+				$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messageTx);
+				await messageManager.storeMessage(userDataUrl, message.author, userWebId, message.messageTx, friendWebId, dataSync, false);
+			} else {
+				myMessages.push(message);
+			}
+		} 
+  });
 }
 
 /////////////////
