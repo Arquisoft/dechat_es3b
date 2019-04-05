@@ -49,7 +49,7 @@ function setUpForEveryChatOption() {
  */
 async function setUpNewChat() {
   setUpForEveryChatOption();
-  semanticChat = await createChat.setUpNewChat(userDataUrl, userWebId, friendWebId, chatName, dataSync);
+  //semanticChat = await createChat.setUpNewChat(userDataUrl, userWebId, friendWebId, chatName, dataSync);
   setUpChat();
 }
 
@@ -59,11 +59,11 @@ async function setUpNewChat() {
  */
 async function setUpChat() {
   const username = $('#user-name').text();
-    if (semanticChat) {
+    /*if (semanticChat) {
 		semanticChat.getMessages().forEach(async(message) => {
 			$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messagetext);
 		});
-	}
+	}*/
     
     $('#chat').removeClass('hidden');
     $('#chat-loading').addClass('hidden');
@@ -77,33 +77,21 @@ async function setUpChat() {
 		if (nameThroughUrl === friendName) {
 			$("#messages").val($("#messages").val() + "\n" + friendName +" >> "+ friendMessages[i].messageTx);
 			await messageManager.storeMessage(userDataUrl, friendMessages[i].author, userWebId, friendMessages[i].messageTx, friendWebId, dataSync, false);
-      friendMessages[i] = "hi";
       //dataSync.deleteFileForUser(friendMessages[i].inboxUrl);
 		}
 		i++;
-	}
-	i = friendMessages.length;
-	while (i--) {
-		if (friendMessages[i] == "hi") {
-			friendMessages.splice(i, 1);
-		}
   }
+
   i = 0;
   while (i < myMessages.length) {
-		var nameThroughUrl = myMessages[i].author.split("/").pop();
-		if (nameThroughUrl === username) {
+    var nameThroughUrl = myMessages[i].author.split("/").pop();
+    var friendThroughUrl = myMessages[i].friend.split("/").pop();
+		if (nameThroughUrl === username && friendName===friendThroughUrl) {
 			$("#messages").val($("#messages").val() + "\n" + username +" >> "+ myMessages[i].messageTx);
 			await messageManager.storeMessage(userDataUrl, myMessages[i].author, userWebId, myMessages[i].messageTx, friendWebId, dataSync, false);
-      myMessages[i] = "hi";
       //dataSync.deleteFileForUser(myMessages[i].inboxUrl);
 		}
 		i++;
-	}
-	i = myMessages.length;
-	while (i--) {
-		if (myMessages[i] == "hi") {
-			myMessages.splice(i, 1);
-		}
 	}
 	openChat = true;
 };
@@ -171,17 +159,11 @@ $('#new-btn').click(async () => {
 $('#start-new-chat-btn').click(async () => {
   var elt = document.getElementById("possible-friends");
   const dataUrl = core.getDefaultDataUrl(userWebId)+elt.options[elt.selectedIndex].text;
-
-  if (await core.writePermission(dataUrl, dataSync)) {
     $('#new-chat-options').addClass('hidden');
     friendWebId = $('#possible-friends').val();
     userDataUrl = dataUrl;
     chatName = $('#chat-name').val();
     setUpNewChat();
-  } else {
-    $('#write-permission-url').text(dataUrl);
-    $('#write-permission').modal('show');
-  }
 });
 
 $('#write-chat').click(async() => {
@@ -226,6 +208,7 @@ $('#join-btn').click(async () => {
   } else {
     $('#login-required').modal('show');
   }
+  clearInbox();
 });
 
 
@@ -262,7 +245,7 @@ $('#join-chat-btn').click(async () => {
  * @returns {Promise<void>}
  */
 async function checkForNotificationsInbox() {
-  var updates = await checkNotifications.checkUserInboxForUpdates(await core.getInboxUrl(userWebId));
+  var updates = await checkNotifications.checkUserForUpdates(await core.getInboxUrl(userWebId));
   console.log(updates.length);
   updates.forEach(async (fileurl) => {   
       let message = await messageManager.getNewMessage(fileurl, userWebId,"/inbox/", dataSync,);
@@ -287,7 +270,7 @@ async function checkForNotificationsInbox() {
  * @returns {Promise<void>}
  */
 async function checkForNotificationsPublic() {
-  var updates = await checkNotifications.checkUserInboxForUpdates(await core.getPublicUrl(userWebId));
+  var updates = await checkNotifications.checkUserForUpdates(await core.getPublicUrl(userWebId));
   updates.forEach(async (fileurl) => {   
       let message = await messageManager.getNewMessage(fileurl, userWebId,"/public/", dataSync);
       console.log(message);
@@ -382,10 +365,19 @@ $("#messages").val("");
 });
 
 async function clearInbox() {
-  const resources = await core.getAllResourcesInInbox(await core.getInboxUrl(userWebId));
+  var resources = await core.getAllResourcesInInbox(await core.getInboxUrl(userWebId));
 
   resources.forEach(async r => {
     if (await core.fileContainsChessInfo(r)) {
       dataSync.deleteFileForUser(r);
     }
-  });}
+  });
+
+  resources = await core.getAllResourcesInInbox(await core.getPublicUrl(userWebId));
+
+  resources.forEach(async r => {
+    if (await core.fileContainsChessInfo(r)) {
+      dataSync.deleteFileForUser(r);
+    }
+  });
+}
