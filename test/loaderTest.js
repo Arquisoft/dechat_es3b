@@ -14,3 +14,11 @@ describe("Loader tests", function () {
 
 });
 
+describe("Loader tests", function () {
+  it("findWebIdOfFriend", function () {
+      var friendWebId = loader.findWebIdOfFriend("https://alba.inrupt.net/inbox/bad", 'https://alba.inrupt.net/profile/card#me');
+      assert(friendWebId, "Promise { <pending> }");      
+  });
+
+});
+

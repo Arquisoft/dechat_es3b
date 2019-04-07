@@ -13,13 +13,13 @@ const chat = new MessageManager(c);
 describe('MessageManager Test', function () {
 
     it('getNewMessage', function() {
-        var result=chat.getNewMessage("no",  "https://urlIncorrect.inrupt.net/profile/card#me");
+        var result=chat.getNewMessage("https://antoniete.solid.community/inbox/14532d20-594d-11e9-b3ac-bb6f656d2471.txt",  "/inbox/");
         assert(result, null);
   });
     
 
     it('storeMessage', function() {
-        var result=chat.storeMessage("https://test3b.inrupt.net/profile/card#me","userName",1234,"hola",1234,new DataSync(auth.fecth),true);    
+        var result=chat.storeMessage("https://antoniete.solid.community/public/chat_Josejuanjo","Antoniete","holaa","https://josejuanjo.solid.community/inbox",new DataSync(auth.fecth),true);    
         assert(result, null);
     });
 

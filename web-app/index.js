@@ -6,13 +6,11 @@ const { default: data } = require('@solid/query-ldflex');
 const Core = require('../lib/core');
 const CheckNotifications = require('../lib/checkNotifications');
 const MessageManager = require('../lib/messageManager');
-const JoinChat = require('../lib/joinChat');
 
 let userWebId;
 let friendWebId;
 let refreshIntervalIdInbox;
 let core = new Core(auth.fetch);
-let joinChat = new JoinChat(core);
 let checkNotifications = new CheckNotifications(core);
 let messageManager = new MessageManager(core,auth.fetch);
 let dataSync = new DataSync(auth.fetch);
@@ -79,8 +77,6 @@ async function setUpChat() {
 		var nameThroughUrl = friendMessages[i].author.split("/").pop();
 		if (nameThroughUrl === friendName) {
 			$("#messages").val($("#messages").val() + "\n" + friendName +" >> "+ friendMessages[i].messageTx);
-			//await messageManager.storeMessage(userDataUrl, friendMessages[i].author, userDataUrl, friendMessages[i].messageTx, friendWebId, dataSync, false);
-      //dataSync.deleteFileForUser(friendMessages[i].inboxUrl);
 		}
 		i++;
   }
@@ -175,7 +171,7 @@ $('#write-chat').click(async() => {
     const valueMes = $('#messages').val();
 	$('#messages').val( valueMes + "\n" + messageText);
 	document.getElementById("message").value="";
-	await messageManager.storeMessage(userDataUrl, username, userDataUrl, message, friendWebId, dataSync, true);
+	await messageManager.storeMessage(userDataUrl, username, message, friendWebId, dataSync, true);
     
 });
 
@@ -192,14 +188,13 @@ async function checkForNotificationsInbox() {
   var updates = await checkNotifications.checkUserForUpdates(await core.getInboxUrl(userWebId));
   console.log(updates.length);
   updates.forEach(async (fileurl) => {   
-      let message = await messageManager.getNewMessage(fileurl, userWebId,"/inbox/", dataSync,);
+      let message = await messageManager.getNewMessage(fileurl,"/inbox/", dataSync,);
       console.log(message);
       
       if (message) {
 			newMessageFound = true;
 			if (openChat) {
 				$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messageTx);
-				//await messageManager.storeMessage(userDataUrl, message.author, userDataUrl, message.messageTx, friendWebId, dataSync, false);
 			} else {
 				friendMessages.push(message);
 			}
@@ -217,7 +212,7 @@ async function checkForNotificationsPublic() {
   const psFriendname = (await core.getFormattedName(friendWebId)).replace(/ /g,"%20");
   var updates = await checkNotifications.checkUserForUpdates(await core.getPublicUrl(userWebId)+"/chat_"+psFriendname);
   updates.forEach(async (fileurl) => {   
-      let message = await messageManager.getNewMessage(fileurl, userWebId,"/public/chat_"+await psFriendname, dataSync);
+      let message = await messageManager.getNewMessage(fileurl,"/public/chat_"+await psFriendname, dataSync);
       console.log(message);
       
       if (message) {
