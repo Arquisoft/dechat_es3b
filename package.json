@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack --config webpack.config.js && http-server -c-1 -p 8080",
     "test": "nyc mocha \"./test/*\"",
-    "cucumber": "cucumber-js",
+    "cucumber": "node ./node_modules/selenium-cucumber-js/index.js -b firefox -s ./features/step_definitions -x 50000",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "build:web": "webpack --config webpack.config.js",
     "doc": "jsdoc -c jsdoc.json ./lib"
@@ -55,6 +55,8 @@
     "n3": "^1.0.2",
     "prefix-ns": "^0.1.2",
     "q": "^1.5.1",
+    "selenium-cucumber-js": "^1.6.2",
+    "selenium-webdriver": "^4.0.0-alpha.1",
     "semantic-chess": "0.2.0",
     "solid-auth-client": "^2.2.10",
     "solid-file-client": "^0.4.9",

@@ -13,11 +13,11 @@
             "name": "a \"test3b\" with a \"SolidTest3b$\" that wants to talk with a friend",
             "result": {
               "status": "passed",
-              "duration": 10544655617
+              "duration": 5332171101
             },
             "line": 4,
             "match": {
-              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:116"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\features\\step_definitions\\stepdefs.js:116"
             }
           },
           {
@@ -26,11 +26,11 @@
             "name": "the chat is created",
             "result": {
               "status": "passed",
-              "duration": 519962922
+              "duration": 448309100
             },
             "line": 5,
             "match": {
-              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:142"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\features\\step_definitions\\stepdefs.js:142"
             }
           },
           {
@@ -38,11 +38,11 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 36905569
+              "duration": 14068999
             },
             "hidden": true,
             "match": {
-              "location": "1\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
             }
           }
         ],
@@ -55,7 +55,7 @@
     "line": 1,
     "name": "Start a chat",
     "tags": [],
-    "uri": "C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/createChat.feature"
+    "uri": "C:/Users/Usuario/git/dechat_es3b/features/createChat.feature"
   },
   {
     "elements": [
@@ -71,11 +71,11 @@
             "name": "a \"test3b\" and \"SolidTest3b$\" and the user make login",
             "result": {
               "status": "passed",
-              "duration": 8980698413
+              "duration": 9894131901
             },
             "line": 4,
             "match": {
-              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:12"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\features\\step_definitions\\stepdefs.js:12"
             }
           },
           {
@@ -84,11 +84,11 @@
             "name": "the login is successfull",
             "result": {
               "status": "passed",
-              "duration": 7054355
+              "duration": 157537701
             },
             "line": 5,
             "match": {
-              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:38"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\features\\step_definitions\\stepdefs.js:38"
             }
           },
           {
@@ -96,11 +96,11 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 41791851
+              "duration": 18266099
             },
             "hidden": true,
             "match": {
-              "location": "1\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
             }
           }
         ],
@@ -113,7 +113,7 @@
     "line": 1,
     "name": "Make login in the chat",
     "tags": [],
-    "uri": "C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/login.feature"
+    "uri": "C:/Users/Usuario/git/dechat_es3b/features/login.feature"
   },
   {
     "elements": [
@@ -129,11 +129,11 @@
             "name": "a \"userTest3\" and \"passwordInvalid\" and the user make bad login",
             "result": {
               "status": "passed",
-              "duration": 7245546144
+              "duration": 7033452800
             },
             "line": 4,
             "match": {
-              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:44"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\features\\step_definitions\\stepdefs.js:44"
             }
           },
           {
@@ -142,11 +142,11 @@
             "name": "the login is unsuccessfull",
             "result": {
               "status": "passed",
-              "duration": 18902861
+              "duration": 2538999
             },
             "line": 5,
             "match": {
-              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:71"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\features\\step_definitions\\stepdefs.js:71"
             }
           },
           {
@@ -154,11 +154,11 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 999969794
+              "duration": 566136900
             },
             "hidden": true,
             "match": {
-              "location": "1\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
             }
           }
         ],
@@ -177,11 +177,11 @@
             "name": "a \"userInvalid\" and \"password\" and the user make bad login",
             "result": {
               "status": "passed",
-              "duration": 7422398133
+              "duration": 5201139000
             },
             "line": 4,
             "match": {
-              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:44"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\features\\step_definitions\\stepdefs.js:44"
             }
           },
           {
@@ -190,11 +190,11 @@
             "name": "the login is unsuccessfull",
             "result": {
               "status": "passed",
-              "duration": 20582344
+              "duration": 1861001
             },
             "line": 5,
             "match": {
-              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:71"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\features\\step_definitions\\stepdefs.js:71"
             }
           },
           {
@@ -202,11 +202,11 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 1111443551
+              "duration": 571511399
             },
             "hidden": true,
             "match": {
-              "location": "1\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
             }
           }
         ],
@@ -219,7 +219,7 @@
     "line": 1,
     "name": "Make bad login in the chat",
     "tags": [],
-    "uri": "C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/loginFailure.feature"
+    "uri": "C:/Users/Usuario/git/dechat_es3b/features/loginFailure.feature"
   },
   {
     "elements": [
@@ -235,11 +235,11 @@
             "name": "a \"test3b\" and \"SolidTest3b$\" and the user make login and log out",
             "result": {
               "status": "passed",
-              "duration": 8106898980
+              "duration": 6426282599
             },
             "line": 4,
             "match": {
-              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:77"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\features\\step_definitions\\stepdefs.js:77"
             }
           },
           {
@@ -248,11 +248,11 @@
             "name": "the main window is shows",
             "result": {
               "status": "passed",
-              "duration": 472628553
+              "duration": 585243000
             },
             "line": 5,
             "match": {
-              "location": "1\\dechat_es3b\\features\\step_definitions\\stepdefs.js:109"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\features\\step_definitions\\stepdefs.js:109"
             }
           },
           {
@@ -260,11 +260,11 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 31814638
+              "duration": 22762000
             },
             "hidden": true,
             "match": {
-              "location": "1\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
+              "location": "C:\\Users\\Usuario\\git\\dechat_es3b\\node_modules\\selenium-cucumber-js\\runtime\\world.js:250"
             }
           }
         ],
@@ -277,6 +277,6 @@
     "line": 1,
     "name": "Make logout in the chat",
     "tags": [],
-    "uri": "C:/Users/alba-/Desktop/Lunes 1/dechat_es3b/features/logout.feature"
+    "uri": "C:/Users/Usuario/git/dechat_es3b/features/logout.feature"
   }
 ]
