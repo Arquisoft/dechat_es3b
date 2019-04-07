@@ -13,8 +13,8 @@ const chat = new CheckNotifications(c);
 
 describe('CheckNotifications Test', function () {
     
-    it('checkUserInboxForUpdates', function() {
-    chat.checkUserInboxForUpdates("https://maarr.inrupt.net/public/").then(r=>{assert.notEqual(r,null);});
+    it('checkUserForUpdates', function() {
+    chat.checkUserForUpdates("https://maarr.inrupt.net/inbox/").then(r=>{assert.notEqual(r,null);});
   });
   
     it('getResponseToInvitation', function() {
