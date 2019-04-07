@@ -21,8 +21,6 @@ let checkNotifications = new CheckNotifications(core);
 let messageManager = new MessageManager(core,auth.fetch);
 let dataSync = new DataSync(auth.fetch);
 let userDataUrl;
-let chatsToJoin = [];
-let chatName;
 let friendMessages = [];
 let myMessages = [];
 let openChat=false;
@@ -50,7 +48,6 @@ function setUpForEveryChatOption() {
  */
 async function setUpNewChat() {
   setUpForEveryChatOption();
-  //semanticChat = await createChat.setUpNewChat(userDataUrl, userWebId, friendWebId, chatName, dataSync);
   setUpChat();
 }
 
@@ -133,7 +130,6 @@ auth.trackSession(async session => {
     $('#user-menu').addClass('hidden');
     $('#chat').addClass('hidden');
     $('#new-chat-options').addClass('hidden');
-    $('#join-chat-options').addClass('hidden');
     $('#chat-options').removeClass('hidden');
 
     userWebId = null;
@@ -172,7 +168,6 @@ $('#start-new-chat-btn').click(async () => {
     $('#new-chat-options').addClass('hidden');
     friendWebId = $('#possible-friends').val();
     userDataUrl = dataUrl;
-    chatName = $('#chat-name').val();
     setUpNewChat();
 });
 
@@ -187,66 +182,8 @@ $('#write-chat').click(async() => {
     
 });
 
-//-----------TODO JOIN-----------
-
-
 $('#join-btn').click(async () => {
-  if (userWebId) {
-    afterChatOption();
-    $('#join-chat-options').removeClass('hidden');
-    $('#join-looking').addClass('hidden');
-
-    if (chatsToJoin.length > 0) {
-      $('#join-loading').addClass('hidden');
-      $('#join-form').removeClass('hidden');
-      const $select = $('#chat-urls');
-      $select.empty();
-
-      chatsToJoin.forEach(chat => {
-        let name = chat.name;
-        let friend = chat.friendName;
-
-        if (!name) {
-          name = chat.urlChat;
-        }
-
-        $select.append($(`<option value="${chat.urlChat}">${friend}</option>`));
-      });
-    } else {
-      $('#no-join').removeClass('hidden');
-    }
-  } else {
-    $('#login-required').modal('show');
-  }
   clearInbox();
-});
-
-
-$('#join-chat-btn').click(async () => {
-  var elt = document.getElementById("chat-urls");
-     
-    userDataUrl = core.getDefaultDataUrl(userWebId)+elt.options[elt.selectedIndex].text;
-    if (await core.writePermission(userDataUrl, dataSync)){
-      $('#join-chat-options').addClass('hidden');
-        setUpForEveryChatOption();
-      const chatUrl  = $('#chat-urls').val();
-        console.log(chatUrl);
-
-      let i = 0;
-
-      while (i < chatsToJoin.length && chatsToJoin[i].urlChat !== chatUrl) {
-        i++;
-      }
-      const chat = chatsToJoin[i];
-      friendWebId = chat.friendWebId.id;
-      userDataUrl=userDataUrl+friendWebId;
-      await joinChat.joinExistingChat(chat.invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, chat.fileUrl);
-      setUpChat();
-    } else {
-      $('#write-permission-url').text(userDataUrl);
-      $('#write-permission').modal('show');
-    }
-    //clearInbox();
 });
 
 /**
@@ -295,57 +232,6 @@ async function checkForNotificationsPublic() {
 /////////////////
 
 
-/**
- * This method processes a response to an invitation to join a game.
- * @param response: the object representing the response.
- * @param fileurl: the url of the file containing the notification.
- * @returns {Promise<void>}
- */
-async function processResponseInNotification(response, fileurl) {
-  const rsvpResponse = await core.getObjectFromPredicateForResource(response.responseUrl, namespaces.schema + 'rsvpResponse');
-  let chatUrl = await core.getObjectFromPredicateForResource(response.invitationUrl, namespaces.schema + 'event');
-  if (chatUrl) {
-    chatUrl = chatUrl.value;
-    if (semanticChat && semanticChat.getUrl() === chatUrl) {
-        
-      if (rsvpResponse.value === namespaces.schema + 'RsvpResponseYes') {
-        
-      }
-    } else {
-      let chatName = await core.getObjectFromPredicateForResource(chatUrl, namespaces.schema + 'name');
-      const loader = new Loader(auth.fetch);
-      const friendWebId = await loader.findWebIdOfFriend(chatUrl, userWebId);
-      const friendsName = await core.getFormattedName(friendWebId);
-      //show response in UI
-      if (!chatName) {
-        chatName = chatUrl;
-      } else {
-        chatName = chatName.value;
-      }
-      let text;
-      if (rsvpResponse.value === namespaces.schema + 'RsvpResponseYes') {
-        text = `${friendsName} accepted your invitation to join "${chatName}"!`;
-      } else if (rsvpResponse.value === namespaces.schema + 'RsvpResponseNo') {
-        text = `${friendsName} refused your invitation to join ${chatName}...`;
-      }
-      if (!$('#invitation-response').is(':visible')) {
-        $('#invitation-response .modal-body').empty();
-      }
-      if ($('#invitation-response .modal-body').text() !== '') {
-        $('#invitation-response .modal-body').append('<br/>');
-      }
-      $('#invitation-response .modal-body').append(text);
-      $('#invitation-response').modal('show');
-      dataSync.executeSPARQLUpdateForUser(await joinChat.getStorageForChat(userWebId, chatUrl), `INSERT DATA {
-    <${response.invitationUrl}> <${namespaces.schema}result> <${response.responseUrl}>}
-  `);
-    }
-    dataSync.deleteFileForUser(fileurl);
-  } else {
-    console.log(`No chat url was found for response ${response.value}.`);
-  }
-}
-
 
 async function stopChatting() {
   $('#chat').addClass('hidden');
@@ -363,7 +249,6 @@ $('.btn-cancel').click(() => {
 
   $('#chat').addClass('hidden');
   $('#new-chat-options').addClass('hidden');
-  $('#join-chat-options').addClass('hidden');
   $('#chat-options').removeClass('hidden');
 $("#messages").val("");
 
