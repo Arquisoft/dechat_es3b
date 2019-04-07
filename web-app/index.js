@@ -224,9 +224,10 @@ async function checkForNotificationsInbox() {
  * @returns {Promise<void>}
  */
 async function checkForNotificationsPublic() {
-  var updates = await checkNotifications.checkUserForUpdates(await core.getPublicUrl(userWebId)+"/chat_"+await core.getFormattedName(friendWebId));
+  const psFriendname = (await core.getFormattedName(friendWebId)).replace(/ /g,"%20");
+  var updates = await checkNotifications.checkUserForUpdates(await core.getPublicUrl(userWebId)+"/chat_"+psFriendname);
   updates.forEach(async (fileurl) => {   
-      let message = await messageManager.getNewMessage(fileurl, userWebId,"/public/chat_"+await core.getFormattedName(friendWebId), dataSync);
+      let message = await messageManager.getNewMessage(fileurl, userWebId,"/public/chat_"+await psFriendname, dataSync);
       console.log(message);
       
       if (message) {
