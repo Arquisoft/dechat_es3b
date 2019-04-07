@@ -259,7 +259,7 @@ async function clearInbox() {
   resources = await core.getAllResourcesInInbox(await core.getPublicUrl(userWebId));
 
   resources.forEach(async r => {
-    if (await core.fileContainsChessInfo(r)) {
+    if (await core.fileContainsChatInfo(r)) {
       dataSync.deleteFileForUser(r);
     }
   });
