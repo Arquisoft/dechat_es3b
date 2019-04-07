@@ -1,22 +1,18 @@
-const Loader = require('../lib/loader');
+
 const auth = require('solid-auth-client');
 const fileClient = require('solid-file-client');
 const DataSync = require('../lib/datasync');
-const namespaces = require('../lib/namespaces');
 const { default: data } = require('@solid/query-ldflex');
 const Core = require('../lib/core');
-const CreateChat = require('../lib/createChat');
 const CheckNotifications = require('../lib/checkNotifications');
 const MessageManager = require('../lib/messageManager');
 const JoinChat = require('../lib/joinChat');
 
 let userWebId;
 let friendWebId;
-let semanticChat;
 let refreshIntervalIdInbox;
 let core = new Core(auth.fetch);
 let joinChat = new JoinChat(core);
-let createChat = new CreateChat(core,joinChat);
 let checkNotifications = new CheckNotifications(core);
 let messageManager = new MessageManager(core,auth.fetch);
 let dataSync = new DataSync(auth.fetch);
@@ -66,13 +62,7 @@ async function createChatFolder(url) {
  * @returns {Promise<void>}
  */
 async function setUpChat() {
-  const username = $('#user-name').text();
-    /*if (semanticChat) {
-		semanticChat.getMessages().forEach(async(message) => {
-			$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messagetext);
-		});
-	}*/
-    
+  const username = $('#user-name').text();  
     $('#chat').removeClass('hidden');
     $('#chat-loading').addClass('hidden');
     const friendName = await core.getFormattedName(friendWebId);
