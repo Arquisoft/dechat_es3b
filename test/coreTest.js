@@ -15,7 +15,7 @@ it('getInboxUrl', function() {
     chat.getInboxUrl("https://maarr.inrupt.net/profile/card#me").then(r=>{assert(r,"https://maarr.inrupt.net/inbox/");});
   });
   it('getPublicUrl', function() {
-    chat.getInboxUrl("https://maarr.inrupt.net/profile/card#me").then(r=>{assert(r,"https://maarr.inrupt.net/public/");});
+    chat.getPublicUrl("https://maarr.inrupt.net/profile/card#me").then(r=>{assert(r,"https://maarr.inrupt.net/public/");});
   });
     
 it('getFormattedName ', function() {
