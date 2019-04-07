@@ -99,7 +99,7 @@ async function setUpChat() {
     var nameThroughUrl = myMessages[i].author.split("/").pop();
     var friendThroughUrl = myMessages[i].friend.split("/").pop();
 		if (friendName===friendThroughUrl) {
-			$("#messages").val($("#messages").val() + "\n" + username +" >> "+ myMessages[i].messageTx);
+			$("#messages").val($("#messages").val() + "\n" + username +" >> "+ (myMessages[i].messageTx).substring(1,myMessages[i].messageTx.length));
 		}
 		i++;
 	}
