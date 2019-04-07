@@ -1,10 +1,6 @@
 require("chai");
 var assert = require('assert');
 const auth = require('solid-auth-client');
-
-const semanticChat=require("../lib/semanticchat");
-const DataSync=require("../lib/datasync");
-
 const Core = require('../lib/core');
 const c = new Core(auth.fetch);
 

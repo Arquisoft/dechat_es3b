@@ -2,8 +2,6 @@ require("chai");
 var assert = require('assert');
 const auth = require('solid-auth-client');
 const namespaces = require('../lib/namespaces');
-
-const semanticChat=require("../lib/semanticchat");
 const DataSync=require("../lib/datasync");
 const data=new DataSync(auth.fetch);
 
