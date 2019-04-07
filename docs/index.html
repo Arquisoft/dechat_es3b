@@ -13,7 +13,7 @@
   <body vocab="http://schema.org/">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <span class="navbar-brand"><img src="https://raw.githubusercontent.com/Arquisoft/dechat_es3b/master/docs/web-app/img/logo.png" alt="DeChates3B" height="65" width="165"></span>
+        <span class="navbar-brand"><img src="/web-app/img/logo.png" alt="DeChates3B" height="65" width="165"></span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -36,15 +36,11 @@
       <div id="content" class="row justify-content-center align-items-center">
         <div id="chat-options" class="col-6 text-center">
           <button id="new-btn" type="button" class="btn btn-dark btn-lg"> New chat</button>
-          <button id="join-btn" type="button" class="btn btn-dark btn-lg">Join chat</button>
+          <button id="join-btn" type="button" class="btn btn-dark btn-lg">Clear Inbox</button>
         </div>
 
         <div id="new-chat-options" class="col-6 hidden">
           <form>
-            <div class="form-group">
-              <label for="chat-name">Chat name</label>
-              <input type="text" class="form-control rounded-0" id="chat-name" placeholder="Enter the chat's name">
-            </div>
             <div class="form-group">
               <label for="possible-friends">Your friend</label>
               <!-- <input type="text" class="form-control rounded-0" id="opp-webid" placeholder="Enter opponent's WebID" value="https://ph2.solid.community/profile/card#me"> -->
@@ -54,24 +50,6 @@
             <button id="start-new-chat-btn" type="button" class="btn btn-dark">Start!</button>
             <button type="button" class="btn-cancel btn btn-dark">Cancel</button>
             </div>
-          </form>
-        </div>
-
-        <div id="join-chat-options" class="col-6 hidden">
-          <div id='join-loading'>
-            <span id="join-looking">Looking for chat to join...</span>
-            <span id="no-join" class="hidden">No chat to join were found.</span>
-            <div class="form-group">
-              <button type="button" class="btn-cancel btn btn-dark">Cancel</button>
-            </div>
-          </div>
-          <form id="join-form" class="hidden">
-            <div class="form-group">
-              <label for="chat-urls">Chat you want to join</label>
-              <select id="chat-urls"></select>
-            </div>
-            <button id="join-chat-btn" type="button" class="btn btn-dark">Join!</button>
-            <button type="button" class="btn-cancel btn btn-dark">Cancel</button>
           </form>
         </div>
 
