@@ -180,7 +180,7 @@ $('#join-btn').click(async () => {
 });
 
 /**
- * This method checks if a new move has been made by the opponent.
+ * This method checks if a new message has been made by your friend into Inbox.
  * The necessarily data is stored and the UI is updated.
  * @returns {Promise<void>}
  */
@@ -204,7 +204,7 @@ async function checkForNotificationsInbox() {
 }
 
 /**
- * This method checks if a new move has been made by the opponent.
+ * This method checks if a new message has been made by your friend into Publc directory.
  * The necessarily data is stored and the UI is updated.
  * @returns {Promise<void>}
  */
@@ -221,10 +221,6 @@ async function checkForNotificationsPublic() {
 		} 
   });
 }
-
-/////////////////
-
-
 
 async function stopChatting() {
   $('#chat').addClass('hidden');
