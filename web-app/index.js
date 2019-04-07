@@ -81,6 +81,10 @@ async function setUpChat() {
     checkForNotificationsPublic();
     console.log(`checked`);
     var i = 0;
+    
+    friendMessages.sort(function(a, b) {
+      return parseFloat(a.date) - parseFloat(b.date);
+  });
 	while (i < friendMessages.length) {
 		var nameThroughUrl = friendMessages[i].author.split("/").pop();
 		if (nameThroughUrl === friendName) {
@@ -92,6 +96,9 @@ async function setUpChat() {
   }
 
   i = 0;
+  myMessages.sort(function(a, b) {
+    return parseFloat(a.date) - parseFloat(b.date);
+});
   while (i < myMessages.length) {
     var nameThroughUrl = myMessages[i].author.split("/").pop();
     var friendThroughUrl = myMessages[i].friend.split("/").pop();
