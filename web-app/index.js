@@ -1,5 +1,6 @@
 const Loader = require('../lib/loader');
 const auth = require('solid-auth-client');
+const fileClient = require('solid-file-client');
 const DataSync = require('../lib/datasync');
 const namespaces = require('../lib/namespaces');
 const { default: data } = require('@solid/query-ldflex');
@@ -53,6 +54,16 @@ async function setUpNewChat() {
   setUpChat();
 }
 
+async function createChatFolder(url) {
+	return await fileClient.createFolder(url).then(success => {
+			console.log(`Created folder ${url}.`);
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
+}
+
 /**
  * This method sets up the chat.
  * @returns {Promise<void>}
@@ -67,16 +78,17 @@ async function setUpChat() {
     
     $('#chat').removeClass('hidden');
     $('#chat-loading').addClass('hidden');
-        
     const friendName = await core.getFormattedName(friendWebId);
     $('#friend-name').text(friendName);
-    
+    createChatFolder(userDataUrl);
+    checkForNotificationsPublic();
+    console.log(`checked`);
     var i = 0;
 	while (i < friendMessages.length) {
 		var nameThroughUrl = friendMessages[i].author.split("/").pop();
 		if (nameThroughUrl === friendName) {
 			$("#messages").val($("#messages").val() + "\n" + friendName +" >> "+ friendMessages[i].messageTx);
-			await messageManager.storeMessage(userDataUrl, friendMessages[i].author, userWebId, friendMessages[i].messageTx, friendWebId, dataSync, false);
+			//await messageManager.storeMessage(userDataUrl, friendMessages[i].author, userDataUrl, friendMessages[i].messageTx, friendWebId, dataSync, false);
       //dataSync.deleteFileForUser(friendMessages[i].inboxUrl);
 		}
 		i++;
@@ -86,10 +98,8 @@ async function setUpChat() {
   while (i < myMessages.length) {
     var nameThroughUrl = myMessages[i].author.split("/").pop();
     var friendThroughUrl = myMessages[i].friend.split("/").pop();
-		if (nameThroughUrl === username && friendName===friendThroughUrl) {
+		if (friendName===friendThroughUrl) {
 			$("#messages").val($("#messages").val() + "\n" + username +" >> "+ myMessages[i].messageTx);
-			await messageManager.storeMessage(userDataUrl, myMessages[i].author, userWebId, myMessages[i].messageTx, friendWebId, dataSync, false);
-      //dataSync.deleteFileForUser(myMessages[i].inboxUrl);
 		}
 		i++;
 	}
@@ -115,7 +125,7 @@ auth.trackSession(async session => {
 
     
     checkForNotificationsInbox();
-    checkForNotificationsPublic();
+    
     // refresh every 5sec
     refreshIntervalIdInbox = setInterval(checkForNotificationsInbox, 5000);
   } else {
@@ -173,7 +183,7 @@ $('#write-chat').click(async() => {
     const valueMes = $('#messages').val();
 	$('#messages').val( valueMes + "\n" + messageText);
 	document.getElementById("message").value="";
-	await messageManager.storeMessage(userDataUrl, username, userWebId, message, friendWebId, dataSync, true);
+	await messageManager.storeMessage(userDataUrl, username, userDataUrl, message, friendWebId, dataSync, true);
     
 });
 
@@ -255,7 +265,7 @@ async function checkForNotificationsInbox() {
 			newMessageFound = true;
 			if (openChat) {
 				$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messageTx);
-				await messageManager.storeMessage(userDataUrl, message.author, userWebId, message.messageTx, friendWebId, dataSync, false);
+				//await messageManager.storeMessage(userDataUrl, message.author, userDataUrl, message.messageTx, friendWebId, dataSync, false);
 			} else {
 				friendMessages.push(message);
 			}
@@ -270,19 +280,14 @@ async function checkForNotificationsInbox() {
  * @returns {Promise<void>}
  */
 async function checkForNotificationsPublic() {
-  var updates = await checkNotifications.checkUserForUpdates(await core.getPublicUrl(userWebId));
+  var updates = await checkNotifications.checkUserForUpdates(await core.getPublicUrl(userWebId)+"/chat_"+await core.getFormattedName(friendWebId));
   updates.forEach(async (fileurl) => {   
-      let message = await messageManager.getNewMessage(fileurl, userWebId,"/public/", dataSync);
+      let message = await messageManager.getNewMessage(fileurl, userWebId,"/public/chat_"+await core.getFormattedName(friendWebId), dataSync);
       console.log(message);
       
       if (message) {
 			newMessageFound = true;
-			if (openChat) {
-				$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messageTx);
-				await messageManager.storeMessage(userDataUrl, message.author, userWebId, message.messageTx, friendWebId, dataSync, false);
-			} else {
 				myMessages.push(message);
-			}
 		} 
   });
 }
