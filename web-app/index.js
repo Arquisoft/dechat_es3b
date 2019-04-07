@@ -1,5 +1,6 @@
 const Loader = require('../lib/loader');
 const auth = require('solid-auth-client');
+const fileClient = require('solid-file-client');
 const DataSync = require('../lib/datasync');
 const namespaces = require('../lib/namespaces');
 const { default: data } = require('@solid/query-ldflex');
@@ -12,24 +13,22 @@ const JoinChat = require('../lib/joinChat');
 let userWebId;
 let friendWebId;
 let semanticChat;
-let refreshIntervalId;
+let refreshIntervalIdInbox;
 let core = new Core(auth.fetch);
 let joinChat = new JoinChat(core);
 let createChat = new CreateChat(core,joinChat);
 let checkNotifications = new CheckNotifications(core);
-let messageManager = new MessageManager(core);
+let messageManager = new MessageManager(core,auth.fetch);
 let dataSync = new DataSync(auth.fetch);
 let userDataUrl;
-let chatsToJoin = [];
-let chatName;
 let friendMessages = [];
+let myMessages = [];
 let openChat=false;
 
 /*Log in-out*/
 
 $('.login-btn').click(() => {
   auth.popupLogin({ popupUri: 'https://solid.github.io/solid-auth-client/dist/popup.html' });
-  clearInbox();
 });
 
 $('#logout-btn').click(() => {
@@ -49,8 +48,17 @@ function setUpForEveryChatOption() {
  */
 async function setUpNewChat() {
   setUpForEveryChatOption();
-  semanticChat = await createChat.setUpNewChat(userDataUrl, userWebId, friendWebId, chatName, dataSync);
   setUpChat();
+}
+
+async function createChatFolder(url) {
+	return await fileClient.createFolder(url).then(success => {
+			console.log(`Created folder ${url}.`);
+		return true;
+	}, err => {
+		console.log(err);
+		return false;
+	});
 }
 
 /**
@@ -58,35 +66,46 @@ async function setUpNewChat() {
  * @returns {Promise<void>}
  */
 async function setUpChat() {
-    
-    if (semanticChat) {
+  const username = $('#user-name').text();
+    /*if (semanticChat) {
 		semanticChat.getMessages().forEach(async(message) => {
 			$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messagetext);
 		});
-	}
+	}*/
     
     $('#chat').removeClass('hidden');
     $('#chat-loading').addClass('hidden');
-        
     const friendName = await core.getFormattedName(friendWebId);
     $('#friend-name').text(friendName);
-    
+    createChatFolder(userDataUrl);
+    checkForNotificationsPublic();
+    console.log(`checked`);
     var i = 0;
+    
+    friendMessages.sort(function(a, b) {
+      return parseFloat(a.date) - parseFloat(b.date);
+  });
 	while (i < friendMessages.length) {
 		var nameThroughUrl = friendMessages[i].author.split("/").pop();
 		if (nameThroughUrl === friendName) {
 			$("#messages").val($("#messages").val() + "\n" + friendName +" >> "+ friendMessages[i].messageTx);
-			await messageManager.storeMessage(userDataUrl, friendMessages[i].author, userWebId, friendMessages[i].messageTx, friendWebId, dataSync, false);
-			dataSync.deleteFileForUser(friendMessages[i].inboxUrl);
-			friendMessages[i] = "hi";
+			//await messageManager.storeMessage(userDataUrl, friendMessages[i].author, userDataUrl, friendMessages[i].messageTx, friendWebId, dataSync, false);
+      //dataSync.deleteFileForUser(friendMessages[i].inboxUrl);
 		}
 		i++;
-	}
-	i = friendMessages.length;
-	while (i--) {
-		if (friendMessages[i] == "hi") {
-			friendMessages.splice(i, 1);
+  }
+
+  i = 0;
+  myMessages.sort(function(a, b) {
+    return parseFloat(a.date) - parseFloat(b.date);
+});
+  while (i < myMessages.length) {
+    var nameThroughUrl = myMessages[i].author.split("/").pop();
+    var friendThroughUrl = myMessages[i].friend.split("/").pop();
+		if (friendName===friendThroughUrl) {
+			$("#messages").val($("#messages").val() + "\n" + username +" >> "+ (myMessages[i].messageTx).substring(1,myMessages[i].messageTx.length));
 		}
+		i++;
 	}
 	openChat = true;
 };
@@ -109,20 +128,20 @@ auth.trackSession(async session => {
     }
 
     
-    checkForNotifications();
+    checkForNotificationsInbox();
+    
     // refresh every 5sec
-    refreshIntervalId = setInterval(checkForNotifications, 5000);
+    refreshIntervalIdInbox = setInterval(checkForNotificationsInbox, 5000);
   } else {
     $('#nav-login-btn').removeClass('hidden');
     $('#user-menu').addClass('hidden');
     $('#chat').addClass('hidden');
     $('#new-chat-options').addClass('hidden');
-    $('#join-chat-options').addClass('hidden');
     $('#chat-options').removeClass('hidden');
 
     userWebId = null;
-    clearInterval(refreshIntervalId);
-    refreshIntervalId = null;
+    clearInterval(refreshIntervalIdInbox);
+    refreshIntervalIdInbox = null;
   }
 });
 
@@ -138,7 +157,7 @@ $('#new-btn').click(async () => {
     afterChatOption();
     $('#new-chat-options').removeClass('hidden');
     const $select = $('#possible-friends');
-
+    $select.empty();
     for await (const friend of data[userWebId].friends) {
         let name = await core.getFormattedName(friend.value);
 
@@ -147,22 +166,16 @@ $('#new-btn').click(async () => {
   } else {
     $('#login-required').modal('show');
   }
+  //clearInbox();
 });
 
 $('#start-new-chat-btn').click(async () => {
   var elt = document.getElementById("possible-friends");
   const dataUrl = core.getDefaultDataUrl(userWebId)+elt.options[elt.selectedIndex].text;
-
-  if (await core.writePermission(dataUrl, dataSync)) {
     $('#new-chat-options').addClass('hidden');
     friendWebId = $('#possible-friends').val();
     userDataUrl = dataUrl;
-    chatName = $('#chat-name').val();
     setUpNewChat();
-  } else {
-    $('#write-permission-url').text(dataUrl);
-    $('#write-permission').modal('show');
-  }
 });
 
 $('#write-chat').click(async() => {
@@ -172,68 +185,12 @@ $('#write-chat').click(async() => {
     const valueMes = $('#messages').val();
 	$('#messages').val( valueMes + "\n" + messageText);
 	document.getElementById("message").value="";
-	await messageManager.storeMessage(userDataUrl, username, userWebId, message, friendWebId, dataSync, true);
+	await messageManager.storeMessage(userDataUrl, username, userDataUrl, message, friendWebId, dataSync, true);
     
 });
 
-//-----------TODO JOIN-----------
-
-
 $('#join-btn').click(async () => {
-  if (userWebId) {
-    afterChatOption();
-    $('#join-chat-options').removeClass('hidden');
-    $('#join-looking').addClass('hidden');
-
-    if (chatsToJoin.length > 0) {
-      $('#join-loading').addClass('hidden');
-      $('#join-form').removeClass('hidden');
-      const $select = $('#chat-urls');
-      $select.empty();
-
-      chatsToJoin.forEach(chat => {
-        let name = chat.name;
-        let friend = chat.friendName;
-
-        if (!name) {
-          name = chat.urlChat;
-        }
-
-        $select.append($(`<option value="${chat.urlChat}">${friend}</option>`));
-      });
-    } else {
-      $('#no-join').removeClass('hidden');
-    }
-  } else {
-    $('#login-required').modal('show');
-  }
-});
-
-
-$('#join-chat-btn').click(async () => {
-  var elt = document.getElementById("chat-urls");
-     
-    userDataUrl = core.getDefaultDataUrl(userWebId)+elt.options[elt.selectedIndex].text;
-    if (await core.writePermission(userDataUrl, dataSync)){
-      $('#join-chat-options').addClass('hidden');
-        setUpForEveryChatOption();
-      const chatUrl  = $('#chat-urls').val();
-        console.log(chatUrl);
-
-      let i = 0;
-
-      while (i < chatsToJoin.length && chatsToJoin[i].urlChat !== chatUrl) {
-        i++;
-      }
-      const chat = chatsToJoin[i];
-      friendWebId = chat.friendWebId.id;
-      userDataUrl=userDataUrl+friendWebId;
-      await joinChat.joinExistingChat(chat.invitationUrl, friendWebId, userWebId, userDataUrl, dataSync, chat.fileUrl);
-      setUpChat();
-    } else {
-      $('#write-permission-url').text(userDataUrl);
-      $('#write-permission').modal('show');
-    }
+  clearInbox();
 });
 
 /**
@@ -241,102 +198,53 @@ $('#join-chat-btn').click(async () => {
  * The necessarily data is stored and the UI is updated.
  * @returns {Promise<void>}
  */
-async function checkForNotifications() {
-  const updates = await checkNotifications.checkUserInboxForUpdates(await core.getInboxUrl(userWebId));
-
-  updates.forEach(async (fileurl) => {
-    let newMessageFound = false;
-      
-      let message = await messageManager.getNewMessage(fileurl, userWebId, dataSync);
+async function checkForNotificationsInbox() {
+  var updates = await checkNotifications.checkUserForUpdates(await core.getInboxUrl(userWebId));
+  console.log(updates.length);
+  updates.forEach(async (fileurl) => {   
+      let message = await messageManager.getNewMessage(fileurl, userWebId,"/inbox/", dataSync,);
       console.log(message);
       
       if (message) {
 			newMessageFound = true;
 			if (openChat) {
 				$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messageTx);
-				await messageManager.storeMessage(userDataUrl, message.author, userWebId, message.messageTx, friendWebId, dataSync, false);
+				//await messageManager.storeMessage(userDataUrl, message.author, userDataUrl, message.messageTx, friendWebId, dataSync, false);
 			} else {
 				friendMessages.push(message);
 			}
 		} 
+  });
+  
+}
 
-    if (!newMessageFound) {
-      const response = await checkNotifications.getResponseToInvitation(fileurl);
-
-      if (response) {
-        await processResponseInNotification(response, fileurl);
-      } else {
-        const chatToJoin = await joinChat.getJoinRequest(fileurl, userWebId);
-
-        if (chatToJoin) {
-            console.log(userWebId);
-            console.log(fileurl);
-          chatsToJoin.push(await joinChat.processChatToJoin(chatToJoin, fileurl));
-            console.log(chatToJoin);
-        }
-      }
-    }
+/**
+ * This method checks if a new move has been made by the opponent.
+ * The necessarily data is stored and the UI is updated.
+ * @returns {Promise<void>}
+ */
+async function checkForNotificationsPublic() {
+  const psFriendname = (await core.getFormattedName(friendWebId)).replace(/ /g,"%20");
+  var updates = await checkNotifications.checkUserForUpdates(await core.getPublicUrl(userWebId)+"/chat_"+psFriendname);
+  updates.forEach(async (fileurl) => {   
+      let message = await messageManager.getNewMessage(fileurl, userWebId,"/public/chat_"+await psFriendname, dataSync);
+      console.log(message);
+      
+      if (message) {
+			newMessageFound = true;
+				myMessages.push(message);
+		} 
   });
 }
 
 /////////////////
 
 
-/**
- * This method processes a response to an invitation to join a game.
- * @param response: the object representing the response.
- * @param fileurl: the url of the file containing the notification.
- * @returns {Promise<void>}
- */
-async function processResponseInNotification(response, fileurl) {
-  const rsvpResponse = await core.getObjectFromPredicateForResource(response.responseUrl, namespaces.schema + 'rsvpResponse');
-  let chatUrl = await core.getObjectFromPredicateForResource(response.invitationUrl, namespaces.schema + 'event');
-  if (chatUrl) {
-    chatUrl = chatUrl.value;
-    if (semanticChat && semanticChat.getUrl() === chatUrl) {
-        
-      if (rsvpResponse.value === namespaces.schema + 'RsvpResponseYes') {
-        
-      }
-    } else {
-      let chatName = await core.getObjectFromPredicateForResource(chatUrl, namespaces.schema + 'name');
-      const loader = new Loader(auth.fetch);
-      const friendWebId = await loader.findWebIdOfFriend(chatUrl, userWebId);
-      const friendsName = await core.getFormattedName(friendWebId);
-      //show response in UI
-      if (!chatName) {
-        chatName = chatUrl;
-      } else {
-        chatName = chatName.value;
-      }
-      let text;
-      if (rsvpResponse.value === namespaces.schema + 'RsvpResponseYes') {
-        text = `${friendsName} accepted your invitation to join "${chatName}"!`;
-      } else if (rsvpResponse.value === namespaces.schema + 'RsvpResponseNo') {
-        text = `${friendsName} refused your invitation to join ${chatName}...`;
-      }
-      if (!$('#invitation-response').is(':visible')) {
-        $('#invitation-response .modal-body').empty();
-      }
-      if ($('#invitation-response .modal-body').text() !== '') {
-        $('#invitation-response .modal-body').append('<br/>');
-      }
-      $('#invitation-response .modal-body').append(text);
-      $('#invitation-response').modal('show');
-      dataSync.executeSPARQLUpdateForUser(await joinChat.getStorageForChat(userWebId, chatUrl), `INSERT DATA {
-    <${response.invitationUrl}> <${namespaces.schema}result> <${response.responseUrl}>}
-  `);
-    }
-    dataSync.deleteFileForUser(fileurl);
-  } else {
-    console.log(`No chat url was found for response ${response.value}.`);
-  }
-}
-
 
 async function stopChatting() {
   $('#chat').addClass('hidden');
   $('#chat-options').removeClass('hidden');
+  $("#messages").val("");
 }
 
 $('#stop-chatting').click(() => {
@@ -349,17 +257,25 @@ $('.btn-cancel').click(() => {
 
   $('#chat').addClass('hidden');
   $('#new-chat-options').addClass('hidden');
-  $('#join-chat-options').addClass('hidden');
   $('#chat-options').removeClass('hidden');
 $("#messages").val("");
 
 });
 
 async function clearInbox() {
-  const resources = await core.getAllResourcesInInbox(await core.getInboxUrl(userWebId));
+  var resources = await core.getAllResourcesInInbox(await core.getInboxUrl(userWebId));
 
   resources.forEach(async r => {
     if (await core.fileContainsChatInfo(r)) {
       dataSync.deleteFileForUser(r);
     }
-  });}
+  });
+
+  resources = await core.getAllResourcesInInbox(await core.getPublicUrl(userWebId));
+
+  resources.forEach(async r => {
+    if (await core.fileContainsChessInfo(r)) {
+      dataSync.deleteFileForUser(r);
+    }
+  });
+}
