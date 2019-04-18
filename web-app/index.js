@@ -33,13 +33,13 @@ $('#logout-btn').click(() => {
 function seeChatScreen() {
  $('#principal').hide(); 
     $('#footer').hide();
-    $('#containerChat').show();
+    $('#chatScreen').show();
 }
 
 function seePrincipalScreen() {
  $('#principal').show(); 
     $('#footer').show();
-    $('#containerChat').hide();
+    $('#chatScreen').hide();
 }
 
 
@@ -113,7 +113,7 @@ auth.trackSession(async session => {
   const loggedIn = !!session;
 
   if (loggedIn) {
-    $('#chat').load('../chat.html');
+    $('#login-required').modal('hide');
     seeChatScreen();
     userWebId = session.webId;
     
@@ -148,7 +148,7 @@ $('#new-btn').click(async () => {
         $select.append(`<option value="${friend}">${name}</option>`);
     }
   } else {
-    //$('#login-required').modal('show');
+    $('#login-required').modal('show');
   }
   //clearInbox();
 });
