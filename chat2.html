@@ -1,0 +1,54 @@
+<div id="chatScreen">
+<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+        <div class="btn-group">
+        <button type="button" id="clear-inbox" class="btn btn-outline-warning">Clear inbox</button>
+        <button type="button" id="logout-btn" class="btn btn-outline-warning">Logout</button>
+        </div>
+    </div>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="container" id="containerFriends">
+      <div id="new-chat-options" class="d-flex justify-content-center">
+          <form>
+            <div class="form-group">
+              <span class="label label-warning" for="possible-friends">Select your friend to chat</span>
+              <select id="possible-friends"></select>
+            </div>
+            <div>
+            <button id="start-new-chat-btn" type="button" class="btn btn-outline-light">Start!</button>
+            <button id="btn-cancel" type="button" class="btn btn-outline-light">Cancel</button>
+            </div>
+          </form>
+        </div>
+    </div>
+      <div class="container" id="containerChat" style="display: none;">
+        <div id="chat" class="d-flex justify-content-center">
+          <div><p>Friend  <span id="friend-name"></span></p></div>
+          <div class="container" id="chat-area" style="width: 400px">
+            <textarea id="messages" rows="20" cols="60" disabled></textarea>
+              
+              
+              <div class="input-group mb-3">
+                <input type="text" class="form-control rounded-0" id="message" placeholder="Write your message...">
+                <div class="input-group-append">
+                <button id="write-chat" class="btn btn-warning" type="button"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            width="20" height="20"
+            viewBox="0 0 224 224"
+            style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,224v-224h224v224z" fill="none"></path><g fill="#ffffff"><g id="surface1"><path d="M0,17.23077v73.23077l129.23077,21.53846l-129.23077,21.53846v73.23077l224,-94.76923z"></path></g></g></g></svg></button>
+                </div>
+            </div>            
+              
+              
+              <button id="stop-chatting" type="button" class="btn btn-outline-light">Leave chat</button>
+        </div>
+            
+        </div>
+    </div>
+
+  </header>
+    
+    </div>

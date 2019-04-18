@@ -21,19 +21,33 @@ let openChat=false;
 
 /*Log in-out*/
 
-$('.login-btn').click(() => {
+$('#login-btn').click(() => {
   auth.popupLogin({ popupUri: 'https://solid.github.io/solid-auth-client/dist/popup.html' });
 });
 
 $('#logout-btn').click(() => {
   auth.logout();
+    seePrincipalScreen();
 });
+
+function seeChatScreen() {
+ $('#principal').hide(); 
+    $('#footer').hide();
+    $('#containerChat').show();
+}
+
+function seePrincipalScreen() {
+ $('#principal').show(); 
+    $('#footer').show();
+    $('#containerChat').hide();
+}
+
 
 /**
  * This method does the necessary updates of the UI when the different chat options are shown.
  */
 function setUpForEveryChatOption() {
-  $('#chat-loading').removeClass('hidden');
+ 
 }
 
 /**
@@ -61,8 +75,7 @@ async function createChatFolder(url) {
  */
 async function setUpChat() {
   const username = $('#user-name').text();  
-    $('#chat').removeClass('hidden');
-    $('#chat-loading').addClass('hidden');
+   //----css $('#chat').removeClass('hidden');
     const friendName = await core.getFormattedName(friendWebId);
     $('#friend-name').text(friendName);
     createChatFolder(userDataUrl);
@@ -98,33 +111,18 @@ async function setUpChat() {
 
 auth.trackSession(async session => {
   const loggedIn = !!session;
-  //console.log(`logged in: ${loggedIn}`);
 
   if (loggedIn) {
-    $('#user-menu').removeClass('hidden');
-    $('#nav-login-btn').addClass('hidden');
-    $('#login-required').modal('hide');
-
+    $('#chat').load('../chat2.html');
+    seeChatScreen();
     userWebId = session.webId;
-    const name = await core.getFormattedName(userWebId);
-
-    if (name) {
-      $('#user-name').removeClass('hidden');
-      $('#user-name').text(name);
-    }
-
     
     checkForNotificationsInbox();
     
     // refresh every 5sec
     refreshIntervalIdInbox = setInterval(checkForNotificationsInbox, 5000);
   } else {
-    $('#nav-login-btn').removeClass('hidden');
-    $('#user-menu').addClass('hidden');
-    $('#chat').addClass('hidden');
-    $('#new-chat-options').addClass('hidden');
-    $('#chat-options').removeClass('hidden');
-
+    seePrincipalScreen();
     userWebId = null;
     clearInterval(refreshIntervalIdInbox);
     refreshIntervalIdInbox = null;
@@ -135,13 +133,13 @@ auth.trackSession(async session => {
  * This method updates the UI after a chat option has been selected by the user.
  */
 function afterChatOption() {
-  $('#chat-options').addClass('hidden');
+  //$('#chat-options').addClass('hidden');
 }
 
 $('#new-btn').click(async () => {
   if (userWebId) {
     afterChatOption();
-    $('#new-chat-options').removeClass('hidden');
+    //$('#new-chat-options').removeClass('hidden');
     const $select = $('#possible-friends');
     $select.empty();
     for await (const friend of data[userWebId].friends) {
@@ -150,7 +148,7 @@ $('#new-btn').click(async () => {
         $select.append(`<option value="${friend}">${name}</option>`);
     }
   } else {
-    $('#login-required').modal('show');
+    //$('#login-required').modal('show');
   }
   //clearInbox();
 });
@@ -158,7 +156,8 @@ $('#new-btn').click(async () => {
 $('#start-new-chat-btn').click(async () => {
   var elt = document.getElementById("possible-friends");
   const dataUrl = core.getDefaultDataUrl(userWebId)+elt.options[elt.selectedIndex].text;
-    $('#new-chat-options').addClass('hidden');
+    $('#containerFriends').hide();
+    $('#containerChat').show();
     friendWebId = $('#possible-friends').val();
     userDataUrl = dataUrl;
     setUpNewChat();
@@ -173,10 +172,6 @@ $('#write-chat').click(async() => {
 	document.getElementById("message").value="";
 	await messageManager.storeMessage(userDataUrl, username, message, friendWebId, dataSync, true);
     
-});
-
-$('#join-btn').click(async () => {
-  clearInbox();
 });
 
 /**
@@ -232,7 +227,7 @@ $('#stop-chatting').click(() => {
     stopChatting();
 });
 
-$('.btn-cancel').click(() => {
+$('#btn-cancel').click(() => {
   friendWebId = null;
     openChat=false;
 
@@ -241,6 +236,10 @@ $('.btn-cancel').click(() => {
   $('#chat-options').removeClass('hidden');
 $("#messages").val("");
 
+});
+
+$('#clear-inbox').click(() => {
+    clearInbox();
 });
 
 async function clearInbox() {
