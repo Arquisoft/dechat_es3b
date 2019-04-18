@@ -31,23 +31,15 @@ $('#logout-btn').click(() => {
 });
 
 function seeChatScreen() {
- $('#principal').hide(); 
+ $('#principalScreen').hide(); 
     $('#footer').hide();
     $('#chatScreen').show();
 }
 
 function seePrincipalScreen() {
- $('#principal').show(); 
+ $('#principalScreen').show(); 
     $('#footer').show();
     $('#chatScreen').hide();
-}
-
-
-/**
- * This method does the necessary updates of the UI when the different chat options are shown.
- */
-function setUpForEveryChatOption() {
- 
 }
 
 /**
@@ -55,7 +47,8 @@ function setUpForEveryChatOption() {
  * @returns {Promise<void>}
  */
 async function setUpNewChat() {
-  setUpForEveryChatOption();
+    $('#containerFriends').hide();
+    $('#containerChat').show();
   setUpChat();
 }
 
@@ -74,8 +67,9 @@ async function createChatFolder(url) {
  * @returns {Promise<void>}
  */
 async function setUpChat() {
-  const username = $('#user-name').text();  
-   //----css $('#chat').removeClass('hidden');
+  const username = $('#user-name').text(); 
+    $('#containerFriends').hide();
+    $('#containerChat').show();
     const friendName = await core.getFormattedName(friendWebId);
     $('#friend-name').text(friendName);
     createChatFolder(userDataUrl);
@@ -129,17 +123,8 @@ auth.trackSession(async session => {
   }
 });
 
-/**
- * This method updates the UI after a chat option has been selected by the user.
- */
-function afterChatOption() {
-  //$('#chat-options').addClass('hidden');
-}
-
 $('#new-btn').click(async () => {
   if (userWebId) {
-    afterChatOption();
-    //$('#new-chat-options').removeClass('hidden');
     const $select = $('#possible-friends');
     $select.empty();
     for await (const friend of data[userWebId].friends) {
@@ -150,14 +135,11 @@ $('#new-btn').click(async () => {
   } else {
     $('#login-required').modal('show');
   }
-  //clearInbox();
 });
 
 $('#start-new-chat-btn').click(async () => {
   var elt = document.getElementById("possible-friends");
   const dataUrl = core.getDefaultDataUrl(userWebId)+elt.options[elt.selectedIndex].text;
-    $('#containerFriends').hide();
-    $('#containerChat').show();
     friendWebId = $('#possible-friends').val();
     userDataUrl = dataUrl;
     setUpNewChat();
@@ -218,24 +200,13 @@ async function checkForNotificationsPublic() {
 }
 
 async function stopChatting() {
-  $('#chat').addClass('hidden');
-  $('#chat-options').removeClass('hidden');
+   $('#containerFriends').show();
+    $('#containerChat').hide();
   $("#messages").val("");
 }
 
 $('#stop-chatting').click(() => {
     stopChatting();
-});
-
-$('#btn-cancel').click(() => {
-  friendWebId = null;
-    openChat=false;
-
-  $('#chat').addClass('hidden');
-  $('#new-chat-options').addClass('hidden');
-  $('#chat-options').removeClass('hidden');
-$("#messages").val("");
-
 });
 
 $('#clear-inbox').click(() => {
