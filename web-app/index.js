@@ -76,7 +76,8 @@ async function setUpChat() {
 	while (i < friendMessages.length) {
 		var nameThroughUrl = friendMessages[i].author.split("/").pop();
 		if (nameThroughUrl === friendName) {
-			$("#messages").val($("#messages").val() + "\n" + friendName +" >> "+ friendMessages[i].messageTx);
+//			$("#messages").val($("#messages").val() + "\n" + friendName +" >> "+ friendMessages[i].messageTx);
+            $("#messages").append("<div class='container2'> <p>" + $("#messages").val() + "\n" + friendName +" >> "+ friendMessages[i].messageTx + "</p><div class='speech-bubble-ds-arrow'></div>");
 		}
 		i++;
   }
@@ -89,7 +90,7 @@ async function setUpChat() {
     var nameThroughUrl = myMessages[i].author.split("/").pop();
     var friendThroughUrl = myMessages[i].friend.split("/").pop();
 		if (friendName===friendThroughUrl) {
-			$("#messages").val($("#messages").val() + "\n" + username +" >> "+ (myMessages[i].messageTx).substring(1,myMessages[i].messageTx.length));
+			$("#messages").append("<div class='container2 darker'> <p>" + $("#messages").val() + "\n" + username +" >> "+ (myMessages[i].messageTx).substring(1,myMessages[i].messageTx.length) + "</p><div class='speech-bubble'></div>");
 		}
 		i++;
 	}
@@ -169,7 +170,8 @@ $('#write-chat').click(async() => {
     const message=$('#message').val();
     const messageText =username+" >> " + message;
     const valueMes = $('#messages').val();
-	$('#messages').val( valueMes + "\n" + messageText);
+//	$('#messages').val( valueMes + "\n" + messageText);
+    $('#messages').append("<div class='container2 darker'><p>" + valueMes + "\n" + messageText + "</p><div class='speech-bubble'></div>")
 	document.getElementById("message").value="";
 	await messageManager.storeMessage(userDataUrl, username, message, friendWebId, dataSync, true);
     
@@ -194,7 +196,7 @@ async function checkForNotificationsInbox() {
       if (message) {
 			newMessageFound = true;
 			if (openChat) {
-				$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messageTx);
+				$("#messages").append("<div class='container2 darker'><p>" + $("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messageTx+ "</p><div class='speech-bubble'></div></div>");
 			} else {
 				friendMessages.push(message);
 			}

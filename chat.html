@@ -57,13 +57,18 @@
           <span>Loading your chat...</span>
         </div>
 
+        </div>
+
         <div id="chat" class="hidden" >
+          <div class="chat-title">
           <p>Friend: <span id="friend-name"></span></p>
+           </div>
           <div id="chat-area" style="width: 400px">
-            <textarea id="messages" rows="20" cols="60" disabled></textarea>
+<!--            <textarea id="messages" rows="20" cols="120"  class="testP" disabled></textarea>-->
+              <div id="messages" class="testP" ></div>
             </div>
           <div id="chat-details">
-            <input type="text" class="form-control rounded-0" id="message" placeholder="Write your message...">
+            <input type="text" class="form-control rounded-0" id="message" placeholder="Write your message..." size="35">
 		    <button id="write-chat" type="button" class="btn btn-dark"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
             width="26" height="26"
             viewBox="0 0 224 224"
@@ -71,7 +76,7 @@
           </div>
             <button id="stop-chatting" type="button" class="btn btn-dark">Leave chat</button>
         </div>
-      </div>
+     
 
       <div class="modal fade" id="login-required" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

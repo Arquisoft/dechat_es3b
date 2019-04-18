@@ -79,3 +79,118 @@ tr.clickable-row {
 code {
   color: antiquewhite;
 }
+
+.testP {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 20px;
+    resize: none;
+    background: transparent;
+}
+
+.chat-title {
+  flex: 0 1 45px;
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 10px 10px 10px 50px;
+}
+
+.chat-title p, .chat-title span {
+  font-weight: normal;
+  font-size: 25px;
+  margin: 0;
+  padding: 0;
+}
+.chat-title span {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.color{
+    color:#FF0000;
+}
+
+#messages p {
+    color:#FF0000;
+}
+
+#messages{
+    background-color: #e5ddd5;
+	background-image: url("../img/bg-masthead.jpg");
+	padding: 0px 10%;
+	padding-top: 7px;
+	overflow-y: auto;
+	background-position-x: center;
+    width: 1100px;
+    height: 500px
+}
+
+.container2 {
+  border: 2px solid #dedede;
+  background-color: #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  width: 600px; 
+  height: 100px;
+}
+
+/* Darker chat container */
+.darker {
+  border-color: #ccc;
+  background-color: #f1f1f1;
+  float:right;
+}
+
+/* Clear floats */
+.container2::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.speech-bubble-ds-arrow {
+    position: relative;
+	background: #ddd;
+	border-radius: .4em;
+}
+.speech-bubble-ds-arrow::after {
+  content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-right-color: #ddd;
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -10px;
+	margin-left: -20px;
+}
+
+.speech-bubble {
+    position: relative;
+	background: #f1f1f1;
+	border-radius: .4em;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-left-color: #f1f1f1;
+	border-right: 0;
+	border-bottom: 0;
+	margin-top: -10px;
+	margin-right: -20px;
+}
