@@ -113,7 +113,7 @@ auth.trackSession(async session => {
   const loggedIn = !!session;
 
   if (loggedIn) {
-    $('#chat').load('../chat2.html');
+    $('#chat').load('../chat.html');
     seeChatScreen();
     userWebId = session.webId;
     
