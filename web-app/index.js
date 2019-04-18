@@ -133,20 +133,6 @@ auth.trackSession(async session => {
   }
 });
 
-$('#new-btn').click(async () => {
-  if (userWebId) {
-    const $select = $('#possible-friends');
-    $select.empty();
-    for await (const friend of data[userWebId].friends) {
-        let name = await core.getFormattedName(friend.value);
-
-        $select.append(`<option value="${friend}">${name}</option>`);
-    }
-  } else {
-    $('#login-required').modal('show');
-  }
-});
-
 $('#start-new-chat-btn').click(async () => {
   var elt = document.getElementById("possible-friends");
   const dataUrl = core.getDefaultDataUrl(userWebId)+elt.options[elt.selectedIndex].text;
@@ -164,6 +150,19 @@ $('#write-chat').click(async() => {
 	document.getElementById("message").value="";
 	await messageManager.storeMessage(userDataUrl, username, message, friendWebId, dataSync, true);
     
+});
+
+$('#message').keypress(async(e)=> {
+    var keycode = (e.keyCode ? e.keyCode : e.which);
+    if (keycode == '13') {
+        const username = $('#user-name').text();
+        const message=$('#message').val();
+        const messageText =username+" >> " + message;
+        const valueMes = $('#messages').val();
+        $('#messages').val( valueMes + "\n" + messageText);
+        document.getElementById("message").value="";
+        await messageManager.storeMessage(userDataUrl, username, message, friendWebId, dataSync, true);
+    }
 });
 
 /**
