@@ -110,6 +110,16 @@ auth.trackSession(async session => {
     $('#login-required').modal('hide');
     seeChatScreen();
     userWebId = session.webId;
+      
+      if (userWebId) {
+    const $select = $('#possible-friends');
+    $select.empty();
+    for await (const friend of data[userWebId].friends) {
+        let name = await core.getFormattedName(friend.value);
+
+        $select.append(`<option value="${friend}">${name}</option>`);
+    }
+  }
     
     checkForNotificationsInbox();
     
