@@ -40,6 +40,7 @@ function deleteFriends(){
 }
 
 function clearConver(){
+    $("#friend-name").text("");
     var element = document.getElementById("conver");
     while (element.firstChild) {
         element.removeChild(element.firstChild);
