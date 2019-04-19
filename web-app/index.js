@@ -27,8 +27,17 @@ $('#login-btn').click(() => {
 
 $('#logout-btn').click(() => {
   auth.logout();
+    $("#messages").val("");
+    deleteFriends();
     seePrincipalScreen();
 });
+
+function deleteFriends(){
+    var element = document.getElementById("friends");
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+}
 
 function seeChatScreen() {
  $('#principalScreen').hide(); 
@@ -199,16 +208,6 @@ async function checkForNotificationsPublic() {
 		} 
   });
 }
-
-async function stopChatting() {
-   $('#containerFriends').show();
-    $('#containerChat').hide();
-  $("#messages").val("");
-}
-
-$('#stop-chatting').click(() => {
-    stopChatting();
-});
 
 $('#clear-inbox').click(() => {
     clearInbox();
