@@ -85,14 +85,14 @@
         <div class="col-lg-3 col-md-6 text-center">
           <div class="mt-5">
             <i class="fas fa-4x fa-globe text-primary mb-4"></i>
-            <a class="btn btn-light btn-xl js-scroll-trigger" href="https://arquisoft.github.io/dechat_es3b/doc">Documentation</a>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="https://arquisoft.github.io/dechat_es3b/doc">Documentation</a>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 text-center">
           <div class="mt-5">
             <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
               <div>
-            <a class="btn btn-light btn-xl js-scroll-trigger" href="https://github.com/Arquisoft/dechat_es3b">Open source</a>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="https://github.com/Arquisoft/dechat_es3b">Open source</a>
                   </div>
           </div>
         </div>
@@ -115,21 +115,15 @@
 
   <!-- Masthead -->
   <header class="masthead">
-    <div class="container" id="containerFriends">
-      <div id="new-chat-options" class="d-flex justify-content-center">
-          <form>
-            <div class="form-group">
-              <span class="label label-warning" for="possible-friends">Select your friend to chat</span>
-              <select id="possible-friends"></select>
-            </div>
-            <div>
-            <button id="start-new-chat-btn" type="button" class="btn btn-outline-light">Start!</button>
-            </div>
-          </form>
-        </div>
+    <div class="row justify-content-center">
+      <div id="new-chat-options">
+          
+    <div class="list-group" id="friends">
+
     </div>
-      <div class="container" id="containerChat" style="display: none;">
-        <div id="chat" class="d-flex justify-content-center">
+    </div>
+
+        <div id="chat">
           <div><p>Friend  <span id="friend-name"></span></p></div>
           <div class="container" id="chat-area" style="width: 400px">
             <textarea id="messages" rows="20" cols="60" disabled></textarea>
@@ -151,6 +145,7 @@
             
         </div>
     </div>
+
 
   </header>
     

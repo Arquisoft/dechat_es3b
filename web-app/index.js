@@ -42,16 +42,6 @@ function seePrincipalScreen() {
     $('#chatScreen').hide();
 }
 
-/**
- * This method sets up a new chat.
- * @returns {Promise<void>}
- */
-async function setUpNewChat() {
-    $('#containerFriends').hide();
-    $('#containerChat').show();
-  setUpChat();
-}
-
 async function createChatFolder(url) {
 	return await fileClient.createFolder(url).then(success => {
 			console.log(`Created folder ${url}.`);
@@ -68,8 +58,8 @@ async function createChatFolder(url) {
  */
 async function setUpChat() {
   const username = $('#user-name').text(); 
-    $('#containerFriends').hide();
-    $('#containerChat').show();
+    //$('#containerFriends').hide();
+   // $('#containerChat').show();
     const friendName = await core.getFormattedName(friendWebId);
     $('#friend-name').text(friendName);
     createChatFolder(userDataUrl);
@@ -112,12 +102,14 @@ auth.trackSession(async session => {
     userWebId = session.webId;
       
       if (userWebId) {
-    const $select = $('#possible-friends');
-    $select.empty();
+    let n=0;
     for await (const friend of data[userWebId].friends) {
         let name = await core.getFormattedName(friend.value);
-
-        $select.append(`<option value="${friend}">${name}</option>`);
+        let id="friend"+n;
+        
+        $('#friends').append(`<button type="button" id="${id}" class="list-group-item list-group-item-action" value="${friend}" text="${name}">${name}</button>`);
+        document.getElementById("friend" + n).addEventListener("click", loadChat, false);
+        n=n+1;
     }
   }
     
@@ -133,13 +125,13 @@ auth.trackSession(async session => {
   }
 });
 
-$('#start-new-chat-btn').click(async () => {
-  var elt = document.getElementById("possible-friends");
-  const dataUrl = core.getDefaultDataUrl(userWebId)+elt.options[elt.selectedIndex].text;
-    friendWebId = $('#possible-friends').val();
+function loadChat() {  
+    $("#messages").val("");
+  const dataUrl = core.getDefaultDataUrl(userWebId)+this.getAttribute("text");
+    friendWebId = this.getAttribute("value");
     userDataUrl = dataUrl;
-    setUpNewChat();
-});
+    setUpChat();
+}
 
 $('#write-chat').click(async() => {
     const username = $('#user-name').text();
