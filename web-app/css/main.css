@@ -11,9 +11,6 @@
 }
 
 #left{
-    align-content: flex-start;
-    text-align-last: left;
-    align-items: flex-start;
     text-align: left
 }
 
