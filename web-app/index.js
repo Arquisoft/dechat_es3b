@@ -130,7 +130,7 @@ auth.trackSession(async session => {
   const loggedIn = !!session;
 
   if (loggedIn) {
-    $("#login-required").modal('hide');
+    $("#login-required").modal("hide");
     seeChatScreen();
     userWebId = session.webId;
       
@@ -223,10 +223,6 @@ async function checkForNotificationsPublic() {
   });
 }
 
-$('#clear-inbox').click(() => {
-    clearInbox();
-});
-
 async function clearInbox() {
   var resources = await core.getAllResourcesInInbox(await core.getInboxUrl(userWebId));
 
@@ -244,3 +240,8 @@ async function clearInbox() {
     }
   });
 }
+
+$('#clear-inbox').click(() => {
+    clearInbox();
+});
+
