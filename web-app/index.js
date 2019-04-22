@@ -21,6 +21,17 @@ let openChat=false;
 
 /*Log in-out*/
 
+$('#login-btn').click(() => {
+  auth.popupLogin({ popupUri: 'https://solid.github.io/solid-auth-client/dist/popup.html' });
+});
+
+$('#logout-btn').click(() => {
+  auth.logout();
+    clearConver();
+    deleteFriends();
+    seePrincipalScreen();
+});
+
 function deleteFriends(){
     var element = document.getElementById("friends");
     while (element.firstChild) {
@@ -47,17 +58,6 @@ function seePrincipalScreen() {
     $('#footer').show();
     $('#chatScreen').hide();
 }
-
-$('#login-btn').click(() => {
-  auth.popupLogin({ popupUri: 'https://solid.github.io/solid-auth-client/dist/popup.html' });
-});
-
-$('#logout-btn').click(() => {
-  auth.logout();
-    clearConver();
-    deleteFriends();
-    seePrincipalScreen();
-});
 
 async function createChatFolder(url) {
 	return await fileClient.createFolder(url).then(success => {
