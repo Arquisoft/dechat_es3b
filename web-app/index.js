@@ -37,22 +37,22 @@ function clearConver(){
 }
 
 function seeChatScreen() {
- $('#principalScreen').hide(); 
-    $('#footer').hide();
-    $('#chatScreen').show();
+ $("#principalScreen").hide(); 
+    $("#footer").hide();
+    $("#chatScreen").show();
 }
 
 function seePrincipalScreen() {
- $('#principalScreen').show(); 
-    $('#footer').show();
-    $('#chatScreen').hide();
+ $("#principalScreen").show(); 
+    $("#footer").show();
+    $("#chatScreen").hide();
 }
 
-$('#login-btn').click(() => {
+$("#login-btn").click(() => {
   auth.popupLogin({ popupUri: 'https://solid.github.io/solid-auth-client/dist/popup.html' });
 });
 
-$('#logout-btn').click(() => {
+$("#logout-btn").click(() => {
   auth.logout();
     clearConver();
     deleteFriends();
@@ -71,11 +71,11 @@ async function createChatFolder(url) {
 
 function addMessage(user,message,sended){
     if(sended===true){
-        var toAdd='<div class="d-flex flex-row-reverse bd-highlight"><div id="right"><h5><span class="badge badge-light">'+message+'</span></h5><h6><span class="badge badge-primary">'+user+'</span></h6></div></div>';
+        var toAdd="<div class='d-flex flex-row-reverse bd-highlight'><div id='right'><h5><span class='badge badge-light'>"+message+"</span></h5><h6><span class='badge badge-primary'>"+user+"</span></h6></div></div>";
     }else{
-        var toAdd='<div class="d-flex flex-row bd-highlight"><div id="left"><h5><span class="badge badge-light">'+message+'</span></h5><h6><span class="badge badge-primary">'+user+'</span></h6></div></div>';
+        var toAdd="<div class='d-flex flex-row bd-highlight'><div id='left'><h5><span class='badge badge-light'>"+message+"</span></h5><h6><span class='badge badge-primary'>"+user+"</span></h6></div></div>";
     }
-    $('#conver').append(toAdd);
+    $("#conver").append(toAdd);
 }
 
 /**
@@ -84,7 +84,7 @@ function addMessage(user,message,sended){
  */
 async function setUpChat() {
     const friendName = await core.getFormattedName(friendWebId);
-    $('#friend-name').text(friendName);
+    $("#friend-name").text(friendName);
     createChatFolder(userDataUrl);
     checkForNotificationsPublic();
     console.log(`checked`);
@@ -130,7 +130,7 @@ auth.trackSession(async session => {
   const loggedIn = !!session;
 
   if (loggedIn) {
-    $('#login-required').modal('hide');
+    $("#login-required").modal('hide');
     seeChatScreen();
     userWebId = session.webId;
       
@@ -140,7 +140,7 @@ auth.trackSession(async session => {
         let name = await core.getFormattedName(friend.value);
         let id="friend"+n;
         
-        $('#friends').append(`<button type="button" id="${id}" class="list-group-item list-group-item-action" value="${friend}" text="${name}">${name}</button>`);
+        $("#friends").append(`<button type="button" id="${id}" class="list-group-item list-group-item-action" value="${friend}" text="${name}">${name}</button>`);
         document.getElementById("friend" + n).addEventListener("click", loadChat, false);
         n=n+1;
     }
@@ -158,7 +158,7 @@ auth.trackSession(async session => {
   }
 });
 
-$('#write-chat').click(async() => {
+$("#write-chat").click(async() => {
     const message=$('#message').val();
     addMessage(await core.getFormattedName(userWebId),message,true);
 	document.getElementById("message").value="";
@@ -166,9 +166,9 @@ $('#write-chat').click(async() => {
     
 });
 
-$('#message').keypress(async(e)=> {
+$("#message").keypress(async(e) => {
     var keycode = (e.keyCode ? e.keyCode : e.which);
-    if (keycode == '13') {
+    if (keycode === '13') {
         const message=$('#message').val();
         document.getElementById("message").value="";
         
