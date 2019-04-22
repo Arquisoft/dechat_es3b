@@ -70,10 +70,11 @@ async function createChatFolder(url) {
 }
 
 function addMessage(user,message,sended){
+    var toAdd="";
     if(sended===true){
-        var toAdd="<div class='d-flex flex-row-reverse bd-highlight'><div id='right'><h5><span class='badge badge-light'>"+message+"</span></h5><h6><span class='badge badge-primary'>"+user+"</span></h6></div></div>";
+        toAdd="<div class='d-flex flex-row-reverse bd-highlight'><div id='right'><h5><span class='badge badge-light'>"+message+"</span></h5><h6><span class='badge badge-primary'>"+user+"</span></h6></div></div>";
     }else{
-        var toAdd="<div class='d-flex flex-row bd-highlight'><div id='left'><h5><span class='badge badge-light'>"+message+"</span></h5><h6><span class='badge badge-primary'>"+user+"</span></h6></div></div>";
+        toAdd="<div class='d-flex flex-row bd-highlight'><div id='left'><h5><span class='badge badge-light'>"+message+"</span></h5><h6><span class='badge badge-primary'>"+user+"</span></h6></div></div>";
     }
     $("#conver").append(toAdd);
 }
@@ -105,11 +106,13 @@ async function setUpChat() {
   myMessages.sort(function(a, b) {
     return parseFloat(a.date) - parseFloat(b.date);
 });
+    const userName=await core.getFormattedName(userWebId);
   while (i < myMessages.length) {
     var nameThroughUrl = myMessages[i].author.split("/").pop();
     var friendThroughUrl = myMessages[i].friend.split("/").pop();
+      const message=myMessages[i].messageTx;
 		if (friendName===friendThroughUrl) {
-            addMessage(await core.getFormattedName(userWebId),myMessages[i].messageTx,true);
+            addMessage(userName,message,true);
 		}
 		i++;
 	}
@@ -241,7 +244,7 @@ async function clearInbox() {
   });
 }
 
-$('#clear-inbox').click(() => {
+$("#clear-inbox").click(() => {
     clearInbox();
 });
 
