@@ -69,6 +69,15 @@ async function createChatFolder(url) {
 	});
 }
 
+function addMessage(user,message,sended){
+    if(sended===true){
+        var toAdd='<div class="d-flex flex-row-reverse bd-highlight"><div id="right"><h5><span class="badge badge-light">'+message+'</span></h5><h6><span class="badge badge-primary">'+user+'</span></h6></div></div>';
+    }else{
+        var toAdd='<div class="d-flex flex-row bd-highlight"><div id="left"><h5><span class="badge badge-light">'+message+'</span></h5><h6><span class="badge badge-primary">'+user+'</span></h6></div></div>';
+    }
+    $('#conver').append(toAdd);
+}
+
 /**
  * This method sets up the chat.
  * @returns {Promise<void>}
@@ -107,6 +116,16 @@ async function setUpChat() {
 	openChat = true;
 };
 
+
+function loadChat() {  
+    clearConver();
+  const dataUrl = core.getDefaultDataUrl(userWebId)+this.getAttribute("text");
+    friendWebId = this.getAttribute("value");
+    userDataUrl = dataUrl;
+    setUpChat();
+}
+
+
 auth.trackSession(async session => {
   const loggedIn = !!session;
 
@@ -139,14 +158,6 @@ auth.trackSession(async session => {
   }
 });
 
-function loadChat() {  
-    clearConver();
-  const dataUrl = core.getDefaultDataUrl(userWebId)+this.getAttribute("text");
-    friendWebId = this.getAttribute("value");
-    userDataUrl = dataUrl;
-    setUpChat();
-}
-
 $('#write-chat').click(async() => {
     const message=$('#message').val();
     addMessage(await core.getFormattedName(userWebId),message,true);
@@ -167,14 +178,7 @@ $('#message').keypress(async(e)=> {
     }
 });
 
-function addMessage(user,message,sended){
-    if(sended===true){
-        var toAdd='<div class="d-flex flex-row-reverse bd-highlight"><div id="right"><h5><span class="badge badge-light">'+message+'</span></h5><h6><span class="badge badge-primary">'+user+'</span></h6></div></div>';
-    }else{
-        var toAdd='<div class="d-flex flex-row bd-highlight"><div id="left"><h5><span class="badge badge-light">'+message+'</span></h5><h6><span class="badge badge-primary">'+user+'</span></h6></div></div>';
-    }
-    $('#conver').append(toAdd);
-}
+
 
 /**
  * This method checks if a new message has been made by your friend into Inbox.
