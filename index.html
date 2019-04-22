@@ -1,155 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>DeChat</title>
+<head>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="web-app/css/main.css">
-  </head>
-  <body vocab="http://schema.org/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>DeChat</title>
+
+  <!-- Font Awesome Icons -->
+  <link href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    
+<link href="web-app/css/main.css" rel="stylesheet" type="text/css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+  <!-- Theme CSS - Includes Bootstrap -->
+  <link href="web-app/css/creative.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+<div id="principalScreen">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <span class="navbar-brand"><img src="https://raw.githubusercontent.com/Arquisoft/dechat_es3b/master/docs/web-app/img/logo.png" alt="DeChates3B" height="65" width="165"></span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+        <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#help">Help</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li><button id="nav-login-btn" class="login-btn hidden btn btn-dark my-2 my-sm-0" type="button">Log in</button></li>
-            <li id="user-menu" class="hidden nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user"></i><span id='user-name' class="hidden"></span>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <button id="logout-btn" class="dropdown-item btn btn-outline-success my-2 my-sm-0" type="button">Log out</button>
-              </div>
-            </li>
-          </ul>
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-10 align-self-end">
+          <img src="web-app/img/logoxl.png" alt="DeChates3B" height="300" width="600">
+          <hr class="divider my-4">
         </div>
-      </nav>
-
-      <div id="content" class="row justify-content-center align-items-center">
-        <div id="chat-options" class="col-6 text-center">
-          <button id="new-btn" type="button" class="btn btn-dark btn-lg"> New chat</button>
-          <button id="join-btn" type="button" class="btn btn-dark btn-lg">Clear Inbox</button>
-        </div>
-
-        <div id="new-chat-options" class="col-6 hidden">
-          <form>
-            <div class="form-group">
-              <label for="possible-friends">Your friend</label>
-              <!-- <input type="text" class="form-control rounded-0" id="opp-webid" placeholder="Enter opponent's WebID" value="https://ph2.solid.community/profile/card#me"> -->
-              <select id="possible-friends"></select>
-            </div>
-            <div>
-            <button id="start-new-chat-btn" type="button" class="btn btn-dark">Start!</button>
-            <button type="button" class="btn-cancel btn btn-dark">Cancel</button>
-            </div>
-          </form>
-        </div>
-
-        <div id='chat-loading' class="hidden">
-          <span>Loading your chat...</span>
-        </div>
-
-        <div id="chat" class="hidden" >
-          <p>Friend: <span id="friend-name"></span></p>
-          <div id="chat-area" style="width: 400px">
-            <textarea id="messages" rows="20" cols="60" disabled></textarea>
-            </div>
-          <div id="chat-details">
-            <input type="text" class="form-control rounded-0" id="message" placeholder="Write your message...">
-		    <button id="write-chat" type="button" class="btn btn-dark"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width="26" height="26"
-            viewBox="0 0 224 224"
-            style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,224v-224h224v224z" fill="none"></path><g fill="#ffffff"><g id="surface1"><path d="M0,17.23077v73.23077l129.23077,21.53846l-129.23077,21.53846v73.23077l224,-94.76923z"></path></g></g></g></svg></button>
-          </div>
-            <button id="stop-chatting" type="button" class="btn btn-dark">Leave chat</button>
+        <div class="col-lg-8 align-self-baseline">
+          <a class="btn btn-primary btn-xl js-scroll-trigger" id="login-btn">Chat</a>
         </div>
       </div>
-
-      <div class="modal fade" id="login-required" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Login required</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Please login to chat.
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="login-btn btn btn-dark">Login</button>
-            </div>
-          </div>
+    </div>
+  </header>
+    
+<!-- Help Section -->
+  <section class="page-section bg-primary" id="help">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="text-white mt-0">Help</h2>
+          <hr class="divider light my-4">
+            <p class="text-white mb-4">To use the application you need a <a class="text-white mb-4" href=https://solid.inrupt.com/get-a-solid-pod >Solid POD</a>. If you already have it, you only have to click in CHAT and log in with your Solid account. You will see the chat with all your friends, click on the one you want and start chatting!</p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="modal fade" id="write-permission" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel2">Write permission required</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              You don't have write permission for <span id="write-permission-url"></span>.
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+  <!-- About Section -->
+  <section class="page-section" id="about">
+    <div class="container">
+      <h2 class="text-center mt-0">About us</h2>
+      <hr class="divider my-4">
+      <div class="row">
+          <div class="col-lg-3 col-md-6 text-center">
+          <div class="mt-5">
+            <p>DeChat is a decentralized chat application, build on top of Solid. Our information is not stored on a server but is stored on our POD.</p>
           </div>
         </div>
-      </div>
-
-      <div class="modal fade" id="invitation-response" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel3">Response to invitation</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body"></div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+        <div class="col-lg-3 col-md-6 text-center">
+          <div class="mt-5">
+            <i class="fas fa-4x fa-globe text-primary mb-4"></i>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="https://arquisoft.github.io/dechat_es3b/doc">Documentation</a>
           </div>
         </div>
-      </div>
-
-      <div class="modal fade" id="real-time-opponent-quit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel6" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel6">Friend has quit</h5>
-            </div>
-            <div class="modal-body">
-              Your friend has quit the chat.
-            </div>
-            <div class="modal-footer">
-              <button id="opp-quit-ok-btn" type="button" class="btn btn-dark">ok</button>
-            </div>
+        <div class="col-lg-3 col-md-6 text-center">
+          <div class="mt-5">
+            <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+              <div>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="https://github.com/Arquisoft/dechat_es3b">Open source</a>
+                  </div>
           </div>
         </div>
       </div>
     </div>
+  </section>
+    
+</div>
+    
+    <div id="chatScreen" style="display: none;">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+        <span><img src="web-app/img/logo.png" alt="DeChates3B" height="65" width="165"></span>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+        <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" id="clear-inbox" href="#">Clear inbox</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" id="logout-btn" href="#">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="row justify-content-center">
+      <div id="new-chat-options">
+          <div class="row justify-content-center"><h3><span class="badge badge-primary">Friends</span></h3></div>
+    <div class="list-group" id="friends">
+
+    </div>
+    </div>
+
+        <div id="chat">
+            <div class="row justify-content-center"><h2><span id="friend-name" class="badge badge-primary"></span></h2></div>
+          <div class="container" id="chat-area" style="width: 400px">
+              <div id="conver">
+              
+              </div>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control rounded-0" id="message" placeholder="Write your message...">
+                <div class="input-group-append">
+                <button id="write-chat" class="btn btn-primary" type="button"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            width="20" height="20"
+            viewBox="0 0 224 224"
+            style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,224v-224h224v224z" fill="none"></path><g fill="#ffffff"><g id="surface1"><path d="M0,17.23077v73.23077l129.23077,21.53846l-129.23077,21.53846v73.23077l224,-94.76923z"></path></g></g></g></svg></button>
+                </div>
+            </div>            
+        </div>
+            
+        </div>
+    </div>
+
+
+  </header>
+    
+    </div>
+
+  <!-- Footer -->
+  <footer id="footer" class="bg-light py-5">
+    <div class="container">
+      <div class="small text-center text-muted">Dechat_es3b</div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="node_modules/jquery.easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="web-app/js/creative.min.js"></script>
+    
+
+    
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
     <script src="web-app/dist/main.js"></script>
-  </body>
+    
+    
+    
+
+</body>
+
 </html>
