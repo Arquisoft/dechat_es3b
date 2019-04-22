@@ -162,7 +162,7 @@ auth.trackSession(async session => {
 });
 
 $("#write-chat").click(async() => {
-    const message=$('#message').val();
+    const message=$("#message").val();
     addMessage(await core.getFormattedName(userWebId),message,true);
 	document.getElementById("message").value="";
 	await messageManager.storeMessage(userDataUrl, await core.getFormattedName(userWebId), message, friendWebId, dataSync, true);
@@ -171,8 +171,8 @@ $("#write-chat").click(async() => {
 
 $("#message").keypress(async(e) => {
     var keycode = (e.keyCode ? e.keyCode : e.which);
-    if (keycode === '13') {
-        const message=$('#message').val();
+    if (keycode === "13") {
+        const message=$("#message").val();
         document.getElementById("message").value="";
         
         addMessage(await core.getFormattedName(userWebId),message,true);
