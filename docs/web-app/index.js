@@ -16,34 +16,47 @@ let messageManager = new MessageManager(core,auth.fetch);
 let dataSync = new DataSync(auth.fetch);
 let userDataUrl;
 let friendMessages = [];
-let myMessages = [];
 let openChat=false;
 
 /*Log in-out*/
 
-$('.login-btn').click(() => {
+function deleteFriends(){
+    var element = document.getElementById("friends");
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+}
+
+function clearConver(){
+    $("#friend-name").text("");
+    var element = document.getElementById("conver");
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+}
+
+function seeChatScreen() {
+ $("#principalScreen").hide(); 
+    $("#footer").hide();
+    $("#chatScreen").show();
+}
+
+function seePrincipalScreen() {
+ $("#principalScreen").show(); 
+    $("#footer").show();
+    $("#chatScreen").hide();
+}
+
+$("#login-btn").click(() => {
   auth.popupLogin({ popupUri: 'https://solid.github.io/solid-auth-client/dist/popup.html' });
 });
 
-$('#logout-btn').click(() => {
+$("#logout-btn").click(() => {
   auth.logout();
+    clearConver();
+    deleteFriends();
+    seePrincipalScreen();
 });
-
-/**
- * This method does the necessary updates of the UI when the different chat options are shown.
- */
-function setUpForEveryChatOption() {
-  $('#chat-loading').removeClass('hidden');
-}
-
-/**
- * This method sets up a new chat.
- * @returns {Promise<void>}
- */
-async function setUpNewChat() {
-  setUpForEveryChatOption();
-  setUpChat();
-}
 
 async function createChatFolder(url) {
 	return await fileClient.createFolder(url).then(success => {
@@ -55,129 +68,108 @@ async function createChatFolder(url) {
 	});
 }
 
+function addMessage(user,message,sended){
+    var toAdd="";
+    if(sended===true){
+        toAdd="<div class='d-flex flex-row-reverse bd-highlight'><div id='right'><h5><span class='badge badge-light'>"+message+"</span></h5><h6><span class='badge badge-primary'>"+user+"</span></h6></div></div>";
+    }else{
+        toAdd="<div class='d-flex flex-row bd-highlight'><div id='left'><h5><span class='badge badge-light'>"+message+"</span></h5><h6><span class='badge badge-primary'>"+user+"</span></h6></div></div>";
+    }
+    $("#conver").append(toAdd);
+}
+
 /**
  * This method sets up the chat.
  * @returns {Promise<void>}
  */
 async function setUpChat() {
-  const username = $('#user-name').text();  
-    $('#chat').removeClass('hidden');
-    $('#chat-loading').addClass('hidden');
     const friendName = await core.getFormattedName(friendWebId);
-    $('#friend-name').text(friendName);
+    const userName=await core.getFormattedName(userWebId);
+    $("#friend-name").text(friendName);
     createChatFolder(userDataUrl);
     checkForNotificationsPublic();
     console.log(`checked`);
-    var i = 0;
-    
+    var i = 0; 
     friendMessages.sort(function(a, b) {
       return parseFloat(a.date) - parseFloat(b.date);
   });
 	while (i < friendMessages.length) {
-		var nameThroughUrl = friendMessages[i].author.split("/").pop();
-		if (nameThroughUrl === friendName) {
-			$("#messages").val($("#messages").val() + "\n" + friendName +" >> "+ friendMessages[i].messageTx);
-		}
+    var nameThroughUrl = friendMessages[i].author.split("/").pop();
+    var friendThroughUrl = friendMessages[i].friend.split("/").pop();
+		if (nameThroughUrl === friendName && friendThroughUrl==userName) {
+      addMessage(friendName,friendMessages[i].messageTx,false);
+    }
+    else if (nameThroughUrl === userName && friendThroughUrl==friendName) {
+      addMessage(userName,friendMessages[i].messageTx,true);
+}
 		i++;
   }
-
-  i = 0;
-  myMessages.sort(function(a, b) {
-    return parseFloat(a.date) - parseFloat(b.date);
-});
-  while (i < myMessages.length) {
-    var nameThroughUrl = myMessages[i].author.split("/").pop();
-    var friendThroughUrl = myMessages[i].friend.split("/").pop();
-		if (friendName===friendThroughUrl) {
-			$("#messages").val($("#messages").val() + "\n" + username +" >> "+ (myMessages[i].messageTx).substring(1,myMessages[i].messageTx.length));
-		}
-		i++;
-	}
 	openChat = true;
 };
 
+
+function loadChat() {  
+    clearConver();
+  const dataUrl = core.getDefaultDataUrl(userWebId)+this.getAttribute("text");
+    friendWebId = this.getAttribute("value");
+    userDataUrl = dataUrl;
+    setUpChat();
+}
+
+
 auth.trackSession(async session => {
   const loggedIn = !!session;
-  //console.log(`logged in: ${loggedIn}`);
 
   if (loggedIn) {
-    $('#user-menu').removeClass('hidden');
-    $('#nav-login-btn').addClass('hidden');
-    $('#login-required').modal('hide');
-
+    $("#login-required").modal("hide");
+    seeChatScreen();
     userWebId = session.webId;
-    const name = await core.getFormattedName(userWebId);
-
-    if (name) {
-      $('#user-name').removeClass('hidden');
-      $('#user-name').text(name);
+      
+      if (userWebId) {
+    let n=0;
+    for await (const friend of data[userWebId].friends) {
+        let name = await core.getFormattedName(friend.value);
+        let id="friend"+n;
+        
+        $("#friends").append(`<button type="button" id="${id}" class="list-group-item list-group-item-action" value="${friend}" text="${name}">${name}</button>`);
+        document.getElementById("friend" + n).addEventListener("click", loadChat, false);
+        n=n+1;
     }
-
+  }
     
     checkForNotificationsInbox();
     
     // refresh every 5sec
     refreshIntervalIdInbox = setInterval(checkForNotificationsInbox, 5000);
   } else {
-    $('#nav-login-btn').removeClass('hidden');
-    $('#user-menu').addClass('hidden');
-    $('#chat').addClass('hidden');
-    $('#new-chat-options').addClass('hidden');
-    $('#chat-options').removeClass('hidden');
-
+    seePrincipalScreen();
     userWebId = null;
     clearInterval(refreshIntervalIdInbox);
     refreshIntervalIdInbox = null;
   }
 });
 
-/**
- * This method updates the UI after a chat option has been selected by the user.
- */
-function afterChatOption() {
-  $('#chat-options').addClass('hidden');
-}
-
-$('#new-btn').click(async () => {
-  if (userWebId) {
-    afterChatOption();
-    $('#new-chat-options').removeClass('hidden');
-    const $select = $('#possible-friends');
-    $select.empty();
-    for await (const friend of data[userWebId].friends) {
-        let name = await core.getFormattedName(friend.value);
-
-        $select.append(`<option value="${friend}">${name}</option>`);
-    }
-  } else {
-    $('#login-required').modal('show');
-  }
-  //clearInbox();
-});
-
-$('#start-new-chat-btn').click(async () => {
-  var elt = document.getElementById("possible-friends");
-  const dataUrl = core.getDefaultDataUrl(userWebId)+elt.options[elt.selectedIndex].text;
-    $('#new-chat-options').addClass('hidden');
-    friendWebId = $('#possible-friends').val();
-    userDataUrl = dataUrl;
-    setUpNewChat();
-});
-
-$('#write-chat').click(async() => {
-    const username = $('#user-name').text();
-    const message=$('#message').val();
-    const messageText =username+" >> " + message;
-    const valueMes = $('#messages').val();
-	$('#messages').val( valueMes + "\n" + messageText);
+$("#write-chat").click(async() => {
+    const message=$("#message").val();
+    addMessage(await core.getFormattedName(userWebId),message,true);
 	document.getElementById("message").value="";
-	await messageManager.storeMessage(userDataUrl, username, message, friendWebId, dataSync, true);
+	await messageManager.storeMessage(userDataUrl, await core.getFormattedName(userWebId), message, friendWebId, dataSync, true);
     
 });
 
-$('#join-btn').click(async () => {
-  clearInbox();
+$("#message").keypress(async(e) => {
+    var keycode = (e.keyCode ? e.keyCode : e.which);
+    if (keycode === "13") {
+        const message=$("#message").val();
+        document.getElementById("message").value="";
+        
+        addMessage(await core.getFormattedName(userWebId),message,true);
+        
+        await messageManager.storeMessage(userDataUrl, await core.getFormattedName(userWebId), message, friendWebId, dataSync, true);
+    }
 });
+
+
 
 /**
  * This method checks if a new message has been made by your friend into Inbox.
@@ -189,13 +181,13 @@ async function checkForNotificationsInbox() {
   console.log(updates.length);
   updates.forEach(async (fileurl) => {   
       let message = await messageManager.getNewMessage(fileurl,"/inbox/", dataSync,);
-      console.log(message);
-      
+      console.log(message);  
       if (message) {
 			newMessageFound = true;
 			if (openChat) {
-				$("#messages").val($("#messages").val() + "\n" + await core.getFormattedName(friendWebId) + " >> " + message.messageTx);
+                addMessage(await core.getFormattedName(friendWebId),message.messageTx,false);
 			} else {
+        message.date=message.date.split("/").pop();
 				friendMessages.push(message);
 			}
 		} 
@@ -212,36 +204,15 @@ async function checkForNotificationsPublic() {
   const psFriendname = (await core.getFormattedName(friendWebId)).replace(/ /g,"%20");
   var updates = await checkNotifications.checkUserForUpdates(await core.getPublicUrl(userWebId)+"/chat_"+psFriendname);
   updates.forEach(async (fileurl) => {   
-      let message = await messageManager.getNewMessage(fileurl,"/public/chat_"+await psFriendname, dataSync);
+      let message = await messageManager.getNewMessage(fileurl,"/public/chat_"+await psFriendname+"/", dataSync);
       console.log(message);
-      
       if (message) {
-			newMessageFound = true;
-				myMessages.push(message);
+      newMessageFound = true;
+      message.date=message.date.split("/").pop();
+			friendMessages.push(message);
 		} 
   });
 }
-
-async function stopChatting() {
-  $('#chat').addClass('hidden');
-  $('#chat-options').removeClass('hidden');
-  $("#messages").val("");
-}
-
-$('#stop-chatting').click(() => {
-    stopChatting();
-});
-
-$('.btn-cancel').click(() => {
-  friendWebId = null;
-    openChat=false;
-
-  $('#chat').addClass('hidden');
-  $('#new-chat-options').addClass('hidden');
-  $('#chat-options').removeClass('hidden');
-$("#messages").val("");
-
-});
 
 async function clearInbox() {
   var resources = await core.getAllResourcesInInbox(await core.getInboxUrl(userWebId));
@@ -260,3 +231,8 @@ async function clearInbox() {
     }
   });
 }
+
+$("#clear-inbox").click(() => {
+    clearInbox();
+});
+
