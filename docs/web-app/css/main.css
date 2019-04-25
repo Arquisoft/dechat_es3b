@@ -1,9 +1,9 @@
 #conver {
     box-sizing: content-box;
-    width: 575px;
-    height: 575px;
-    min-height: 575px;
-    min-width: 575px;
+    width: 550px;
+    height: 550px;
+    min-height: 550px;
+    min-width: 550px;
     padding:1em;
     border: 1px solid #f26135;
     border-radius: 1em;
