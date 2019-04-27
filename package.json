@@ -50,6 +50,7 @@
     "chai": "4.2.x",
     "chess.js": "github:jhlywa/chess.js#master",
     "date-fns": "^2.0.0-alpha.25",
+    "gatlingjs": "0.0.7",
     "http-server": "^0.11.1",
     "inquirer": "^6.2.0",
     "jquery": "^3.4.0",
