@@ -13,11 +13,11 @@
             "name": "a \"test3b\" with a \"SolidTest3b$\" that wants to talk with a friend",
             "result": {
               "status": "passed",
-              "duration": 8141233006
+              "duration": 8141397253
             },
             "line": 4,
             "match": {
-              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:112"
+              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:111"
             }
           },
           {
@@ -26,11 +26,11 @@
             "name": "the chat is created",
             "result": {
               "status": "passed",
-              "duration": 1697077788
+              "duration": 1646816484
             },
             "line": 5,
             "match": {
-              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:138"
+              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:137"
             }
           },
           {
@@ -38,7 +38,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 953619472
+              "duration": 973964663
             },
             "hidden": true,
             "match": {
@@ -71,11 +71,11 @@
             "name": "a \"test3b\" and \"SolidTest3b$\" and the user make login",
             "result": {
               "status": "passed",
-              "duration": 7976236191
+              "duration": 7411888286
             },
             "line": 4,
             "match": {
-              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:10"
+              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:9"
             }
           },
           {
@@ -84,11 +84,11 @@
             "name": "the login is successfull",
             "result": {
               "status": "passed",
-              "duration": 8762898
+              "duration": 220701326
             },
             "line": 5,
             "match": {
-              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:36"
+              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:35"
             }
           },
           {
@@ -96,7 +96,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 36390115
+              "duration": 37690127
             },
             "hidden": true,
             "match": {
@@ -129,11 +129,11 @@
             "name": "a \"userTest3\" and \"passwordInvalid\" and the user make bad login",
             "result": {
               "status": "passed",
-              "duration": 8192981979
+              "duration": 7038768498
             },
             "line": 4,
             "match": {
-              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:42"
+              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:41"
             }
           },
           {
@@ -142,11 +142,11 @@
             "name": "the login is unsuccessfull",
             "result": {
               "status": "passed",
-              "duration": 6164386
+              "duration": 7239737
             },
             "line": 5,
             "match": {
-              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:69"
+              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:68"
             }
           },
           {
@@ -154,7 +154,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 940922936
+              "duration": 954226999
             },
             "hidden": true,
             "match": {
@@ -177,11 +177,11 @@
             "name": "a \"userInvalid\" and \"password\" and the user make bad login",
             "result": {
               "status": "passed",
-              "duration": 6257174132
+              "duration": 6402657943
             },
             "line": 4,
             "match": {
-              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:42"
+              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:41"
             }
           },
           {
@@ -190,11 +190,11 @@
             "name": "the login is unsuccessfull",
             "result": {
               "status": "passed",
-              "duration": 7058120
+              "duration": 7761553
             },
             "line": 5,
             "match": {
-              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:69"
+              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:68"
             }
           },
           {
@@ -202,7 +202,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 934030951
+              "duration": 965628810
             },
             "hidden": true,
             "match": {
@@ -235,11 +235,11 @@
             "name": "a \"test3b\" and \"SolidTest3b$\" and the user make login and log out",
             "result": {
               "status": "passed",
-              "duration": 7357860989
+              "duration": 7739975132
             },
             "line": 4,
             "match": {
-              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:75"
+              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:74"
             }
           },
           {
@@ -248,11 +248,11 @@
             "name": "the main window is shows",
             "result": {
               "status": "passed",
-              "duration": 294175173
+              "duration": 287299802
             },
             "line": 5,
             "match": {
-              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:101"
+              "location": "C:\\Users\\alba-\\Desktop\\ASW-Cucumber\\dechat_es3b\\features\\step_definitions\\stepdefs.js:100"
             }
           },
           {
@@ -260,7 +260,7 @@
             "keyword": "After ",
             "result": {
               "status": "passed",
-              "duration": 29591771
+              "duration": 33075332
             },
             "hidden": true,
             "match": {

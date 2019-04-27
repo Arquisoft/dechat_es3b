@@ -3,7 +3,6 @@
 const assert = require('assert');
 var seleniumWebDriver = require ('selenium-webdriver');
 
-
 module.exports = function () {
     
     //----------------------- Test Login -------------------------
