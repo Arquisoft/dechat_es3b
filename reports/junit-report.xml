@@ -1,53 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-    <testsuite name="start-a-chat;start-a-chat-with-a-real-friend" tests="2" failures="0" skipped="0">
+    <testsuite name="start-a-chat;start-a-chat-with-a-real-friend" tests="2" failures="1" skipped="1">
         <properties>
-            <property name="URI" value="C:/Users/Usuario/git/dechat_es3b/features/createChat.feature">
+            <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/createChat.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;test3b&quot; with a &quot;SolidTest3b$&quot; that wants to talk with a friend" classname="start-a-chat;start-a-chat-with-a-real-friend" time="5.332171101">
+        <testcase name="Given a &quot;test3b&quot; with a &quot;SolidTest3b$&quot; that wants to talk with a friend" classname="start-a-chat;start-a-chat-with-a-real-friend" time="28.386778778">
+            <failure message="TimeoutError: Waiting for at least one element to be located By(xpath, //*[@id=&apos;user-name&apos;])">TimeoutError: Waiting for at least one element to be located By(xpath, //*[@id=&apos;user-name&apos;])
+Wait timed out after 20001ms
+    at C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:2209:17
+    at ManagedPromise.invokeCallback_ (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:1384:14)
+    at TaskQueue.execute_ (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:3092:14)
+    at TaskQueue.executeNext_ (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:3075:27)
+    at asyncRun (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:2935:27)
+    at C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:676:7
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+From: Task: Waiting for at least one element to be located By(xpath, //*[@id=&apos;user-name&apos;])
+    at scheduleWait (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:2196:20)
+    at ControlFlow.wait (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:2525:12)
+    at thenableWebDriverProxy.wait (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\webdriver.js:934:29)
+    at driver.findElement.click.then (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\features\step_definitions\stepdefs.js:134:59)
+    at ManagedPromise.invokeCallback_ (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:1384:14)
+    at TaskQueue.execute_ (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:3092:14)
+    at TaskQueue.executeNext_ (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:3075:27)
+    at asyncRun (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:2935:27)
+    at C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:676:7
+    at process._tickCallback (internal/process/next_tick.js:68:7)</failure>
         </testcase>
-        <testcase name="Then the chat is created" classname="start-a-chat;start-a-chat-with-a-real-friend" time="0.4483091">
+        <testcase name="Then the chat is created" classname="start-a-chat;start-a-chat-with-a-real-friend">
+            <skipped message="">
+            </skipped>
         </testcase>
     </testsuite>
     <testsuite name="make-login-in-the-chat;do-login-in-chat" tests="2" failures="0" skipped="0">
         <properties>
-            <property name="URI" value="C:/Users/Usuario/git/dechat_es3b/features/login.feature">
+            <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/login.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login" classname="make-login-in-the-chat;do-login-in-chat" time="9.894131901">
+        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login" classname="make-login-in-the-chat;do-login-in-chat" time="9.097123249">
         </testcase>
-        <testcase name="Then the login is successfull" classname="make-login-in-the-chat;do-login-in-chat" time="0.157537701">
+        <testcase name="Then the login is successfull" classname="make-login-in-the-chat;do-login-in-chat" time="0.223606434">
         </testcase>
     </testsuite>
-    <testsuite name="make-bad-login-in-the-chat;do-bad-login-in-chat" tests="2" failures="0" skipped="0">
+    <testsuite name="make-bad-login-in-the-chat;do-bad-login-in-chat" tests="2" failures="1" skipped="0">
         <properties>
-            <property name="URI" value="C:/Users/Usuario/git/dechat_es3b/features/loginFailure.feature">
+            <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/loginFailure.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;userTest3&quot; and &quot;passwordInvalid&quot; and the user make bad login" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="7.0334528">
+        <testcase name="Given a &quot;userTest3&quot; and &quot;passwordInvalid&quot; and the user make bad login" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="7.488562886">
         </testcase>
-        <testcase name="Then the login is unsuccessfull" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="0.002538999">
+        <testcase name="Then the login is unsuccessfull" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="0.009751782">
+            <failure message="NoSuchElementError: Unable to locate element: //*[@id=&apos;nav-login-btn&apos;]">NoSuchElementError: Unable to locate element: //*[@id=&apos;nav-login-btn&apos;]
+    at Object.throwDecodedError (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\error.js:497:15)
+    at parseHttpResponse (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\http.js:519:13)
+    at doSend.then.response (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\http.js:441:30)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+From: Task: WebDriver.findElement(By(xpath, //*[@id=&apos;nav-login-btn&apos;]))
+    at thenableWebDriverProxy.schedule (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\webdriver.js:807:17)
+    at thenableWebDriverProxy.findElement (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\webdriver.js:1014:17)
+    at createWorld.&lt;anonymous&gt; (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\features\step_definitions\stepdefs.js:72:23)
+    at process._tickCallback (internal/process/next_tick.js:61:11)</failure>
         </testcase>
     </testsuite>
-    <testsuite name="make-bad-login-in-the-chat;do-bad-login-in-chat" tests="2" failures="0" skipped="0">
+    <testsuite name="make-bad-login-in-the-chat;do-bad-login-in-chat" tests="2" failures="1" skipped="0">
         <properties>
-            <property name="URI" value="C:/Users/Usuario/git/dechat_es3b/features/loginFailure.feature">
+            <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/loginFailure.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;userInvalid&quot; and &quot;password&quot; and the user make bad login" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="5.201139">
+        <testcase name="Given a &quot;userInvalid&quot; and &quot;password&quot; and the user make bad login" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="7.147966783">
         </testcase>
-        <testcase name="Then the login is unsuccessfull" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="0.001861001">
+        <testcase name="Then the login is unsuccessfull" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="0.010168253">
+            <failure message="NoSuchElementError: Unable to locate element: //*[@id=&apos;nav-login-btn&apos;]">NoSuchElementError: Unable to locate element: //*[@id=&apos;nav-login-btn&apos;]
+    at Object.throwDecodedError (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\error.js:497:15)
+    at parseHttpResponse (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\http.js:519:13)
+    at doSend.then.response (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\http.js:441:30)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+From: Task: WebDriver.findElement(By(xpath, //*[@id=&apos;nav-login-btn&apos;]))
+    at thenableWebDriverProxy.schedule (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\webdriver.js:807:17)
+    at thenableWebDriverProxy.findElement (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\webdriver.js:1014:17)
+    at createWorld.&lt;anonymous&gt; (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\features\step_definitions\stepdefs.js:72:23)
+    at process._tickCallback (internal/process/next_tick.js:61:11)</failure>
         </testcase>
     </testsuite>
-    <testsuite name="make-logout-in-the-chat;do-logout-in-chat" tests="2" failures="0" skipped="0">
+    <testsuite name="make-logout-in-the-chat;do-logout-in-chat" tests="2" failures="1" skipped="1">
         <properties>
-            <property name="URI" value="C:/Users/Usuario/git/dechat_es3b/features/logout.feature">
+            <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/logout.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login and log out" classname="make-logout-in-the-chat;do-logout-in-chat" time="6.426282599">
+        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login and log out" classname="make-logout-in-the-chat;do-logout-in-chat" time="16.536352545">
+            <failure message="WebDriverError: Failed to interpret value as array">WebDriverError: Failed to interpret value as array
+    at Object.throwDecodedError (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\error.js:497:15)
+    at parseHttpResponse (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\http.js:519:13)
+    at doSend.then.response (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\http.js:441:30)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+From: Task: WebDriver.findElements(By(xpath, //*[@id=&apos;navbarDropdown&apos;]))
+    at thenableWebDriverProxy.schedule (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\webdriver.js:807:17)
+    at thenableWebDriverProxy.findElements (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\webdriver.js:1048:22)
+    at C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\until.js:265:23
+    at C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\webdriver.js:938:14
+    at TaskQueue.execute_ (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:3092:14)
+    at TaskQueue.executeNext_ (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:3075:27)
+    at asyncRun (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:2982:25)
+    at C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:676:7
+From: Task: &lt;anonymous&gt;
+    at Timeout.pollCondition [as _onTimeout] (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:2203:19)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+From: Task: Waiting for at least one element to be located By(xpath, //*[@id=&apos;navbarDropdown&apos;])
+    at scheduleWait (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:2196:20)
+    at ControlFlow.wait (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:2525:12)
+    at thenableWebDriverProxy.wait (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\webdriver.js:934:29)
+    at driver.findElement.click.then (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\features\step_definitions\stepdefs.js:100:52)
+    at ManagedPromise.invokeCallback_ (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:1384:14)
+    at TaskQueue.execute_ (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:3092:14)
+    at TaskQueue.executeNext_ (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:3075:27)
+    at asyncRun (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:2935:27)
+    at C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\promise.js:676:7
+    at process._tickCallback (internal/process/next_tick.js:68:7)</failure>
         </testcase>
-        <testcase name="Then the main window is shows" classname="make-logout-in-the-chat;do-logout-in-chat" time="0.585243">
+        <testcase name="Then the main window is shows" classname="make-logout-in-the-chat;do-logout-in-chat">
+            <skipped message="">
+            </skipped>
         </testcase>
     </testsuite>
 </testsuites>

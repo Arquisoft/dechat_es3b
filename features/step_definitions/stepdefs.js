@@ -14,7 +14,7 @@ module.exports = function () {
         var parent = driver.getWindowHandle();
         return helpers.loadPage("https://arquisoft.github.io/dechat_es3b/")
             .then(()=> {
-                    return driver.findElement(by.xpath("//*[@id='nav-login-btn']")).click()
+                    return driver.findElement(by.xpath("//*[@id='login-btn']")).click()
                         .then(() => {
                             // select the newly opened window
                             return driver.getAllWindowHandles().then(function gotWindowHandles(allhandles) {
@@ -27,7 +27,7 @@ module.exports = function () {
                                         driver.findElement(By.name("password")).sendKeys(password); 
                                         return driver.findElement(by.xpath("//*[@id='login']")).click().then(() => {
                                             driver.switchTo().window(parent);
-                                            return driver.wait(until.elementsLocated(by.xpath("//*[@id='user-name']")), 20000);
+                                            return driver.wait(until.elementsLocated(by.xpath("//*[@id='mainNav']")), 20000);
                                         })
                                 })
                             });
@@ -36,7 +36,7 @@ module.exports = function () {
     });
     
     this.Then(/^the login is successfull$/,function (){
-        return driver.wait(until.elementsLocated(by.xpath("//*[@id='user-name']")), 10000);
+        return driver.wait(until.elementsLocated(by.xpath("//*[@id='mainNav']")), 10000);
     });
     
     
@@ -46,7 +46,7 @@ module.exports = function () {
         var parent = driver.getWindowHandle();
         return helpers.loadPage("https://arquisoft.github.io/dechat_es3b/")
             .then(()=> {
-                    return driver.findElement(by.xpath("//*[@id='nav-login-btn']")).click()
+                    return driver.findElement(by.xpath("//*[@id='login-btn']")).click()
                         .then(() => {
                             // select the newly opened window
                             return driver.getAllWindowHandles().then(function gotWindowHandles(allhandles) {
@@ -79,7 +79,7 @@ module.exports = function () {
         var parent = driver.getWindowHandle();
         return helpers.loadPage("https://arquisoft.github.io/dechat_es3b/")
             .then(()=> {
-                    return driver.findElement(by.xpath("//*[@id='nav-login-btn']")).click()
+                    return driver.findElement(by.xpath("//*[@id='login-btn']")).click()
                         .then(() => {
                             // select the newly opened window
                             return driver.getAllWindowHandles().then(function gotWindowHandles(allhandles) {
@@ -118,7 +118,7 @@ module.exports = function () {
         var parent = driver.getWindowHandle();
         return helpers.loadPage("https://arquisoft.github.io/dechat_es3b/")
             .then(()=> {
-                    return driver.findElement(by.xpath("//*[@id='nav-login-btn']")).click()
+                    return driver.findElement(by.xpath("//*[@id='login-btn']")).click()
                         .then(() => {
                             // select the newly opened window
                             return driver.getAllWindowHandles().then(function gotWindowHandles(allhandles) {
