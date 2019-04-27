@@ -1,11 +1,11 @@
 
-const auth = require('solid-auth-client');
-const fileClient = require('solid-file-client');
-const DataSync = require('../lib/datasync');
-const { default: data } = require('@solid/query-ldflex');
-const Core = require('../lib/core');
-const CheckNotifications = require('../lib/checkNotifications');
-const MessageManager = require('../lib/messageManager');
+const auth = require("solid-auth-client");
+const fileClient = require("solid-file-client");
+const DataSync = require("../lib/datasync");
+const { default: data } = require("@solid/query-ldflex");
+const Core = require("../lib/core");
+const CheckNotifications = require("../lib/checkNotifications");
+const MessageManager = require("../lib/messageManager");
 
 let userWebId;
 let friendWebId;
@@ -48,7 +48,7 @@ function seePrincipalScreen() {
 }
 
 $("#login-btn").click(() => {
-  auth.popupLogin({ popupUri: 'https://solid.github.io/solid-auth-client/dist/popup.html' });
+  auth.popupLogin({ popupUri: "https://solid.github.io/solid-auth-client/dist/popup.html" });
 });
 
 $("#logout-btn").click(() => {
@@ -59,11 +59,9 @@ $("#logout-btn").click(() => {
 });
 
 async function createChatFolder(url) {
-	return await fileClient.createFolder(url).then(success => {
-			console.log(`Created folder ${url}.`);
+	return await fileClient.createFolder(url).then(success=>{;
 		return true;
 	}, err => {
-		console.log(err);
 		return false;
 	});
 }
@@ -79,6 +77,49 @@ function addMessage(user,message,sended){
 }
 
 /**
+ * This method checks if a new message has been made by your friend into Inbox.
+ * The necessarily data is stored and the UI is updated.
+ * @returns {Promise<void>}
+ */
+async function checkForNotificationsInbox() {
+  var updates = await checkNotifications.checkUserForUpdates(await core.getInboxUrl(userWebId));
+  console.log(updates.length);
+  updates.forEach(async (fileurl) => {   
+      let message = await messageManager.getNewMessage(fileurl,"/inbox/", dataSync,);
+      console.log(message);  
+      if (message) {
+			newMessageFound = true;
+			if (openChat) {
+                addMessage(await core.getFormattedName(friendWebId),message.messageTx,false);
+			} else {
+        message.date=message.date.split("/").pop();
+				friendMessages.push(message);
+			}
+		} 
+  });
+  
+}
+
+/**
+ * This method checks if a new message has been made by your friend into Publc directory.
+ * The necessarily data is stored and the UI is updated.
+ * @returns {Promise<void>}
+ */
+async function checkForNotificationsPublic() {
+  const psFriendname = (await core.getFormattedName(friendWebId)).replace(/ /g,"%20");
+  var updates = await checkNotifications.checkUserForUpdates(await core.getPublicUrl(userWebId)+"/chat_"+psFriendname);
+  updates.forEach(async (fileurl) => {   
+      let message = await messageManager.getNewMessage(fileurl,"/public/chat_"+await psFriendname+"/", dataSync);
+      console.log(message);
+      if (message) {
+      newMessageFound = true;
+      message.date=message.date.split("/").pop();
+			friendMessages.push(message);
+		} 
+  });
+}
+
+/**
  * This method sets up the chat.
  * @returns {Promise<void>}
  */
@@ -88,7 +129,6 @@ async function setUpChat() {
     $("#friend-name").text(friendName);
     createChatFolder(userDataUrl);
     checkForNotificationsPublic();
-    console.log(`checked`);
     var i = 0; 
     friendMessages.sort(function(a, b) {
       return parseFloat(a.date) - parseFloat(b.date);
@@ -96,16 +136,16 @@ async function setUpChat() {
 	while (i < friendMessages.length) {
     var nameThroughUrl = friendMessages[i].author.split("/").pop();
     var friendThroughUrl = friendMessages[i].friend.split("/").pop();
-		if (nameThroughUrl === friendName && friendThroughUrl==userName) {
+		if (nameThroughUrl === friendName && friendThroughUrl===userName) {
       addMessage(friendName,friendMessages[i].messageTx,false);
     }
-    else if (nameThroughUrl === userName && friendThroughUrl==friendName) {
+    else if (nameThroughUrl === userName && friendThroughUrl===friendName) {
       addMessage(userName,friendMessages[i].messageTx,true);
 }
 		i++;
   }
 	openChat = true;
-};
+}
 
 
 function loadChat() {  
@@ -168,51 +208,6 @@ $("#message").keypress(async(e) => {
         await messageManager.storeMessage(userDataUrl, await core.getFormattedName(userWebId), message, friendWebId, dataSync, true);
     }
 });
-
-
-
-/**
- * This method checks if a new message has been made by your friend into Inbox.
- * The necessarily data is stored and the UI is updated.
- * @returns {Promise<void>}
- */
-async function checkForNotificationsInbox() {
-  var updates = await checkNotifications.checkUserForUpdates(await core.getInboxUrl(userWebId));
-  console.log(updates.length);
-  updates.forEach(async (fileurl) => {   
-      let message = await messageManager.getNewMessage(fileurl,"/inbox/", dataSync,);
-      console.log(message);  
-      if (message) {
-			newMessageFound = true;
-			if (openChat) {
-                addMessage(await core.getFormattedName(friendWebId),message.messageTx,false);
-			} else {
-        message.date=message.date.split("/").pop();
-				friendMessages.push(message);
-			}
-		} 
-  });
-  
-}
-
-/**
- * This method checks if a new message has been made by your friend into Publc directory.
- * The necessarily data is stored and the UI is updated.
- * @returns {Promise<void>}
- */
-async function checkForNotificationsPublic() {
-  const psFriendname = (await core.getFormattedName(friendWebId)).replace(/ /g,"%20");
-  var updates = await checkNotifications.checkUserForUpdates(await core.getPublicUrl(userWebId)+"/chat_"+psFriendname);
-  updates.forEach(async (fileurl) => {   
-      let message = await messageManager.getNewMessage(fileurl,"/public/chat_"+await psFriendname+"/", dataSync);
-      console.log(message);
-      if (message) {
-      newMessageFound = true;
-      message.date=message.date.split("/").pop();
-			friendMessages.push(message);
-		} 
-  });
-}
 
 async function clearInbox() {
   var resources = await core.getAllResourcesInInbox(await core.getInboxUrl(userWebId));
