@@ -7,7 +7,7 @@ const DataSync=require("../lib/datasync");
 const Core = require("../lib/core");
 const c = new Core(auth.fetch);
 
-const MessageManager = require(""../lib/messageManager");
+const MessageManager = require("../lib/messageManager");
 const chat = new MessageManager(c);
 
 describe("MessageManager Test", function () {
