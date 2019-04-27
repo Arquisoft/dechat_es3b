@@ -1,18 +1,18 @@
 require("chai");
-var assert = require('assert');
-const auth = require('solid-auth-client');
+var assert = require("assert");
+const auth = require("solid-auth-client");
 
 const DataSync=require("../lib/datasync");
 
-const Core = require('../lib/core');
+const Core = require("../lib/core");
 const c = new Core(auth.fetch);
 
-const CheckNotifications = require('../lib/checkNotifications');
+const CheckNotifications = require("../lib/checkNotifications");
 const chat = new CheckNotifications(c);
 
-describe('CheckNotifications Test', function () {
+describe("CheckNotifications Test", function () {
     
-    it('checkUserForUpdates', function() {
+    it("checkUserForUpdates", function() {
     chat.checkUserForUpdates("https://maarr.inrupt.net/inbox/").then(r=>{assert.notEqual(r,null);});
   });
 
