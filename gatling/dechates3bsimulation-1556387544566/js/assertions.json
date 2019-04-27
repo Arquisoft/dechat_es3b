@@ -1,0 +1,10 @@
+{
+  "simulation": "computerdatabase.DeChates3BSimulation",
+  "simulationId": "dechates3bsimulation",
+  "start": 1556387544566,
+  "description": "",
+  "scenarios": ["DeChates3BSimulation"],
+  "assertions": [
+
+  ]
+}
