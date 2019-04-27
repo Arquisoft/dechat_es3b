@@ -5,9 +5,9 @@
             <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/createChat.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;test3b&quot; with a &quot;SolidTest3b$&quot; that wants to talk with a friend" classname="start-a-chat;start-a-chat-with-a-real-friend" time="8.425832727">
+        <testcase name="Given a &quot;test3b&quot; with a &quot;SolidTest3b$&quot; that wants to talk with a friend" classname="start-a-chat;start-a-chat-with-a-real-friend" time="8.244533101">
         </testcase>
-        <testcase name="Then the chat is created" classname="start-a-chat;start-a-chat-with-a-real-friend" time="1.661509289">
+        <testcase name="Then the chat is created" classname="start-a-chat;start-a-chat-with-a-real-friend" time="1.664250148">
         </testcase>
     </testsuite>
     <testsuite name="make-login-in-the-chat;do-login-in-chat" tests="2" failures="0" skipped="0">
@@ -15,49 +15,29 @@
             <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/login.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login" classname="make-login-in-the-chat;do-login-in-chat" time="7.995691047">
+        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login" classname="make-login-in-the-chat;do-login-in-chat" time="7.37607889">
         </testcase>
-        <testcase name="Then the login is successfull" classname="make-login-in-the-chat;do-login-in-chat" time="0.011605704">
+        <testcase name="Then the login is successfull" classname="make-login-in-the-chat;do-login-in-chat" time="0.235615773">
         </testcase>
     </testsuite>
-    <testsuite name="make-bad-login-in-the-chat;do-bad-login-in-chat" tests="2" failures="1" skipped="0">
+    <testsuite name="make-bad-login-in-the-chat;do-bad-login-in-chat" tests="2" failures="0" skipped="0">
         <properties>
             <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/loginFailure.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;userTest3&quot; and &quot;passwordInvalid&quot; and the user make bad login" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="6.9770276">
+        <testcase name="Given a &quot;userTest3&quot; and &quot;passwordInvalid&quot; and the user make bad login" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="7.033728925">
         </testcase>
-        <testcase name="Then the login is unsuccessfull" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="0.009288491">
-            <failure message="NoSuchElementError: Unable to locate element: //*[@id=&apos;nav-login-btn&apos;]">NoSuchElementError: Unable to locate element: //*[@id=&apos;nav-login-btn&apos;]
-    at Object.throwDecodedError (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\error.js:497:15)
-    at parseHttpResponse (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\http.js:519:13)
-    at doSend.then.response (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\http.js:441:30)
-    at process._tickCallback (internal/process/next_tick.js:68:7)
-From: Task: WebDriver.findElement(By(xpath, //*[@id=&apos;nav-login-btn&apos;]))
-    at thenableWebDriverProxy.schedule (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\webdriver.js:807:17)
-    at thenableWebDriverProxy.findElement (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\webdriver.js:1014:17)
-    at createWorld.&lt;anonymous&gt; (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\features\step_definitions\stepdefs.js:72:23)
-    at process._tickCallback (internal/process/next_tick.js:61:11)</failure>
+        <testcase name="Then the login is unsuccessfull" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="0.006569907">
         </testcase>
     </testsuite>
-    <testsuite name="make-bad-login-in-the-chat;do-bad-login-in-chat" tests="2" failures="1" skipped="0">
+    <testsuite name="make-bad-login-in-the-chat;do-bad-login-in-chat" tests="2" failures="0" skipped="0">
         <properties>
             <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/loginFailure.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;userInvalid&quot; and &quot;password&quot; and the user make bad login" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="7.906073729">
+        <testcase name="Given a &quot;userInvalid&quot; and &quot;password&quot; and the user make bad login" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="6.940248199">
         </testcase>
-        <testcase name="Then the login is unsuccessfull" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="0.008592986">
-            <failure message="NoSuchElementError: Unable to locate element: //*[@id=&apos;nav-login-btn&apos;]">NoSuchElementError: Unable to locate element: //*[@id=&apos;nav-login-btn&apos;]
-    at Object.throwDecodedError (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\error.js:497:15)
-    at parseHttpResponse (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\http.js:519:13)
-    at doSend.then.response (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\http.js:441:30)
-    at process._tickCallback (internal/process/next_tick.js:68:7)
-From: Task: WebDriver.findElement(By(xpath, //*[@id=&apos;nav-login-btn&apos;]))
-    at thenableWebDriverProxy.schedule (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\webdriver.js:807:17)
-    at thenableWebDriverProxy.findElement (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\webdriver.js:1014:17)
-    at createWorld.&lt;anonymous&gt; (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\features\step_definitions\stepdefs.js:72:23)
-    at process._tickCallback (internal/process/next_tick.js:61:11)</failure>
+        <testcase name="Then the login is unsuccessfull" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="0.008178402">
         </testcase>
     </testsuite>
     <testsuite name="make-logout-in-the-chat;do-logout-in-chat" tests="2" failures="0" skipped="0">
@@ -65,9 +45,9 @@ From: Task: WebDriver.findElement(By(xpath, //*[@id=&apos;nav-login-btn&apos;]))
             <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/logout.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login and log out" classname="make-logout-in-the-chat;do-logout-in-chat" time="7.400561992">
+        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login and log out" classname="make-logout-in-the-chat;do-logout-in-chat" time="7.4628349">
         </testcase>
-        <testcase name="Then the main window is shows" classname="make-logout-in-the-chat;do-logout-in-chat" time="0.268674491">
+        <testcase name="Then the main window is shows" classname="make-logout-in-the-chat;do-logout-in-chat" time="0.271296035">
         </testcase>
     </testsuite>
 </testsuites>
