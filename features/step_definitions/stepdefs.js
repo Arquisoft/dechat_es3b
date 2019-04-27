@@ -131,7 +131,7 @@ module.exports = function () {
                                         driver.findElement(By.name("password")).sendKeys(password); 
                                         return driver.findElement(by.xpath("//*[@id='login']")).click().then(() => {
                                             driver.switchTo().window(parent);                                           
-                                            return driver.wait(until.elementsLocated(by.xpath("//*[@id='user-name']")), 20000);
+                                            return driver.wait(until.elementsLocated(by.xpath("//*[@id='mainNav']")), 20000);
                                         })
                                 })
                             });
@@ -140,10 +140,16 @@ module.exports = function () {
     });
     
     this.Then(/^the chat is created$/,function (){
-        return driver.wait(until.elementsLocated(by.xpath("//*[@id='user-name']")), 10000)
+        return driver.wait(until.elementsLocated(by.xpath("//*[@id='mainNav']")), 10000)
             .then(() => {
-                    return driver.findElement(by.xpath("//*[@id='new-btn']")).click()
+                return driver.wait(until.elementsLocated(by.xpath("//*[@id='friend0']")), 10000)
+                    .then(() => {
+                        return driver.findElement(by.xpath("//*[@id='friend0']")).click()
+                            .then(()=> {
+                                return driver.wait(until.elementsLocated(by.xpath("//*[@id='friend-name']")), 10000)
+                        });
                     });
+                });
             });
 };
 
