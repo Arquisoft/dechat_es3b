@@ -1,8 +1,6 @@
 'use strict';
 
 const assert = require('assert');
-//const { Given, When, Then } = require('cucumber');
-//const expect = require("chai").expect;
 var seleniumWebDriver = require ('selenium-webdriver');
 
 
@@ -92,13 +90,6 @@ module.exports = function () {
                                         driver.findElement(By.name("password")).sendKeys(password); 
                                         return driver.findElement(by.xpath("//*[@id='login']")).click().then(() => {
                                             driver.switchTo().window(parent);                                           
-                                            // open the menu
-//                                           return driver.wait(until.elementsLocated(by.xpath("//*[@id='user-menu']")), 80000).then(() => {
-//                                               driver.findElement(By.xpath("//*[@id='user-menu']")).click();
-//                                               driver.findElement(By.xpath("//*[@id='logout-btn']")).click();
-//                                            });
-//                                            driver.wait(until.elementsLocated(by.xpath("//*[@id='navbarDropdown']")), 12000000000000000000000000000000000000000);
-//                                            return driver.wait(until.elementsLocated(by.xpath("//*[@id='user-menu']")), 12000000000000000000000000000000000000000);
                                             return driver.wait(until.elementsLocated(by.xpath("//*[@id='mainNav']")), 20000);
                                         })
                                 })
