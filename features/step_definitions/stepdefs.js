@@ -97,8 +97,9 @@ module.exports = function () {
 //                                               driver.findElement(By.xpath("//*[@id='user-menu']")).click();
 //                                               driver.findElement(By.xpath("//*[@id='logout-btn']")).click();
 //                                            });
-                                            driver.wait(until.elementsLocated(by.xpath("//*[@id='navbarDropdown']")), 12000000000000000000000000000000000000000);
-                                            return driver.wait(until.elementsLocated(by.xpath("//*[@id='user-menu']")), 12000000000000000000000000000000000000000);
+//                                            driver.wait(until.elementsLocated(by.xpath("//*[@id='navbarDropdown']")), 12000000000000000000000000000000000000000);
+//                                            return driver.wait(until.elementsLocated(by.xpath("//*[@id='user-menu']")), 12000000000000000000000000000000000000000);
+                                            return driver.wait(until.elementsLocated(by.xpath("//*[@id='mainNav']")), 20000);
                                         })
                                 })
                             });
@@ -107,8 +108,13 @@ module.exports = function () {
     });
     
     this.Then(/^the main window is shows$/,function (){
-        driver.findElement(By.xpath("//*[@id='logout-btn']")).click();
-        return driver.findElement(by.xpath("//*[@id='nav-login-btn']"));
+        return driver.wait(until.elementsLocated(by.xpath("//*[@id='logout-btn']")), 20000)
+            .then(()=>{
+                driver.findElement(By.xpath("//*[@id='logout-btn']")).click()
+                    .then(() => {
+                        return driver.findElement(by.xpath("//*[@id='login-btn']"));
+                }); 
+        });
     });
     
     //----------------------- Test create a chat -------------------------

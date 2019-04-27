@@ -5,9 +5,9 @@
             <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/createChat.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;test3b&quot; with a &quot;SolidTest3b$&quot; that wants to talk with a friend" classname="start-a-chat;start-a-chat-with-a-real-friend" time="9.793429262">
+        <testcase name="Given a &quot;test3b&quot; with a &quot;SolidTest3b$&quot; that wants to talk with a friend" classname="start-a-chat;start-a-chat-with-a-real-friend" time="8.425832727">
         </testcase>
-        <testcase name="Then the chat is created" classname="start-a-chat;start-a-chat-with-a-real-friend" time="1.67150159">
+        <testcase name="Then the chat is created" classname="start-a-chat;start-a-chat-with-a-real-friend" time="1.661509289">
         </testcase>
     </testsuite>
     <testsuite name="make-login-in-the-chat;do-login-in-chat" tests="2" failures="0" skipped="0">
@@ -15,9 +15,9 @@
             <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/login.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login" classname="make-login-in-the-chat;do-login-in-chat" time="7.954575884">
+        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login" classname="make-login-in-the-chat;do-login-in-chat" time="7.995691047">
         </testcase>
-        <testcase name="Then the login is successfull" classname="make-login-in-the-chat;do-login-in-chat" time="0.238559015">
+        <testcase name="Then the login is successfull" classname="make-login-in-the-chat;do-login-in-chat" time="0.011605704">
         </testcase>
     </testsuite>
     <testsuite name="make-bad-login-in-the-chat;do-bad-login-in-chat" tests="2" failures="1" skipped="0">
@@ -25,9 +25,9 @@
             <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/loginFailure.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;userTest3&quot; and &quot;passwordInvalid&quot; and the user make bad login" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="7.103772826">
+        <testcase name="Given a &quot;userTest3&quot; and &quot;passwordInvalid&quot; and the user make bad login" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="6.9770276">
         </testcase>
-        <testcase name="Then the login is unsuccessfull" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="0.012789421">
+        <testcase name="Then the login is unsuccessfull" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="0.009288491">
             <failure message="NoSuchElementError: Unable to locate element: //*[@id=&apos;nav-login-btn&apos;]">NoSuchElementError: Unable to locate element: //*[@id=&apos;nav-login-btn&apos;]
     at Object.throwDecodedError (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\error.js:497:15)
     at parseHttpResponse (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\http.js:519:13)
@@ -45,9 +45,9 @@ From: Task: WebDriver.findElement(By(xpath, //*[@id=&apos;nav-login-btn&apos;]))
             <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/loginFailure.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;userInvalid&quot; and &quot;password&quot; and the user make bad login" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="6.931087331">
+        <testcase name="Given a &quot;userInvalid&quot; and &quot;password&quot; and the user make bad login" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="7.906073729">
         </testcase>
-        <testcase name="Then the login is unsuccessfull" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="0.009703452">
+        <testcase name="Then the login is unsuccessfull" classname="make-bad-login-in-the-chat;do-bad-login-in-chat" time="0.008592986">
             <failure message="NoSuchElementError: Unable to locate element: //*[@id=&apos;nav-login-btn&apos;]">NoSuchElementError: Unable to locate element: //*[@id=&apos;nav-login-btn&apos;]
     at Object.throwDecodedError (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\error.js:497:15)
     at parseHttpResponse (C:\Users\alba-\Desktop\ASW-Cucumber\dechat_es3b\node_modules\selenium-cucumber-js\node_modules\selenium-webdriver\lib\http.js:519:13)
@@ -60,17 +60,14 @@ From: Task: WebDriver.findElement(By(xpath, //*[@id=&apos;nav-login-btn&apos;]))
     at process._tickCallback (internal/process/next_tick.js:61:11)</failure>
         </testcase>
     </testsuite>
-    <testsuite name="make-logout-in-the-chat;do-logout-in-chat" tests="2" failures="1" skipped="1">
+    <testsuite name="make-logout-in-the-chat;do-logout-in-chat" tests="2" failures="0" skipped="0">
         <properties>
             <property name="URI" value="C:/Users/alba-/Desktop/ASW-Cucumber/dechat_es3b/features/logout.feature">
             </property>
         </properties>
-        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login and log out" classname="make-logout-in-the-chat;do-logout-in-chat" time="50.000531633">
-            <failure message="function timed out after 50000 milliseconds">function timed out after 50000 milliseconds</failure>
+        <testcase name="Given a &quot;test3b&quot; and &quot;SolidTest3b$&quot; and the user make login and log out" classname="make-logout-in-the-chat;do-logout-in-chat" time="7.400561992">
         </testcase>
-        <testcase name="Then the main window is shows" classname="make-logout-in-the-chat;do-logout-in-chat">
-            <skipped message="">
-            </skipped>
+        <testcase name="Then the main window is shows" classname="make-logout-in-the-chat;do-logout-in-chat" time="0.268674491">
         </testcase>
     </testsuite>
 </testsuites>
