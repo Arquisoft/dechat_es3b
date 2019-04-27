@@ -59,7 +59,7 @@ $("#logout-btn").click(() => {
 });
 
 async function createChatFolder(url) {
-	return await fileClient.createFolder(url).then(success=>{;
+	return await fileClient.createFolder(url).then(success=>{
 		return true;
 	}, err => {
 		return false;
