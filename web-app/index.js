@@ -111,7 +111,8 @@ async function setUpChat() {
 function loadChat() {  
     clearConver();
   const dataUrl = core.getDefaultDataUrl(userWebId)+this.getAttribute("text");
-    friendWebId = this.getAttribute("value");
+    friendWebIds = this.getAttribute("value");
+    
     userDataUrl = dataUrl;
     setUpChat();
 }
